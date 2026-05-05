@@ -37,3 +37,4 @@ yarn-error.log*
 .DS_Store
 *.pem
 skills-lock.json
+.claude

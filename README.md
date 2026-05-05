@@ -1,159 +1,139 @@
-# Turborepo starter
+# GenExecutive
 
-This Turborepo starter is maintained by the Turborepo core team.
+**Executive Intelligence & AI Automation** — world-class executive support combined with AI-powered workflows, custom agents, landing pages, and MVP development.
 
-## Using this example
+## Overview
 
-Run the following command:
+GenExecutive is a Next.js marketing site and service platform offering:
 
-```sh
-npx create-turbo@latest
+- **Executive Support** — calendar management, email triage, travel coordination, vendor relations
+- **AI Automation** — custom automations that run 24/7 across your business workflows
+- **AI Agents** — autonomous agents handling complex multi-step tasks
+- **Landing Pages** — high-converting pages built for your campaigns
+- **MVP Development** — lean, production-ready products launched in weeks
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript 5 |
+| UI | React 19 |
+| Styling | Tailwind CSS v4 |
+| Animations | Motion (Framer Motion v12) |
+| Scheduling | Cal.com Embed |
+| Monorepo | Turborepo |
+| Package Manager | Bun |
+
+## Project Structure
+
+```
+gen_executive_V2.0/
+├── apps/
+│   └── web/                        # Main Next.js site
+│       ├── src/
+│       │   ├── app/                # Next.js App Router pages
+│       │   │   ├── blog/           # Blog list + [slug] post pages
+│       │   │   ├── sitemap.ts      # Auto-generated sitemap
+│       │   │   ├── robots.ts       # Robots.txt
+│       │   │   ├── opengraph-image.tsx  # Dynamic OG image
+│       │   │   ├── layout.tsx      # Root layout + metadata
+│       │   │   └── page.tsx        # Homepage
+│       │   ├── Components/
+│       │   │   ├── sections/       # Page sections (Hero, About, Features, …)
+│       │   │   ├── ui/             # Shared UI primitives (Button)
+│       │   │   ├── navbar.tsx
+│       │   │   ├── testimonials.tsx
+│       │   │   └── caldotcom.tsx   # Cal.com booking button
+│       │   ├── lib/
+│       │   │   └── posts.ts        # Blog markdown reader (gray-matter + remark)
+│       │   └── posts/              # Blog post .md files (drop here to publish)
+│       └── next.config.ts
+├── packages/                       # Shared ESLint + TypeScript configs
+├── turbo.json
+└── package.json
 ```
 
-## What's inside?
+## Getting Started
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+**Prerequisites:** Node.js 18+, [Bun](https://bun.sh)
 
 ```sh
-cd my-turborepo
-turbo build
+# Install dependencies (from repo root)
+bun install
+
+# Start the web app in dev mode
+bun dev --filter=web
+
+# Or from apps/web directly
+cd apps/web && bun dev
 ```
 
-Without global `turbo`, use your package manager:
+Open [http://localhost:3000](http://localhost:3000).
+
+## Commands
+
+Run from the repo root:
 
 ```sh
-cd my-turborepo
-npx turbo build
-bun dlx turbo build
-bun exec turbo build
+bun run dev        # Dev all apps
+bun run build      # Production build all apps
+bun run lint       # Lint all apps
+bun run format     # Prettier format
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+Or scoped to the web app:
 
 ```sh
-turbo build --filter=docs
+bun run dev --filter=web
+bun run build --filter=web
 ```
 
-Without global `turbo`:
+## Blog — Publishing a Post
 
+The blog is file-system driven — no CMS or database. To publish:
+
+1. Create a new file in `apps/web/src/posts/`:
+   ```
+   apps/web/src/posts/my-post-title.md
+   ```
+
+2. Add frontmatter at the top:
+   ```md
+   ---
+   title: "Your Post Title"
+   date: "2026-05-10"
+   excerpt: "A short summary shown on the blog list page."
+   ---
+
+   Your content here...
+   ```
+
+3. Push to your deployment branch — the post goes live automatically.
+
+The filename becomes the URL slug: `my-post-title.md` → `/blog/my-post-title`.
+
+## Environment Variables
+
+Create `apps/web/.env.local` for local overrides:
+
+```env
+# Production site URL — used for sitemap and OG metadata
+NEXT_PUBLIC_SITE_URL=https://genexecutive.com
+```
+
+## Deployment
+
+Recommended: **Vercel** (zero-config for Next.js)
+
+1. Push to GitHub
+2. Import repo at [vercel.com/new](https://vercel.com/new)
+3. Set root directory to `apps/web`
+4. Add `NEXT_PUBLIC_SITE_URL` environment variable
+5. Deploy
+
+Alternatively deploy via CLI:
 ```sh
-npx turbo build --filter=docs
-bun exec turbo build --filter=docs
-bun exec turbo build --filter=docs
+cd apps/web
+npx vercel --prod
 ```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-bun exec turbo dev
-bun exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-bun exec turbo dev --filter=web
-bun exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-bun exec turbo login
-bun exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-bun exec turbo link
-bun exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)

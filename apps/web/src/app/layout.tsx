@@ -13,10 +13,75 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://genexecutive.com";
+const title = "GenExecutive — Executive Intelligence & AI Automation";
+const description =
+  "Executive support, AI automation, and custom agents — all working together to elevate your business performance.";
+
 export const metadata: Metadata = {
-  title: "GenExecutive — Executive Intelligence & AI Automation",
-  description:
-    "Executive support, AI automation, and custom agents — all working together to elevate your business performance.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: title,
+    template: "%s — GenExecutive",
+  },
+  description,
+  keywords: [
+    "executive support",
+    "AI automation",
+    "AI agents",
+    "virtual executive assistant",
+    "MVP development",
+    "landing pages",
+    "business operations",
+    "workflow automation",
+  ],
+  authors: [{ name: "GenExecutive", url: siteUrl }],
+  openGraph: {
+    type: "website",
+    siteName: "GenExecutive",
+    title,
+    description,
+    url: "/",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "GenExecutive — Executive Intelligence & AI Automation",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/opengraph-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "GenExecutive",
+  url: siteUrl,
+  description,
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "hello@genexecutive.com",
+    contactType: "customer service",
+  },
+  sameAs: [
+    "https://twitter.com/genexecutive",
+    "https://linkedin.com/company/genexecutive",
+  ],
 };
 
 export default function RootLayout({
@@ -30,6 +95,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
         <Navbar />
         {children}
       </body>
