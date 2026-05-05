@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://genexecutive.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://genexecutive.in";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts().map((post) => ({
