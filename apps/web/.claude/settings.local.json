@@ -3,7 +3,11 @@
     "allow": [
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\HP\\\\OneDrive\\\\Desktop\\\\work\\\\gen_executive_V2.0\\\\apps\\\\web\" -Force)",
       "Bash(Select-Object Name, PSIsContainer)",
-      "Bash(bun add *)"
+      "Bash(bun add *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\HP\\\\OneDrive\\\\Desktop\\\\work\\\\gen_executive_V2.0\" -Force)",
+      "Bash(Select-Object Name)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\HP\\\\OneDrive\\\\Desktop\\\\work\\\\gen_executive_V2.0\\\\apps\\\\web\\\\src\\\\app\" -Recurse -Force | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\('C:\\\\Users\\\\HP\\\\OneDrive\\\\Desktop\\\\work\\\\gen_executive_V2.0\\\\apps\\\\web\\\\src\\\\app\\\\', ''\\) })",
+      "Bash(Remove-Item *)"
     ]
   }
 }

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://genexecutive.com/sitemap.xml
+
+Content-Signal: ai-train=no, search=yes, ai-input=no
