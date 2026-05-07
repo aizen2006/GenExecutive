@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#5C4AF2"/>
+  <!-- Jasper: bold "J" with a curved tail -->
+  <g fill="white">
+    <rect x="44" y="22" width="12" height="44" rx="2"/>
+    <path d="M32 66 Q32 82 50 82 Q68 82 68 66 L56 66 Q56 72 50 72 Q44 72 44 66 Z"/>
+  </g>
+</svg>

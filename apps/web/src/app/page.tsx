@@ -1,5 +1,5 @@
 import Hero from "@/Components/sections/Hero";
-import LogoBar from "@/Components/sections/LogoBar";
+import DialStrip from "@/Components/sections/DialStrip";
 import About from "@/Components/sections/About";
 import Features from "@/Components/sections/Features";
 import { Testimonials } from "@/Components/testimonials";
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="flex flex-col">
       <Hero />
-      <LogoBar />
+      <DialStrip />
       <About />
       <Features />
       <Testimonials />
@@ -20,4 +20,4 @@ export default function Home() {
       <Footer />
     </main>
   );
-}
+} 

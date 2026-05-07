@@ -9,38 +9,41 @@ import {
   useTransform,
 } from "motion/react";
 
-const testimonials = [
-  {
-    author: "Sarah Chen",
-    role: "CEO at TechFlow",
-    text: "GenExecutive transformed our operations. The AI agents handle what used to take my team 3 hours — now it's done before I finish my morning coffee.",
-  },
-  {
-    author: "Marcus Rodriguez",
-    role: "Founder at ScaleUp",
-    text: "Exceptional executive support. It's like having a world-class EA who never sleeps and always anticipates exactly what I need next.",
-  },
-  {
-    author: "Alex Kim",
-    role: "CMO at LaunchPad",
-    text: "Our landing page conversion increased 40% after GenExecutive rebuilt it. The quality and speed of delivery were truly unmatched.",
-  },
-  {
-    author: "Priya Nair",
-    role: "COO at Meridian",
-    text: "The AI automation they built for our onboarding flow saved us 20+ hours a week. It's been completely game-changing for our team.",
-  },
-];
-
-function TestimonialCard({
-  author,
-  role,
-  text,
-}: {
+interface Testimonial {
   author: string;
   role: string;
   text: string;
-}) {
+}
+
+const testimonials: Testimonial[] = [
+  {
+    author: "Ishani Behl",
+    role: "CEO at Skillopp",
+    text: "GenExecutive's AI agents completely automated our operations — scheduling, reporting, follow-ups — what used to eat 3 hours of my team's day now runs itself. The executive support alone is worth every penny.",
+  },
+  {
+    author: "Shabaz Ahmad",
+    role: "Managing Director at SportsRadar",
+    text: "Having GenExecutive in my corner feels like gaining an executive team that never clocks out. Every briefing, every follow-up, every decision brief — handled before I even ask. My focus is finally on the work that matters.",
+  },
+  {
+    author: "Alisha Martin",
+    role: "CEO at BuyBirdAcquisitions",
+    text: "GenExecutive's AI agents did the research, built the strategy, and automated the execution. Our landing page conversion jumped 40% — and my team didn't lift a finger on the heavy lifting.",
+  },
+  {
+    author: "Abhishek Gupta",
+    role: "CEO at Timepe",
+    text: "The depth of AI research GenExecutive brought to our product blew us away. They didn't just automate our onboarding — they studied our users, identified drop-off patterns, and built an intelligent flow that saves us 20+ hours a week.",
+  },
+  {
+    author: "Rashmi Sharma",
+    role: "CMO at Cocacola",
+    text: "GenExecutive handles everything from campaign design to creative production. Briefs, assets, performance research — it all comes back polished and on-brand. It's the executive creative support I didn't know I needed until I had it.",
+  },
+];
+
+function TestimonialCard({ author, role, text }: Testimonial) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -67,7 +70,6 @@ function TestimonialCard({
       style={{ rotateX, rotateY, transformPerspective: 900 }}
       className="relative w-72 rounded-2xl bg-white p-5 shadow-lg border border-zinc-100 overflow-hidden"
     >
-      {/* Gradient shimmer */}
       <div className="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-br from-white/60 to-transparent opacity-60" />
       <p className="text-sm text-zinc-600 italic leading-relaxed mb-4">
         &ldquo;{text}&rdquo;
@@ -80,6 +82,13 @@ function TestimonialCard({
   );
 }
 
+// Captures testimonial content at mount time so the exiting AnimatePresence
+// element never picks up updated props mid-animation.
+function FrozenTestimonialCard(props: Testimonial) {
+  const frozen = useRef<Testimonial>(props);
+  return <TestimonialCard {...frozen.current} />;
+}
+
 const ghostPositions = [
   { top: "6%", left: "4%", rotate: -8 },
   { top: "50%", right: "3%", rotate: 6 },
@@ -87,15 +96,14 @@ const ghostPositions = [
 ];
 
 export function Testimonials() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [cycleKey, setCycleKey] = useState(0);
+  // Single counter is the source of truth; activeIdx is always derived from it.
+  // This prevents the activeIdx/cycleKey drift that occurred with two separate states.
+  const [step, setStep] = useState(0);
+  const activeIdx = step % testimonials.length;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIdx((i) => (i + 1) % testimonials.length);
-      setCycleKey((k) => k + 1);
-    }, 4200);
-    return () => clearInterval(interval);
+    const id = setInterval(() => setStep((s) => s + 1), 4200);
+    return () => clearInterval(id);
   }, []);
 
   return (
@@ -124,11 +132,7 @@ export function Testimonials() {
               className="opacity-[0.18] blur-[1.5px]"
               style={{ transform: `rotate(${pos.rotate}deg)` }}
             >
-              <TestimonialCard
-                author={t.author}
-                role={t.role}
-                text={t.text}
-              />
+              <TestimonialCard author={t.author} role={t.role} text={t.text} />
             </div>
           </motion.div>
         );
@@ -163,21 +167,17 @@ export function Testimonials() {
           Real results from real businesses we&apos;ve worked with.
         </motion.p>
 
-        {/* Active testimonial — pops in */}
+        {/* Active testimonial */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={cycleKey}
+            key={step}
             initial={{ y: 52, opacity: 0, scale: 0.94 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: -28, opacity: 0, scale: 0.97 }}
             transition={{ duration: 0.48, ease: "easeOut" }}
             className="relative"
           >
-            <TestimonialCard
-              author={testimonials[activeIdx].author}
-              role={testimonials[activeIdx].role}
-              text={testimonials[activeIdx].text}
-            />
+            <FrozenTestimonialCard {...testimonials[activeIdx]} />
           </motion.div>
         </AnimatePresence>
 
@@ -187,8 +187,13 @@ export function Testimonials() {
             <button
               key={i}
               onClick={() => {
-                setActiveIdx(i);
-                setCycleKey((k) => k + 1);
+                setStep((s) => {
+                  const n = testimonials.length;
+                  const diff = (i - (s % n) + n) % n;
+                  // diff === 0 means the dot for the current testimonial was clicked:
+                  // advance a full cycle to re-trigger the animation.
+                  return s + (diff === 0 ? n : diff);
+                });
               }}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === activeIdx
