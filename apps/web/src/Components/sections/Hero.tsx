@@ -57,7 +57,7 @@ export function Hero() {
           variants={itemVariants}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 leading-[1.08] mb-5"
         >
-          AI-Skilled Assistants for Small Businesses —{" "}
+          AI-Skilled Assistants for Modern Businesses —{" "}
           <span className="bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent">
             at a Fraction of the Cost
           </span>
