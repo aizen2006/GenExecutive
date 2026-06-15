@@ -28,7 +28,7 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://genexecutive.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.genexecutive.in";
 const title = "GenExecutive — Executive Intelligence & AI Automation";
 const description =
   "Executive support, AI automation, and custom agents — all working together to elevate your business performance.";
@@ -90,7 +90,7 @@ const orgJsonLd = {
   description,
   contactPoint: {
     "@type": "ContactPoint",
-    email: "hello@genexecutive.com",
+    email: "abhikzapifyflow@gmail.com",
     contactType: "customer service",
   },
   sameAs: [

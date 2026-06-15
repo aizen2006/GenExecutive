@@ -32,6 +32,9 @@ export function About() {
           <p className="text-zinc-500 text-lg leading-relaxed mb-4">
             GenExecutive was founded on one belief: the best executives shouldn't be buried in logistics. We combine world-class human support with AI systems to give you the leverage you need to lead at your best.
           </p>
+          <p className="text-zinc-500 text-lg leading-relaxed mb-4">
+            We work with small businesses, coaches, consultants, and scaling teams in the US and UK.
+          </p>
           <p className="text-zinc-500 text-lg leading-relaxed">
             From inbox zero to custom AI agents, every service we offer is designed to multiply your impact — not just save you time.
           </p>

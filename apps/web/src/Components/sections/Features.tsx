@@ -20,153 +20,273 @@ const cardVariants: Variants = {
   },
 };
 
-/* ── Icons ─────────────────────────────────────────────────── */
-const ExecIcon = () => (
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-violet-600">
-    <rect x="3" y="4" width="18" height="18" rx="2" />
-    <line x1="16" y1="2" x2="16" y2="6" />
-    <line x1="8" y1="2" x2="8" y2="6" />
-    <line x1="3" y1="10" x2="21" y2="10" />
-    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
-  </svg>
-);
-const AutoIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-indigo-500">
-    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-  </svg>
-);
-const AgentIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-blue-500">
-    <rect x="2" y="3" width="20" height="14" rx="2" />
-    <path d="M8 21h8M12 17v4" />
-    <circle cx="9" cy="10" r="1.5" />
-    <circle cx="15" cy="10" r="1.5" />
-    <path d="M9 13c0.5 1 2.5 1.5 3 0" />
-  </svg>
-);
-const PagesIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-emerald-500">
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <line x1="3" y1="9" x2="21" y2="9" />
-    <line x1="9" y1="21" x2="9" y2="9" />
-  </svg>
-);
-const MvpIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-orange-500">
-    <path d="M12 2L4 12h5v9l8-11h-5z" />
-  </svg>
-);
+/* ── Accent system ─────────────────────────────────────────── */
+type AccentKey = "violet-blue" | "blue" | "violet" | "emerald";
 
-interface CardProps {
-  title: string;
-  description: string;
-  icon: ReactNode;
-  areaClass: string;
-  isMain?: boolean;
-  tags?: string[];
-  gradient: string;
-  hoverGlow: string;
-  iconDelay?: number;
+const accents: Record<
+  AccentKey,
+  { surface: string; node: string; glow: string; pill: string; dot: string }
+> = {
+  "violet-blue": {
+    surface: "from-white to-violet-50/70",
+    node: "from-violet-500 to-blue-500",
+    glow: "0 0 0 2px rgba(139,92,246,0.3), 0 24px 70px rgba(139,92,246,0.16)",
+    pill: "bg-violet-100/70 text-violet-700 shadow-[0_0_8px_rgba(139,92,246,0.15)] hover:shadow-[0_0_12px_rgba(139,92,246,0.3)]",
+    dot: "from-violet-500 to-blue-400",
+  },
+  blue: {
+    surface: "from-white to-blue-50/60",
+    node: "from-blue-500 to-indigo-400",
+    glow: "0 0 0 2px rgba(59,130,246,0.28), 0 16px 48px rgba(59,130,246,0.12)",
+    pill: "bg-blue-100/70 text-blue-700 shadow-[0_0_8px_rgba(59,130,246,0.15)] hover:shadow-[0_0_12px_rgba(59,130,246,0.3)]",
+    dot: "from-blue-500 to-indigo-400",
+  },
+  violet: {
+    surface: "from-white to-violet-50/60",
+    node: "from-violet-500 to-fuchsia-400",
+    glow: "0 0 0 2px rgba(139,92,246,0.28), 0 16px 48px rgba(139,92,246,0.12)",
+    pill: "bg-violet-100/70 text-violet-700 shadow-[0_0_8px_rgba(139,92,246,0.15)] hover:shadow-[0_0_12px_rgba(139,92,246,0.3)]",
+    dot: "from-violet-500 to-fuchsia-400",
+  },
+  emerald: {
+    surface: "from-white to-emerald-50/60",
+    node: "from-emerald-500 to-teal-400",
+    glow: "0 0 0 2px rgba(16,185,129,0.28), 0 16px 48px rgba(16,185,129,0.12)",
+    pill: "bg-emerald-100/70 text-emerald-700 shadow-[0_0_8px_rgba(16,185,129,0.15)] hover:shadow-[0_0_12px_rgba(16,185,129,0.3)]",
+    dot: "from-emerald-500 to-teal-400",
+  },
+};
+
+function Pill({ children, accent }: { children: ReactNode; accent: AccentKey }) {
+  return (
+    <motion.span
+      whileHover={{ scale: 1.06 }}
+      className={`rounded-full px-3 py-1 text-[13px] font-medium transition-shadow cursor-default ${accents[accent].pill}`}
+    >
+      {children}
+    </motion.span>
+  );
 }
 
-function FeatureCard({
-  title,
-  description,
-  icon,
-  areaClass,
-  isMain,
-  tags,
-  gradient,
-  hoverGlow,
-  iconDelay = 0,
-}: CardProps) {
+/* ── Hero card visual: animated workflow ───────────────────── */
+const workflowSteps = [
+  { label: "Lead Form", sub: "New submission" },
+  { label: "CRM", sub: "Record created" },
+  { label: "AI Processing", sub: "Enrich & score" },
+  { label: "Email Follow-up", sub: "Auto-sent" },
+  { label: "Slack Notification", sub: "Team alerted" },
+];
+
+function WorkflowVisual() {
+  return (
+    <div className="relative flex flex-col items-stretch">
+      {workflowSteps.map((step, i) => (
+        <div key={step.label} className="flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, ease: "easeOut", delay: 0.15 + i * 0.12 }}
+            className="flex w-full max-w-sm items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 shadow-[0_4px_20px_rgba(24,24,27,0.06)] ring-1 ring-zinc-100"
+          >
+            <span className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 shadow-[0_0_16px_rgba(139,92,246,0.4)]" />
+            <div className="min-w-0">
+              <div className="text-sm font-semibold text-zinc-900">{step.label}</div>
+              <div className="text-xs text-zinc-400">{step.sub}</div>
+            </div>
+            <div className="ml-auto h-2 w-2 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]" />
+          </motion.div>
+
+          {i < workflowSteps.length - 1 && (
+            <div className="relative h-6 w-px overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-violet-300 to-blue-300" />
+              <motion.div
+                className="absolute left-1/2 top-0 h-2 w-1 -translate-x-1/2 rounded-full bg-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.8)]"
+                animate={{ y: [0, 24] }}
+                transition={{
+                  duration: 1.4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.28,
+                }}
+              />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Small card mini-visuals ───────────────────────────────── */
+function OrganizeVisual() {
+  return (
+    <div className="mt-4 grid grid-cols-2 gap-2.5">
+      <motion.div
+        className="rounded-xl bg-white/90 p-2.5 shadow-[0_4px_16px_rgba(24,24,27,0.05)]"
+        animate={{ y: [0, -4, 0] }}
+        transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="mb-1.5 text-[10px] font-semibold text-blue-600">JUN</div>
+        <div className="grid grid-cols-4 gap-1">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              className={`h-3 rounded ${i === 2 || i === 5 ? "bg-blue-300" : "bg-zinc-100"}`}
+            />
+          ))}
+        </div>
+      </motion.div>
+      <div className="space-y-1.5">
+        {["Reply to client", "Review proposal"].map((t) => (
+          <div
+            key={t}
+            className="flex items-center gap-1.5 rounded-xl bg-white/90 px-2 py-1.5 text-[11px] text-zinc-600 shadow-[0_4px_16px_rgba(24,24,27,0.05)]"
+          >
+            <span className="h-2.5 w-2.5 rounded-[4px] bg-blue-200" />
+            <span className="truncate">{t}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AIVisual() {
+  return (
+    <div className="mt-4 space-y-2">
+      <motion.div
+        className="max-w-[80%] rounded-2xl rounded-tl-sm bg-white/90 px-3 py-2 text-[11px] text-zinc-600 shadow-[0_4px_16px_rgba(24,24,27,0.05)]"
+        animate={{ y: [0, -3, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        How do I reset my plan?
+      </motion.div>
+      <div className="ml-auto flex max-w-[85%] items-end gap-2">
+        <div className="rounded-2xl rounded-tr-sm bg-gradient-to-br from-violet-500 to-fuchsia-500 px-3 py-2 text-[11px] text-white shadow-[0_0_14px_rgba(139,92,246,0.35)]">
+          Sure — I can do that for you now.
+        </div>
+        <motion.span
+          className="mb-1 h-6 w-6 shrink-0 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-400 shadow-[0_0_12px_rgba(139,92,246,0.5)]"
+          animate={{ scale: [1, 1.12, 1], opacity: [0.85, 1, 0.85] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+      {/* Typing indicator */}
+      <div className="flex w-fit items-center gap-1 rounded-full bg-white/90 px-2.5 py-1.5 shadow-[0_4px_16px_rgba(24,24,27,0.05)]">
+        {[0, 1, 2].map((i) => (
+          <motion.span
+            key={i}
+            className="h-1.5 w-1.5 rounded-full bg-violet-400"
+            animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }}
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.18,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OpsVisual() {
+  const rows = [
+    { t: "Onboarding SOP.pdf", delay: 0.2 },
+    { t: "Client data sheet", delay: 0.5 },
+    { t: "Vendor checklist", delay: 0.8 },
+  ];
+  return (
+    <div className="mt-4 space-y-1.5">
+      {rows.map((row) => (
+        <div
+          key={row.t}
+          className="flex items-center gap-2 rounded-xl bg-white/90 px-2.5 py-1.5 shadow-[0_4px_16px_rgba(24,24,27,0.05)]"
+        >
+          <motion.span
+            className="flex h-3.5 w-3.5 items-center justify-center rounded-[5px] bg-emerald-400 text-[8px] text-white"
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 400, damping: 16, delay: row.delay }}
+          >
+            ✓
+          </motion.span>
+          <span className="truncate text-[11px] text-zinc-600">{row.t}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Small card ────────────────────────────────────────────── */
+interface SmallCardProps {
+  areaClass: string;
+  title: string;
+  description: string;
+  pills: string[];
+  visual: ReactNode;
+  accent: AccentKey;
+}
+
+function SmallCard({ areaClass, title, description, pills, visual, accent }: SmallCardProps) {
   return (
     <motion.div
       variants={cardVariants}
       whileHover={{
         y: -5,
-        boxShadow: hoverGlow,
+        boxShadow: accents[accent].glow,
         transition: { type: "spring", stiffness: 320, damping: 22 },
       }}
-      className={`relative rounded-2xl border border-zinc-100 shadow-sm p-6 flex flex-col overflow-hidden ${gradient} ${isMain ? "card-pulse" : ""} ${areaClass}`}
+      className={`relative flex min-h-[180px] flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents[accent].surface} p-6 shadow-sm ${areaClass}`}
     >
-      {/* Subtle background orb for main card */}
-      {isMain && (
-        <motion.div
-          className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-violet-300/20 blur-2xl pointer-events-none"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.75, 0.5] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        />
-      )}
-
-      {/* Floating icon */}
-      <motion.div
-        className={`mb-4 flex items-center justify-center rounded-xl shrink-0 ${
-          isMain ? "w-14 h-14 bg-violet-50" : "w-11 h-11 bg-white/80"
-        }`}
-        animate={{ y: [0, -4, 0] }}
-        transition={{
-          duration: 3.2,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: iconDelay,
-        }}
-      >
-        {icon}
-      </motion.div>
-
-      <h3
-        className={`font-semibold text-zinc-900 mb-2 ${
-          isMain ? "text-2xl" : "text-base"
-        }`}
-      >
-        {title}
-      </h3>
-      <p
-        className={`text-zinc-500 leading-relaxed ${
-          isMain ? "text-base" : "text-sm"
-        }`}
-      >
-        {description}
-      </p>
-
-      {tags && (
-        <div className="mt-auto pt-6 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <motion.span
-              key={tag}
-              whileHover={{ scale: 1.06 }}
-              className="rounded-full bg-violet-100/70 px-3 py-1 text-xs font-medium text-violet-700 shadow-[0_0_8px_rgba(139,92,246,0.15)] hover:shadow-[0_0_12px_rgba(139,92,246,0.3)] transition-shadow cursor-default"
-            >
-              {tag}
-            </motion.span>
-          ))}
-        </div>
-      )}
+      <h3 className="text-lg font-semibold text-zinc-900">{title}</h3>
+      <p className="mt-2 text-[15px] leading-relaxed text-zinc-500">{description}</p>
+      {visual}
+      <div className="mt-auto flex flex-wrap gap-2 pt-5">
+        {pills.map((p) => (
+          <Pill key={p} accent={accent}>
+            {p}
+          </Pill>
+        ))}
+      </div>
     </motion.div>
   );
 }
 
+/* ── Bottom metrics ────────────────────────────────────────── */
+const metrics = [
+  { value: "10+", label: "Hours Saved Weekly" },
+  { value: "24/7", label: "AI Support" },
+  { value: "2×", label: "Faster Operations" },
+  { value: "100%", label: "Founder Focused" },
+];
+
 export function Features() {
   return (
-    <section id="services" className="py-24 px-6 bg-zinc-50/50">
-      <div className="max-w-6xl mx-auto">
+    <section id="services" className="px-6 py-24 bg-zinc-50/50">
+      <div className="mx-auto max-w-6xl">
         {/* Heading */}
         <motion.div
-          className="text-center mb-14"
+          className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-3 block">
-            What We Do
+          <span className="mb-3 block text-xs font-semibold uppercase tracking-widest text-violet-600">
+            Services
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-4">
-            Everything your business needs
+          <h2 className="mx-auto max-w-[700px] text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+            Everything You Need
+            <br className="hidden sm:block" /> To Run Efficiently
           </h2>
-          <p className="text-zinc-500 text-lg max-w-xl mx-auto">
-            From executive support to AI-powered automation — the full stack of modern business operations.
+          <p className="mx-auto mt-5 max-w-[600px] text-lg leading-relaxed text-zinc-500">
+            GenExecutive combines automation, AI, and operational support to help
+            founders spend less time managing tasks and more time growing their
+            business.
           </p>
         </motion.div>
 
@@ -178,53 +298,99 @@ export function Features() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <FeatureCard
-            areaClass="bento-exec min-h-[300px] lg:min-h-[320px]"
-            isMain
-            title="Executive Support"
-            description="World-class executive and administrative support — calendar management, email triage, travel coordination, vendor relations, and more. Your personal command center, always one step ahead."
-            icon={<ExecIcon />}
-            tags={["Calendar", "Email", "Travel", "Admin"]}
-            gradient="bg-gradient-to-br from-white to-violet-50/70"
-            hoverGlow="0 0 0 2px rgba(139,92,246,0.3), 0 20px 60px rgba(139,92,246,0.14)"
-            iconDelay={0}
+          {/* Hero card */}
+          <motion.div
+            variants={cardVariants}
+            whileHover={{
+              y: -5,
+              boxShadow: accents["violet-blue"].glow,
+              transition: { type: "spring", stiffness: 320, damping: 22 },
+            }}
+            className={`bento-hero card-pulse relative flex min-h-[480px] flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents["violet-blue"].surface} p-8 shadow-sm lg:min-h-[520px]`}
+          >
+            <motion.div
+              className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-violet-300/20 blur-3xl"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.75, 0.5] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="text-[28px] font-semibold leading-tight text-zinc-900">
+                  Reduce Manual Work
+                </h3>
+                <p className="mt-2 max-w-md text-[15px] leading-relaxed text-zinc-500">
+                  Automated workflows that eliminate repetitive tasks and keep your
+                  business running smoothly.
+                </p>
+              </div>
+              <span className="shrink-0 rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-700 shadow-[0_0_12px_rgba(139,92,246,0.18)]">
+                10+ Hours Saved Weekly
+              </span>
+            </div>
+
+            <div className="my-7 flex flex-1 items-center justify-center">
+              <WorkflowVisual />
+            </div>
+
+            <div className="mt-auto flex flex-wrap gap-2">
+              {[
+                "Workflow Automation",
+                "CRM Processes",
+                "Lead Routing",
+                "Email Automation",
+                "Internal Systems",
+              ].map((p) => (
+                <Pill key={p} accent="violet-blue">
+                  {p}
+                </Pill>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Small cards */}
+          <SmallCard
+            areaClass="bento-card-a"
+            title="Stay Organized"
+            description="Executive support that keeps your schedule, inbox, and priorities under control."
+            pills={["Calendar Management", "Inbox Support", "Research", "Coordination"]}
+            visual={<OrganizeVisual />}
+            accent="blue"
           />
-          <FeatureCard
-            areaClass="bento-automation"
-            title="AI Automation"
-            description="Automate repetitive workflows so your team can focus on what matters. We build custom automations that run 24/7, saving hours every single day."
-            icon={<AutoIcon />}
-            gradient="bg-gradient-to-br from-white to-indigo-50/60"
-            hoverGlow="0 0 0 2px rgba(99,102,241,0.28), 0 16px 48px rgba(99,102,241,0.12)"
-            iconDelay={0.4}
+          <SmallCard
+            areaClass="bento-card-b"
+            title="Scale With AI"
+            description="AI agents and chatbots that handle conversations, support, and internal knowledge around the clock."
+            pills={["Customer Support", "AI Assistants", "Lead Qualification", "Knowledge Base"]}
+            visual={<AIVisual />}
+            accent="violet"
           />
-          <FeatureCard
-            areaClass="bento-agents"
-            title="AI Agents"
-            description="Deploy autonomous AI agents that handle complex multi-step tasks independently, learning and improving as they work."
-            icon={<AgentIcon />}
-            gradient="bg-gradient-to-br from-white to-blue-50/60"
-            hoverGlow="0 0 0 2px rgba(59,130,246,0.28), 0 16px 48px rgba(59,130,246,0.12)"
-            iconDelay={0.8}
+          <SmallCard
+            areaClass="bento-card-c"
+            title="Improve Operations"
+            description="Administrative support that keeps your business moving without friction."
+            pills={["Documentation", "SOP Creation", "Data Management", "Client Onboarding"]}
+            visual={<OpsVisual />}
+            accent="emerald"
           />
-          <FeatureCard
-            areaClass="bento-pages"
-            title="Landing Pages"
-            description="High-converting, beautiful landing pages that turn visitors into customers."
-            icon={<PagesIcon />}
-            gradient="bg-gradient-to-br from-white to-emerald-50/60"
-            hoverGlow="0 0 0 2px rgba(16,185,129,0.28), 0 16px 48px rgba(16,185,129,0.12)"
-            iconDelay={1.2}
-          />
-          <FeatureCard
-            areaClass="bento-mvp"
-            title="MVP Development"
-            description="From idea to launched product in weeks. We build lean, production-ready MVPs that validate your vision fast — and impress investors from day one."
-            icon={<MvpIcon />}
-            gradient="bg-gradient-to-br from-white to-orange-50/60"
-            hoverGlow="0 0 0 2px rgba(249,115,22,0.28), 0 16px 48px rgba(249,115,22,0.12)"
-            iconDelay={0.6}
-          />
+        </motion.div>
+
+        {/* Bottom metrics strip */}
+        <motion.div
+          className="mt-16 grid grid-cols-2 gap-y-10 border-y border-zinc-200 py-10 lg:grid-cols-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+        >
+          {metrics.map((m) => (
+            <motion.div key={m.label} variants={cardVariants} className="text-center">
+              <div className="bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+                {m.value}
+              </div>
+              <div className="mt-2 text-sm text-zinc-500">{m.label}</div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

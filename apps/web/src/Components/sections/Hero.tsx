@@ -55,21 +55,21 @@ export function Hero() {
         {/* Headline */}
         <motion.h1
           variants={itemVariants}
-          className="text-6xl sm:text-7xl font-bold tracking-tight text-zinc-900 leading-[1.06] mb-6"
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 leading-[1.08] mb-5"
         >
-          Work Smarter.{" "}
+          AI-Skilled Assistants for Small Businesses —{" "}
           <span className="bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent">
-            Lead Better.
+            at a Fraction of the Cost
           </span>
         </motion.h1>
 
         {/* Subtitle */}
         <motion.p
           variants={itemVariants}
-          className="text-lg sm:text-xl text-zinc-500 max-w-2xl mx-auto leading-relaxed mb-10"
+          className="text-base sm:text-lg text-zinc-500 max-w-2xl mx-auto leading-relaxed mb-9"
         >
-          Executive support, AI automation, and custom agents — all working
-          together to elevate your business performance.
+          We run your operations, inbox, automations, and admin using AI — so
+          you can focus on growing your business.
         </motion.p>
 
         {/* CTAs */}

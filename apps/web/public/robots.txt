@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://genexecutive.in/sitemap.xml
+Sitemap: https://www.genexecutive.in/sitemap.xml
 
 Content-Signal: ai-train=no, search=yes, ai-input=no

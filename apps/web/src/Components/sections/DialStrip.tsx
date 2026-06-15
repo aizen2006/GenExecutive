@@ -16,7 +16,7 @@ const FONT_SERIF =
   "var(--font-instrument-serif), 'Instrument Serif', Georgia, serif";
 
 // ─── Wheel geometry ───────────────────────────────────────────
-const N = 14;           // total tools
+const N = 6;            // total tools
 const SPACING = 92;     // px between item centres (horizontal)
 const ARC = 4.8;        // y = offset² × ARC  — controls how steeply ends dip
 const FADE_RADIUS = 3.6;// opacity hits 0 beyond this offset distance
@@ -26,20 +26,12 @@ const SCALE_FLOOR = 0.6;// minimum scale for edge items
 interface Tool { id: string; name: string }
 
 const TOOLS: Tool[] = [
-  { id: "chatgpt",          name: "ChatGPT"          },
-  { id: "claude",           name: "Claude"            },
-  { id: "gemini",           name: "Gemini"            },
-  { id: "copilot",          name: "Copilot"           },
-  { id: "perplexity",       name: "Perplexity"        },
-  { id: "midjourney",       name: "Midjourney"        },
-  { id: "elevenlabs",       name: "ElevenLabs"        },
-  { id: "runway",           name: "Runway"            },
-  { id: "cursor",           name: "Cursor"            },
-  { id: "notion-ai",        name: "Notion AI"         },
-  { id: "jasper",           name: "Jasper"            },
-  { id: "make",             name: "Make"              },
-  { id: "stable-diffusion", name: "Stable Diffusion"  },
-  { id: "huggingface",      name: "HuggingFace"       },
+  { id: "chatgpt",    name: "ChatGPT"    },
+  { id: "claude",     name: "Claude"     },
+  { id: "gemini",     name: "Gemini"     },
+  { id: "make",       name: "Make"       },
+  { id: "notion-ai",  name: "Notion AI"  },
+  { id: "perplexity", name: "Perplexity" },
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────

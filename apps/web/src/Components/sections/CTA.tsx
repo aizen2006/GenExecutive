@@ -35,9 +35,13 @@ export function CTA() {
         <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight mb-5">
           Ready to Transform<br className="hidden sm:block" /> How You Work?
         </h2>
-        <p className="text-violet-200 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+        <p className="text-violet-200 text-lg mb-6 max-w-xl mx-auto leading-relaxed">
           Let&apos;s build your executive support stack and automate your
           operations — starting this week.
+        </p>
+
+        <p className="inline-flex items-center rounded-full bg-white/10 border border-white/20 px-4 py-2 text-sm font-medium text-white mb-10">
+          Our retainers start from $500/month — a fraction of the cost of a US-based hire.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

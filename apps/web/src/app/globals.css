@@ -47,25 +47,26 @@ body {
 /* ─── Bento grid layout ─────────────────────────────────────── */
 .bento-grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
   grid-template-columns: 1fr;
 }
 
 @media (min-width: 1024px) {
   .bento-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
     grid-template-areas:
-      "exec exec automation"
-      "exec exec agents"
-      "pages mvp mvp";
+      "hero card-a"
+      "hero card-b"
+      "hero card-c";
+    gap: 1.5rem;
   }
 }
 
-.bento-exec       { grid-area: exec; }
-.bento-automation { grid-area: automation; }
-.bento-agents     { grid-area: agents; }
-.bento-pages      { grid-area: pages; }
-.bento-mvp        { grid-area: mvp; }
+.bento-hero   { grid-area: hero; }
+.bento-card-a { grid-area: card-a; }
+.bento-card-b { grid-area: card-b; }
+.bento-card-c { grid-area: card-c; }
 
 /* ─── Blog post prose ───────────────────────────────────────── */
 .blog-content { color: #3f3f46; line-height: 1.8; font-size: 1.0625rem; }

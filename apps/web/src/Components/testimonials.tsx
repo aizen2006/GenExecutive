@@ -13,6 +13,7 @@ interface Testimonial {
   author: string;
   role: string;
   text: string;
+  image: string;
 }
 
 const testimonials: Testimonial[] = [
@@ -20,30 +21,45 @@ const testimonials: Testimonial[] = [
     author: "Ishani Behl",
     role: "CEO at Skillopp",
     text: "GenExecutive's AI agents completely automated our operations — scheduling, reporting, follow-ups — what used to eat 3 hours of my team's day now runs itself. The executive support alone is worth every penny.",
+    image: "/testimonials/ishani-behl.jpg",
   },
   {
     author: "Shabaz Ahmad",
     role: "Managing Director at SportsRadar",
     text: "Having GenExecutive in my corner feels like gaining an executive team that never clocks out. Every briefing, every follow-up, every decision brief — handled before I even ask. My focus is finally on the work that matters.",
+    image: "/testimonials/shabaz-ahmad.jpg",
   },
   {
     author: "Alisha Martin",
     role: "CEO at BuyBirdAcquisitions",
     text: "GenExecutive's AI agents did the research, built the strategy, and automated the execution. Our landing page conversion jumped 40% — and my team didn't lift a finger on the heavy lifting.",
+    image: "/testimonials/alisha-martin.jpg",
   },
   {
     author: "Abhishek Gupta",
     role: "CEO at Timepe",
     text: "The depth of AI research GenExecutive brought to our product blew us away. They didn't just automate our onboarding — they studied our users, identified drop-off patterns, and built an intelligent flow that saves us 20+ hours a week.",
+    image: "/testimonials/abhishek-gupta.jpg",
   },
   {
     author: "Rashmi Sharma",
     role: "CMO at Cocacola",
     text: "GenExecutive handles everything from campaign design to creative production. Briefs, assets, performance research — it all comes back polished and on-brand. It's the executive creative support I didn't know I needed until I had it.",
+    image: "/testimonials/rashmi-sharma.jpg",
   },
 ];
 
-function TestimonialCard({ author, role, text }: Testimonial) {
+// "Ishani Behl" → "IB"; used as the avatar fallback when the photo is missing.
+function initials(name: string): string {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
+function TestimonialCard({ author, role, text, image }: Testimonial) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -74,9 +90,26 @@ function TestimonialCard({ author, role, text }: Testimonial) {
       <p className="text-sm text-zinc-600 italic leading-relaxed mb-4">
         &ldquo;{text}&rdquo;
       </p>
-      <div>
-        <div className="text-sm font-semibold text-zinc-900">{author}</div>
-        <div className="text-xs text-zinc-400">{role}</div>
+      <div className="flex items-center gap-3">
+        <div className="relative h-10 w-10 shrink-0 rounded-full bg-violet-100 flex items-center justify-center overflow-hidden">
+          <span className="text-xs font-semibold text-violet-700 select-none">
+            {initials(author)}
+          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image}
+            alt={author}
+            className="absolute inset-0 h-full w-full object-cover"
+            draggable={false}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+            }}
+          />
+        </div>
+        <div>
+          <div className="text-sm font-semibold text-zinc-900">{author}</div>
+          <div className="text-xs text-zinc-400">{role}</div>
+        </div>
       </div>
     </motion.div>
   );
@@ -132,7 +165,7 @@ export function Testimonials() {
               className="opacity-[0.18] blur-[1.5px]"
               style={{ transform: `rotate(${pos.rotate}deg)` }}
             >
-              <TestimonialCard author={t.author} role={t.role} text={t.text} />
+              <TestimonialCard {...t} />
             </div>
           </motion.div>
         );
