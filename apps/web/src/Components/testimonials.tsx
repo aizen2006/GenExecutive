@@ -21,31 +21,31 @@ const testimonials: Testimonial[] = [
     author: "Ishani Behl",
     role: "CEO at Skillopp",
     text: "GenExecutive's AI agents completely automated our operations — scheduling, reporting, follow-ups — what used to eat 3 hours of my team's day now runs itself. The executive support alone is worth every penny.",
-    image: "/testimonials/ishani-behl.jpg",
+    image: "/ishani-behl.jpeg",
   },
   {
     author: "Shabaz Ahmad",
     role: "Managing Director at SportsRadar",
     text: "Having GenExecutive in my corner feels like gaining an executive team that never clocks out. Every briefing, every follow-up, every decision brief — handled before I even ask. My focus is finally on the work that matters.",
-    image: "/testimonials/shabaz-ahmad.jpg",
+    image: "/shabaz-ahmad.jpeg",
   },
   {
     author: "Alisha Martin",
     role: "CEO at BuyBirdAcquisitions",
     text: "GenExecutive's AI agents did the research, built the strategy, and automated the execution. Our landing page conversion jumped 40% — and my team didn't lift a finger on the heavy lifting.",
-    image: "/testimonials/alisha-martin.jpg",
+    image: "/alisha-martin.jpeg",
   },
   {
     author: "Abhishek Gupta",
     role: "CEO at Timepe",
     text: "The depth of AI research GenExecutive brought to our product blew us away. They didn't just automate our onboarding — they studied our users, identified drop-off patterns, and built an intelligent flow that saves us 20+ hours a week.",
-    image: "/testimonials/abhishek-gupta.jpg",
+    image: "/abhishek-gupta.jpeg",
   },
   {
     author: "Rashmi Sharma",
     role: "CMO at Cocacola",
     text: "GenExecutive handles everything from campaign design to creative production. Briefs, assets, performance research — it all comes back polished and on-brand. It's the executive creative support I didn't know I needed until I had it.",
-    image: "/testimonials/rashmi-sharma.jpg",
+    image: "/rashmi-sharma.jpeg",
   },
 ];
 
@@ -84,10 +84,10 @@ function TestimonialCard({ author, role, text, image }: Testimonial) {
         y.set(0);
       }}
       style={{ rotateX, rotateY, transformPerspective: 900 }}
-      className="relative w-72 rounded-2xl bg-white p-5 shadow-lg border border-zinc-100 overflow-hidden"
+      className="relative flex min-h-[260px] w-80 flex-col rounded-2xl bg-white p-6 shadow-lg border border-zinc-100 overflow-hidden"
     >
       <div className="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-br from-white/60 to-transparent opacity-60" />
-      <p className="text-sm text-zinc-600 italic leading-relaxed mb-4">
+      <p className="flex-1 text-sm text-zinc-600 italic leading-relaxed mb-4">
         &ldquo;{text}&rdquo;
       </p>
       <div className="flex items-center gap-3">
@@ -118,8 +118,8 @@ function TestimonialCard({ author, role, text, image }: Testimonial) {
 // Captures testimonial content at mount time so the exiting AnimatePresence
 // element never picks up updated props mid-animation.
 function FrozenTestimonialCard(props: Testimonial) {
-  const frozen = useRef<Testimonial>(props);
-  return <TestimonialCard {...frozen.current} />;
+  const [frozen] = useState<Testimonial>(props);
+  return <TestimonialCard {...frozen} />;
 }
 
 const ghostPositions = [

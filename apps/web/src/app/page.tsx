@@ -2,6 +2,7 @@ import Hero from "@/Components/sections/Hero";
 import DialStrip from "@/Components/sections/DialStrip";
 import About from "@/Components/sections/About";
 import Features from "@/Components/sections/Features";
+import Pricing from "@/Components/sections/Pricing";
 import { Testimonials } from "@/Components/testimonials";
 import FAQ from "@/Components/sections/FAQ";
 import CTA from "@/Components/sections/CTA";
@@ -14,6 +15,7 @@ export default function Home() {
       <DialStrip />
       <About />
       <Features />
+      <Pricing />
       <Testimonials />
       <FAQ />
       <CTA />

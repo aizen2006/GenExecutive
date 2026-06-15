@@ -33,15 +33,11 @@ export function CTA() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight mb-5">
-          Ready to Transform<br className="hidden sm:block" /> How You Work?
+          Focus on Growth.<br className="hidden sm:block" /> We&apos;ll Handle the Operations.
         </h2>
-        <p className="text-violet-200 text-lg mb-6 max-w-xl mx-auto leading-relaxed">
-          Let&apos;s build your executive support stack and automate your
-          operations — starting this week.
-        </p>
-
-        <p className="inline-flex items-center rounded-full bg-white/10 border border-white/20 px-4 py-2 text-sm font-medium text-white mb-10">
-          Our retainers start from $500/month — a fraction of the cost of a US-based hire.
+        <p className="text-violet-200 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+          Build efficient systems, automate repetitive work, and scale your
+          business with AI-powered operational support.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -54,7 +50,7 @@ export function CTA() {
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
             className="h-12 cursor-pointer rounded-full bg-white px-8 text-sm font-semibold text-violet-700 shadow-lg hover:bg-violet-50 transition-colors"
           >
-            Book a Free Call
+            Book a Discovery Call
           </motion.button>
           <motion.a
             href="#services"
@@ -63,7 +59,7 @@ export function CTA() {
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
             className="h-12 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm px-8 inline-flex items-center text-sm font-medium text-white hover:bg-white/20 transition-colors"
           >
-            View Services →
+            Explore Services →
           </motion.a>
         </div>
       </motion.div>

@@ -21,7 +21,7 @@ const cardVariants: Variants = {
 };
 
 /* ── Accent system ─────────────────────────────────────────── */
-type AccentKey = "violet-blue" | "blue" | "violet" | "emerald";
+type AccentKey = "violet-blue" | "blue" | "violet" | "rose";
 
 const accents: Record<
   AccentKey,
@@ -48,12 +48,12 @@ const accents: Record<
     pill: "bg-violet-100/70 text-violet-700 shadow-[0_0_8px_rgba(139,92,246,0.15)] hover:shadow-[0_0_12px_rgba(139,92,246,0.3)]",
     dot: "from-violet-500 to-fuchsia-400",
   },
-  emerald: {
-    surface: "from-white to-emerald-50/60",
-    node: "from-emerald-500 to-teal-400",
-    glow: "0 0 0 2px rgba(16,185,129,0.28), 0 16px 48px rgba(16,185,129,0.12)",
-    pill: "bg-emerald-100/70 text-emerald-700 shadow-[0_0_8px_rgba(16,185,129,0.15)] hover:shadow-[0_0_12px_rgba(16,185,129,0.3)]",
-    dot: "from-emerald-500 to-teal-400",
+  rose: {
+    surface: "from-white to-rose-50/60",
+    node: "from-rose-500 to-orange-400",
+    glow: "0 0 0 2px rgba(244,63,94,0.26), 0 16px 48px rgba(244,63,94,0.12)",
+    pill: "bg-rose-100/70 text-rose-700 shadow-[0_0_8px_rgba(244,63,94,0.15)] hover:shadow-[0_0_12px_rgba(244,63,94,0.3)]",
+    dot: "from-rose-500 to-orange-400",
   },
 };
 
@@ -192,31 +192,35 @@ function AIVisual() {
   );
 }
 
-function OpsVisual() {
-  const rows = [
-    { t: "Onboarding SOP.pdf", delay: 0.2 },
-    { t: "Client data sheet", delay: 0.5 },
-    { t: "Vendor checklist", delay: 0.8 },
-  ];
+function ContentVisual() {
   return (
-    <div className="mt-4 space-y-1.5">
-      {rows.map((row) => (
-        <div
-          key={row.t}
-          className="flex items-center gap-2 rounded-xl bg-white/90 px-2.5 py-1.5 shadow-[0_4px_16px_rgba(24,24,27,0.05)]"
-        >
-          <motion.span
-            className="flex h-3.5 w-3.5 items-center justify-center rounded-[5px] bg-emerald-400 text-[8px] text-white"
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 400, damping: 16, delay: row.delay }}
+    <div className="mt-4 space-y-2">
+      {/* Video thumbnail tiles */}
+      <div className="grid grid-cols-2 gap-2">
+        {[0, 1].map((i) => (
+          <motion.div
+            key={i}
+            className="relative flex h-12 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-rose-400 to-orange-300 shadow-[0_4px_16px_rgba(244,63,94,0.18)]"
+            animate={{ y: [0, i === 0 ? -3 : -2, 0] }}
+            transition={{
+              duration: 3.2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.4,
+            }}
           >
-            ✓
-          </motion.span>
-          <span className="truncate text-[11px] text-zinc-600">{row.t}</span>
-        </div>
-      ))}
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/90 text-[10px] text-rose-600 shadow-sm">
+              ▶
+            </span>
+          </motion.div>
+        ))}
+      </div>
+      {/* Publishing card */}
+      <div className="flex items-center gap-2 rounded-xl bg-white/90 px-2.5 py-1.5 shadow-[0_4px_16px_rgba(24,24,27,0.05)]">
+        <span className="h-2 w-2 shrink-0 rounded-full bg-rose-400 shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
+        <span className="truncate text-[11px] text-zinc-600">Scheduled · YouTube</span>
+        <span className="ml-auto text-[10px] font-medium text-rose-500">Auto</span>
+      </div>
     </div>
   );
 }
@@ -255,14 +259,6 @@ function SmallCard({ areaClass, title, description, pills, visual, accent }: Sma
     </motion.div>
   );
 }
-
-/* ── Bottom metrics ────────────────────────────────────────── */
-const metrics = [
-  { value: "10+", label: "Hours Saved Weekly" },
-  { value: "24/7", label: "AI Support" },
-  { value: "2×", label: "Faster Operations" },
-  { value: "100%", label: "Founder Focused" },
-];
 
 export function Features() {
   return (
@@ -306,7 +302,7 @@ export function Features() {
               boxShadow: accents["violet-blue"].glow,
               transition: { type: "spring", stiffness: 320, damping: 22 },
             }}
-            className={`bento-hero card-pulse relative flex min-h-[480px] flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents["violet-blue"].surface} p-8 shadow-sm lg:min-h-[520px]`}
+            className={`bento-hero card-pulse relative grid gap-6 overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents["violet-blue"].surface} p-8 shadow-sm lg:min-h-[460px] lg:grid-cols-2 lg:items-center`}
           >
             <motion.div
               className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-violet-300/20 blur-3xl"
@@ -314,38 +310,49 @@ export function Features() {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
 
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-[28px] font-semibold leading-tight text-zinc-900">
-                  Reduce Manual Work
-                </h3>
-                <p className="mt-2 max-w-md text-[15px] leading-relaxed text-zinc-500">
-                  Automated workflows that eliminate repetitive tasks and keep your
-                  business running smoothly.
-                </p>
+            {/* Left column: copy + pills */}
+            <motion.div
+              className="flex flex-col"
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <h3 className="text-[28px] font-semibold leading-tight text-zinc-900">
+                Reduce Manual Work
+              </h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-zinc-500">
+                Automated workflows that eliminate repetitive tasks and keep your
+                business running smoothly.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {[
+                  "Workflow Automation",
+                  "CRM Processes",
+                  "Lead Routing",
+                  "Email Automation",
+                  "Internal Systems",
+                ].map((p) => (
+                  <Pill key={p} accent="violet-blue">
+                    {p}
+                  </Pill>
+                ))}
               </div>
-              <span className="shrink-0 rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-700 shadow-[0_0_12px_rgba(139,92,246,0.18)]">
+            </motion.div>
+
+            {/* Right column: workflow visual + badge */}
+            <motion.div
+              className="relative flex flex-col items-center"
+              initial={{ opacity: 0, x: 16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            >
+              <span className="mb-4 self-end rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-700 shadow-[0_0_12px_rgba(139,92,246,0.18)]">
                 10+ Hours Saved Weekly
               </span>
-            </div>
-
-            <div className="my-7 flex flex-1 items-center justify-center">
               <WorkflowVisual />
-            </div>
-
-            <div className="mt-auto flex flex-wrap gap-2">
-              {[
-                "Workflow Automation",
-                "CRM Processes",
-                "Lead Routing",
-                "Email Automation",
-                "Internal Systems",
-              ].map((p) => (
-                <Pill key={p} accent="violet-blue">
-                  {p}
-                </Pill>
-              ))}
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Small cards */}
@@ -360,37 +367,19 @@ export function Features() {
           <SmallCard
             areaClass="bento-card-b"
             title="Scale With AI"
-            description="AI agents and chatbots that handle conversations, support, and internal knowledge around the clock."
+            description="AI agents and chatbots that handle conversations and support around the clock."
             pills={["Customer Support", "AI Assistants", "Lead Qualification", "Knowledge Base"]}
             visual={<AIVisual />}
             accent="violet"
           />
           <SmallCard
             areaClass="bento-card-c"
-            title="Improve Operations"
-            description="Administrative support that keeps your business moving without friction."
-            pills={["Documentation", "SOP Creation", "Data Management", "Client Onboarding"]}
-            visual={<OpsVisual />}
-            accent="emerald"
+            title="Content At Scale"
+            description="Produce content consistently without increasing workload."
+            pills={["AI Avatar Videos", "Social Media Content", "Repurposing", "Short-form Clips"]}
+            visual={<ContentVisual />}
+            accent="rose"
           />
-        </motion.div>
-
-        {/* Bottom metrics strip */}
-        <motion.div
-          className="mt-16 grid grid-cols-2 gap-y-10 border-y border-zinc-200 py-10 lg:grid-cols-4"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={containerVariants}
-        >
-          {metrics.map((m) => (
-            <motion.div key={m.label} variants={cardVariants} className="text-center">
-              <div className="bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
-                {m.value}
-              </div>
-              <div className="mt-2 text-sm text-zinc-500">{m.label}</div>
-            </motion.div>
-          ))}
         </motion.div>
       </div>
     </section>
