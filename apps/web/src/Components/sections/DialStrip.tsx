@@ -153,7 +153,7 @@ export default function DialStrip() {
           Trusted Tools
         </p>
         <p
-          className="text-3xl sm:text-4xl leading-tight bg-gradient-to-r from-violet-600 via-purple-500 to-violet-400 bg-clip-text text-transparent"
+          className="inline-block px-2 pb-1 text-3xl sm:text-4xl leading-[1.35] bg-gradient-to-r from-violet-600 via-purple-500 to-violet-400 bg-clip-text text-transparent"
           style={{ fontFamily: FONT_SERIF, fontStyle: "italic" }}
         >
           genAI tools

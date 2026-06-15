@@ -53,20 +53,22 @@ body {
 
 @media (min-width: 1024px) {
   .bento-grid {
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
     grid-template-areas:
-      "hero card-a"
-      "hero card-b"
-      "hero card-c";
+      "work    work    flow   flow"
+      "org     ai      flow   flow"
+      "content content integ  integ";
     gap: 1.5rem;
   }
 }
 
-.bento-hero   { grid-area: hero; }
-.bento-card-a { grid-area: card-a; }
-.bento-card-b { grid-area: card-b; }
-.bento-card-c { grid-area: card-c; }
+.bento-work    { grid-area: work; }
+.bento-flow    { grid-area: flow; }
+.bento-org     { grid-area: org; }
+.bento-ai      { grid-area: ai; }
+.bento-content { grid-area: content; }
+.bento-integ   { grid-area: integ; }
 
 /* ─── Blog post prose ───────────────────────────────────────── */
 .blog-content { color: #3f3f46; line-height: 1.8; font-size: 1.0625rem; }

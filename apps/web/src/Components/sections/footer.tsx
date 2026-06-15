@@ -1,15 +1,15 @@
 import Link from "next/link";
 
 const services = [
+  "Workflow Automation",
   "Executive Support",
-  "AI Automation",
-  "AI Agents",
-  "Landing Pages",
-  "MVP Development",
+  "AI Agents & Chatbots",
+  "Content at Scale",
 ];
 
 const company = [
   { label: "About", href: "/#about" },
+  { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Reviews", href: "#testimonials" },
   { label: "Contact", href: "mailto:abhikzapifyflow@gmail.com" },
@@ -117,9 +117,15 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
+                <button
+                  type="button"
+                  data-cal-namespace="30min"
+                  data-cal-link="abhik-halder/30min"
+                  data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                  className="cursor-pointer text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                >
                   Book a Call
-                </a>
+                </button>
               </li>
             </ul>
           </div>

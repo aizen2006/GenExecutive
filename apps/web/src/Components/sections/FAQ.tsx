@@ -17,12 +17,16 @@ const faqs = [
     a: "Absolutely. We analyze your existing workflows, identify high-value automation opportunities, and build custom pipelines using modern AI tools. Every automation is tested, documented, and handed over with training so your team can manage it confidently.",
   },
   {
-    q: "How long does an MVP take to deliver?",
-    a: "Typical MVPs are delivered in 3–6 weeks depending on complexity. We use a lean approach: define the core user journey, build only what validates your hypothesis, and ship. You get something real to show users and investors — fast.",
+    q: "Do you create content for our brand?",
+    a: "Yes. Our Content at Scale service produces AI avatar videos, social media content, short-form clips, and repurposed assets — so you stay consistent across every channel without adding to your team's workload.",
   },
   {
-    q: "Do you offer ongoing support after launch?",
-    a: "Yes. All our services include a 30-day post-launch support window, and we offer flexible retainer plans for ongoing executive support, automation maintenance, and continuous improvements as your business scales.",
+    q: "How does pricing work?",
+    a: "We offer three monthly plans — Starter ($400/mo), Pro ($800/mo), and a custom Enterprise tier — each bundling automation, executive support, AI, and content. You can scale up as your needs grow, or book a call for a setup tailored to your business.",
+  },
+  {
+    q: "How does ongoing support work?",
+    a: "Our plans are monthly and continuous — we keep managing your operations, automations, support, and content, optimizing as your business grows. There's no fixed end date: scale up, scale down, or pause whenever your needs change.",
   },
   {
     q: "How do I get started?",
