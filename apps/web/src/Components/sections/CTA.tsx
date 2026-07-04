@@ -17,21 +17,17 @@ export function CTA() {
     <section id="cta" className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-violet-600 to-indigo-600 py-28 px-6">
       {/* Orb overlays */}
       <div
+        data-parallax="-16"
         className="absolute top-[-70px] left-[-90px] w-80 h-80 rounded-full bg-white/10 blur-3xl animate-blob pointer-events-none"
         style={{ "--blob-dur": "11s" } as CSSProperties}
       />
       <div
+        data-parallax="14"
         className="absolute bottom-[-50px] right-[-70px] w-64 h-64 rounded-full bg-indigo-300/20 blur-3xl animate-blob blob-delay-2 pointer-events-none"
         style={{ "--blob-dur": "14s" } as CSSProperties}
       />
 
-      <motion.div
-        className="relative z-10 max-w-3xl mx-auto text-center"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
+      <div className="relative z-10 max-w-3xl mx-auto text-center gsap-reveal">
         <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight mb-5">
           Focus on Growth.<br className="hidden sm:block" /> We&apos;ll Handle the Operations.
         </h2>
@@ -62,7 +58,7 @@ export function CTA() {
             Explore Services →
           </motion.a>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

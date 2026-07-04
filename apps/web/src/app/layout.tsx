@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../Components/navbar";
+import ScrollAnimations from "../Components/ScrollAnimations";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,11 @@ export const metadata: Metadata = {
     template: "%s — GenExecutive",
   },
   description,
+  icons: {
+    icon: "/genexe-icon.png",
+    shortcut: "/genexe-icon.png",
+    apple: "/genexe-icon.png",
+  },
   keywords: [
     "executive support",
     "AI automation",
@@ -90,7 +96,7 @@ const orgJsonLd = {
   description,
   contactPoint: {
     "@type": "ContactPoint",
-    email: "abhikzapifyflow@gmail.com",
+    email: "info@genexecutive.in",
     contactType: "customer service",
   },
   sameAs: [
@@ -109,6 +115,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
+      <head>
+        {/* If JS is unavailable, never leave reveal content hidden. */}
+        <noscript>
+          <style>{`.gsap-reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+      </head>
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
@@ -116,6 +128,7 @@ export default function RootLayout({
         />
         <Navbar />
         {children}
+        <ScrollAnimations />
       </body>
     </html>
   );

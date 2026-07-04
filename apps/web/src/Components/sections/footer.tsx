@@ -12,7 +12,7 @@ const company = [
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Reviews", href: "#testimonials" },
-  { label: "Contact", href: "mailto:abhikzapifyflow@gmail.com" },
+  { label: "Contact", href: "mailto:info@genexecutive.in" },
 ];
 
 export function Footer() {
@@ -48,7 +48,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="mailto:abhikzapifyflow@gmail.com"
+                href="mailto:info@genexecutive.in"
                 aria-label="Email"
                 className="text-zinc-500 hover:text-white transition-colors"
               >
@@ -100,10 +100,10 @@ export function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <a
-                  href="mailto:abhikzapifyflow@gmail.com"
+                  href="mailto:info@genexecutive.in"
                   className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
                 >
-                  abhikzapifyflow@gmail.com
+                  info@genexecutive.in
                 </a>
               </li>
               <li>

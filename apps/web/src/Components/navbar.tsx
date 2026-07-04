@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { gsap, useGSAP } from "../lib/gsap";
 
 
 const navLinks = [
@@ -56,6 +57,7 @@ function NavWordmark() {
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -64,10 +66,35 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Scroll-progress bar driven by whole-page scroll.
+  useGSAP(() => {
+    if (!progressRef.current) return;
+    gsap.fromTo(
+      progressRef.current,
+      { scaleX: 0 },
+      {
+        scaleX: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: document.documentElement,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.3,
+        },
+      },
+    );
+  });
+
   const handleGetStarted = () => router.push("/#cta");
 
   return (
-    <div className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none">
+    <>
+      <div
+        ref={progressRef}
+        className="fixed top-0 left-0 z-[60] h-[3px] w-full origin-left bg-gradient-to-r from-violet-500 via-violet-500 to-indigo-500"
+        style={{ transform: "scaleX(0)" }}
+      />
+      <div className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none">
       <motion.nav
         className="pointer-events-auto relative w-full flex items-center justify-between overflow-hidden"
         animate={{
@@ -134,7 +161,8 @@ export function Navbar() {
           <Button onClick={handleGetStarted}>Get Started</Button>
         </motion.div>
       </motion.nav>
-    </div>
+      </div>
+    </>
   );
 }
 

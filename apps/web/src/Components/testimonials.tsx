@@ -173,32 +173,15 @@ export function Testimonials() {
 
       {/* Center content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
-        <motion.span
-          className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-4 block"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
+        <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-4 block gsap-reveal">
           Client Stories
-        </motion.span>
-        <motion.h2
-          className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-3"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
+        </span>
+        <h2 className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-3 gsap-reveal">
           What Our Clients Say
-        </motion.h2>
-        <motion.p
-          className="text-zinc-500 text-lg mb-14"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-        >
+        </h2>
+        <p className="text-zinc-500 text-lg mb-14 gsap-reveal">
           Real results from real businesses we&apos;ve worked with.
-        </motion.p>
+        </p>
 
         {/* Active testimonial */}
         <AnimatePresence mode="wait">

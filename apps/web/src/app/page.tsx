@@ -1,5 +1,4 @@
 import Hero from "@/Components/sections/Hero";
-import DialStrip from "@/Components/sections/DialStrip";
 import About from "@/Components/sections/About";
 import Features from "@/Components/sections/Features";
 import Pricing from "@/Components/sections/Pricing";
@@ -12,7 +11,6 @@ export default function Home() {
   return (
     <main className="flex flex-col">
       <Hero />
-      <DialStrip />
       <About />
       <Features />
       <Pricing />

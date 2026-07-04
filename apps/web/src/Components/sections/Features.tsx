@@ -68,148 +68,6 @@ function Pill({ children, accent }: { children: ReactNode; accent: AccentKey }) 
   );
 }
 
-/* ── Flow card visual: n8n-style async branching workflow ──── */
-// Node centers in a 0–100 coordinate space that maps 1:1 to the container
-// (the SVG uses viewBox 0 0 100 100 + preserveAspectRatio="none", and nodes are
-// positioned with matching left/top %), so connectors always align at any size.
-const LANE_X = [18, 50, 82];
-const lanes = [
-  { proc: "Enrich (AI)", done: "CRM Updated" },
-  { proc: "Draft Email", done: "Follow-up Sent" },
-  { proc: "Qualify", done: "Slack Alert" },
-];
-
-const connectors = [
-  "M50,18 C50,30 18,28 18,40", // trigger → lane 0
-  "M50,18 L50,40", // trigger → lane 1
-  "M50,18 C50,30 82,28 82,40", // trigger → lane 2
-  "M18,52 L18,78", // lane 0 proc → done
-  "M50,52 L50,78", // lane 1 proc → done
-  "M82,52 L82,78", // lane 2 proc → done
-];
-
-function FlowNode({
-  x,
-  y,
-  children,
-  className = "",
-  delay = 0,
-}: {
-  x: number;
-  y: number;
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      className={`absolute flex w-[88px] -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-xl px-2 py-1.5 text-[10px] font-medium shadow-[0_4px_16px_rgba(24,24,27,0.08)] ${className}`}
-      style={{ left: `${x}%`, top: `${y}%` }}
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ type: "spring", stiffness: 320, damping: 20, delay }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function AsyncWorkflowVisual() {
-  return (
-    <div className="relative mt-4 h-full min-h-[300px] w-full">
-      {/* Connector layer */}
-      <svg
-        className="absolute inset-0 h-full w-full"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        fill="none"
-      >
-        <defs>
-          <linearGradient id="flowStroke" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#8b5cf6" />
-            <stop offset="100%" stopColor="#3b82f6" />
-          </linearGradient>
-        </defs>
-        {connectors.map((d, i) => (
-          <g key={d}>
-            {/* faint base line */}
-            <path
-              d={d}
-              stroke="#ddd6fe"
-              strokeWidth={1.5}
-              vectorEffect="non-scaling-stroke"
-            />
-            {/* flowing pulse (pathLength=1 → dash units are fractions) */}
-            <motion.path
-              d={d}
-              stroke="url(#flowStroke)"
-              strokeWidth={2}
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-              pathLength={1}
-              strokeDasharray="0.18 0.82"
-              initial={{ strokeDashoffset: 1 }}
-              animate={{ strokeDashoffset: [1, 0] }}
-              transition={{
-                duration: 1.6,
-                repeat: Infinity,
-                ease: "linear",
-                delay: i * 0.25,
-              }}
-            />
-          </g>
-        ))}
-      </svg>
-
-      {/* Trigger node */}
-      <FlowNode
-        x={50}
-        y={12}
-        className="justify-center bg-gradient-to-br from-violet-600 to-indigo-500 text-white shadow-[0_0_16px_rgba(139,92,246,0.4)]"
-      >
-        <span className="h-1.5 w-1.5 rounded-full bg-white/90" />
-        Lead Captured
-      </FlowNode>
-
-      {/* Processing + completion nodes per lane */}
-      {lanes.map((lane, i) => (
-        <div key={lane.proc}>
-          <FlowNode
-            x={LANE_X[i]}
-            y={46}
-            delay={0.15 + i * 0.1}
-            className="bg-white/95 text-zinc-700 ring-1 ring-zinc-100"
-          >
-            <span className="h-4 w-4 shrink-0 rounded-md bg-gradient-to-br from-violet-500 to-blue-500" />
-            <span className="truncate">{lane.proc}</span>
-          </FlowNode>
-          <FlowNode
-            x={LANE_X[i]}
-            y={84}
-            delay={0.4 + i * 0.12}
-            className="bg-white/95 text-zinc-700 ring-1 ring-emerald-100"
-          >
-            <motion.span
-              className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-400 text-[8px] text-white"
-              animate={{ scale: [1, 1.18, 1] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.6 + i * 0.2,
-              }}
-            >
-              ✓
-            </motion.span>
-            <span className="truncate">{lane.done}</span>
-          </FlowNode>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /* ── Reduce Manual Work visual: before/after time bars ─────── */
 function TimeBar({
   label,
@@ -274,7 +132,16 @@ function TimeSavedVisual() {
 }
 
 /* ── Integrations card: tool logo row ──────────────────────── */
-const integrationLogos = ["make", "chatgpt", "claude", "gemini", "notion-ai", "perplexity"];
+const integrationLogos = [
+  "make",
+  "zapier",
+  "chatgpt",
+  "claude",
+  "gemini",
+  "notion-ai",
+  "clickup",
+  "framer",
+];
 
 function IntegrationsVisual() {
   return (
@@ -456,13 +323,7 @@ export function Features() {
     <section id="services" className="px-6 py-24 bg-zinc-50/50">
       <div className="mx-auto max-w-6xl">
         {/* Heading */}
-        <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
+        <div className="mb-16 text-center gsap-reveal">
           <span className="mb-3 block text-xs font-semibold uppercase tracking-widest text-violet-600">
             Services
           </span>
@@ -475,7 +336,7 @@ export function Features() {
             founders spend less time managing tasks and more time growing their
             business.
           </p>
-        </motion.div>
+        </div>
 
         {/* Bento Grid */}
         <motion.div
@@ -526,28 +387,6 @@ export function Features() {
             <div className="lg:w-[44%]">
               <TimeSavedVisual />
             </div>
-          </motion.div>
-
-          {/* Flow card */}
-          <motion.div
-            variants={cardVariants}
-            whileHover={{
-              y: -5,
-              boxShadow: accents["violet-blue"].glow,
-              transition: { type: "spring", stiffness: 320, damping: 22 },
-            }}
-            className={`bento-flow relative flex min-h-[360px] flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents["violet-blue"].surface} p-6 shadow-sm`}
-          >
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                Live Workflow
-              </span>
-            </div>
-            <AsyncWorkflowVisual />
           </motion.div>
 
           {/* Small cards */}

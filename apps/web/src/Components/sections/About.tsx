@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Typewriter from "./Typewriter";
 
 const stats = [
   { value: "200+", label: "Hours saved per client / month" },
@@ -14,23 +15,28 @@ export function About() {
     <section id="about" className="py-24 px-6 bg-white">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         {/* Left: Text */}
-        <motion.div
-          initial={{ opacity: 0, x: -24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-        >
+        <div className="gsap-reveal">
           <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-3 block">
             About Us
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-6 leading-tight">
-            Built for leaders who{" "}
-            <span className="bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent">
-              refuse to slow down.
+          <h2
+            className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-6 leading-tight"
+            aria-label="Built for leaders who refuse to slow down"
+          >
+            <span className="block">Built for leaders who</span>
+            <span className="mt-1 block min-h-[1.15em]">
+              <Typewriter
+                words={[
+                  "move fast.",
+                  "scale smarter.",
+                  "stay ahead.",
+                  "never settle.",
+                ]}
+              />
             </span>
           </h2>
           <p className="text-zinc-500 text-lg leading-relaxed mb-4">
-            GenExecutive was founded on one belief: the best executives shouldn't be buried in logistics. We combine world-class human support with AI systems to give you the leverage you need to lead at your best.
+            GenExecutive was founded on one belief: the best executives shouldn&apos;t be buried in logistics. We combine world-class human support with AI systems to give you the leverage you need to lead at your best.
           </p>
           <p className="text-zinc-500 text-lg leading-relaxed mb-4">
             We work with small businesses, coaches, consultants, and scaling teams in the US and UK.
@@ -38,7 +44,7 @@ export function About() {
           <p className="text-zinc-500 text-lg leading-relaxed">
             From inbox zero to custom AI agents, every service we offer is designed to multiply your impact — not just save you time.
           </p>
-        </motion.div>
+        </div>
 
         {/* Right: Stats grid */}
         <div className="grid grid-cols-2 gap-4">

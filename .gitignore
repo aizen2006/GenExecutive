@@ -36,5 +36,6 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
-skills-lock.json
 .claude
+.agents
+skills-lock.json

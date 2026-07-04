@@ -78,13 +78,7 @@ export function FAQ() {
   return (
     <section className="py-24 bg-white px-6">
       <div className="max-w-3xl mx-auto">
-        <motion.div
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
+        <div className="text-center mb-14 gsap-reveal">
           <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-3 block">
             FAQ
           </span>
@@ -94,19 +88,13 @@ export function FAQ() {
           <p className="text-zinc-500 text-base">
             Everything you need to know before we get started.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="rounded-2xl bg-zinc-50 border border-zinc-100 px-8 py-2"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.08 }}
-        >
+        <div className="rounded-2xl bg-zinc-50 border border-zinc-100 px-8 py-2 gsap-reveal">
           {faqs.map((faq) => (
             <FAQItem key={faq.q} q={faq.q} a={faq.a} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
