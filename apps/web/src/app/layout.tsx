@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "../Components/navbar";
 import ScrollAnimations from "../Components/ScrollAnimations";
 
@@ -129,6 +130,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <ScrollAnimations />
+        <Analytics />
       </body>
     </html>
   );
