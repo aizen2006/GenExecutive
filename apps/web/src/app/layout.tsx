@@ -101,7 +101,7 @@ const orgJsonLd = {
     contactType: "customer service",
   },
   sameAs: [
-    "https://twitter.com/genexecutive",
+    "https://x.com/genexecutive",
     "https://linkedin.com/company/genexecutive",
   ],
 };
