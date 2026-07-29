@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import {
   motion,
   AnimatePresence,
@@ -95,11 +96,14 @@ function TestimonialCard({ author, role, text, image }: Testimonial) {
           <span className="text-xs font-semibold text-violet-700 select-none">
             {initials(author)}
           </span>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          {/* next/image so a 1200px source isn't shipped for a 40px avatar. */}
+          <Image
             src={image}
             alt={author}
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            sizes="40px"
+            loading="lazy"
+            className="object-cover"
             draggable={false}
             onError={(e) => {
               (e.currentTarget as HTMLImageElement).style.display = "none";

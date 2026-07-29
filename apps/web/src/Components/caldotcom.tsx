@@ -1,8 +1,8 @@
 "use client";
 
-import { getCalApi } from "@calcom/embed-react";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { motion } from "motion/react";
+import { useCalEmbed } from "../lib/useCalEmbed";
 
 interface CalButtonProps {
   children?: ReactNode;
@@ -10,12 +10,7 @@ interface CalButtonProps {
 }
 
 export default function CalButton({ children = "Book a Call", className }: CalButtonProps) {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "30min" });
-      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-    })();
-  }, []);
+  useCalEmbed();
 
   return (
     <motion.button

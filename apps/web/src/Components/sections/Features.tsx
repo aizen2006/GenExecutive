@@ -164,6 +164,8 @@ function IntegrationsVisual() {
             alt={id}
             width={26}
             height={26}
+            loading="lazy"
+            decoding="async"
             className="h-[26px] w-[26px] object-contain"
             draggable={false}
             onError={(e) => {

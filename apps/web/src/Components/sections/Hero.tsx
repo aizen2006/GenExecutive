@@ -1,35 +1,17 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useRef } from "react";
 import { motion } from "motion/react";
-import { gsap, useGSAP } from "../../lib/gsap";
 import CalButton from "../caldotcom";
 import HeroTrail from "./HeroTrail";
 
+/**
+ * The hero entrance is CSS (`.hero-line` in globals.css), not GSAP — it has to
+ * run at first paint rather than at hydration. See the comment there.
+ */
 export function Hero() {
-  const scope = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      // Entrance timeline — GSAP owns the hero copy (no motion/react here).
-      const tl = gsap.timeline({
-        defaults: { ease: "power3.out" },
-        delay: 0.1,
-      });
-      tl.from(".hero-line", {
-        y: 42,
-        autoAlpha: 0,
-        duration: 0.8,
-        stagger: 0.12,
-      });
-    },
-    { scope },
-  );
-
   return (
     <section
-      ref={scope}
       id="hero"
       className="relative flex min-h-svh items-center overflow-hidden bg-white"
     >
@@ -64,19 +46,31 @@ export function Hero() {
         </div>
 
         <h1 className="mb-5 text-4xl font-bold leading-[1.08] tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl">
-          <span className="hero-line block">
+          <span
+            className="hero-line block"
+            style={{ "--hero-delay": "0.05s" } as CSSProperties}
+          >
             Behind Every Growing Business Is a
           </span>
-          <span className="hero-line mt-2 block bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent">
+          <span
+            className="hero-line mt-2 block bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent"
+            style={{ "--hero-delay": "0.1s" } as CSSProperties}
+          >
             Great Back Office
           </span>
         </h1>
 
-        <p className="hero-line mx-auto mb-9 max-w-xl text-base leading-relaxed text-zinc-500 sm:text-lg">
+        <p
+          className="hero-line mx-auto mb-9 max-w-xl text-base leading-relaxed text-zinc-500 sm:text-lg"
+          style={{ "--hero-delay": "0.15s" } as CSSProperties}
+        >
         We combine AI with experienced operators to handle your admin, operations, customer support, content, and more.
         </p>
 
-        <div className="hero-line mx-auto flex w-full max-w-xs flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center sm:gap-4">
+        <div
+          className="hero-line mx-auto flex w-full max-w-xs flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center sm:gap-4"
+          style={{ "--hero-delay": "0.2s" } as CSSProperties}
+        >
           <CalButton className="w-full sm:w-auto">Book a Call</CalButton>
           <motion.a
             href="#services"

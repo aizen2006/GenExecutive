@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import { motion, type Variants } from "motion/react";
-import { getCalApi } from "@calcom/embed-react";
+import { useCalEmbed } from "../../lib/useCalEmbed";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -162,12 +161,7 @@ function PricingCard({ plan }: { plan: Plan }) {
 }
 
 export function Pricing() {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "30min" });
-      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-    })();
-  }, []);
+  useCalEmbed();
 
   return (
     <section id="pricing" className="px-6 py-20 sm:py-24 bg-white">

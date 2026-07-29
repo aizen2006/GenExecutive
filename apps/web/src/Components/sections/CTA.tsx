@@ -1,17 +1,11 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useEffect } from "react";
 import { motion } from "motion/react";
-import { getCalApi } from "@calcom/embed-react";
+import { useCalEmbed } from "../../lib/useCalEmbed";
 
 export function CTA() {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "30min" });
-      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-    })();
-  }, []);
+  useCalEmbed();
 
   return (
     <section id="cta" className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-violet-600 to-indigo-600 py-20 sm:py-28 px-6">

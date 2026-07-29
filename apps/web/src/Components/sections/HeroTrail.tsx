@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap, useGSAP } from "../../lib/gsap";
 
 /**
@@ -34,6 +34,23 @@ const TILE = 64; // px
 
 export default function HeroTrail() {
   const container = useRef<HTMLDivElement>(null);
+  // The tiles pull 11 SVGs during the hero's load window. Only mount them
+  // where the trail can actually run, and only after paint, so they never
+  // compete with the hero for bandwidth.
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(
+      "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+    );
+    const sync = () => setEnabled(mq.matches);
+    const id = window.setTimeout(sync, 0);
+    mq.addEventListener("change", sync);
+    return () => {
+      window.clearTimeout(id);
+      mq.removeEventListener("change", sync);
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -41,6 +58,7 @@ export default function HeroTrail() {
       if (!root) return;
 
       const tiles = gsap.utils.toArray<HTMLElement>(".trail-tile");
+      if (!tiles.length) return;
       gsap.set(tiles, { xPercent: -50, yPercent: -50 });
 
       let idx = 0;
@@ -148,7 +166,7 @@ export default function HeroTrail() {
         },
       );
     },
-    { scope: container },
+    { scope: container, dependencies: [enabled] },
   );
 
   return (
@@ -157,7 +175,7 @@ export default function HeroTrail() {
       aria-hidden
       className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
     >
-      {POOL.map((id, i) => (
+      {enabled && POOL.map((id, i) => (
         <div
           key={`${id}-${i}`}
           className="trail-tile absolute left-0 top-0 opacity-0 will-change-transform"
