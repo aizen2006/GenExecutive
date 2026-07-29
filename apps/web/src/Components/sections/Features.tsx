@@ -302,7 +302,7 @@ function SmallCard({ areaClass, title, description, pills, visual, accent }: Sma
         boxShadow: accents[accent].glow,
         transition: { type: "spring", stiffness: 320, damping: 22 },
       }}
-      className={`relative flex min-h-[180px] flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents[accent].surface} p-6 shadow-sm ${areaClass}`}
+      className={`relative flex min-h-[180px] flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents[accent].surface} p-5 sm:p-6 shadow-sm ${areaClass}`}
     >
       <h3 className="text-lg font-semibold text-zinc-900">{title}</h3>
       <p className="mt-2 text-[15px] leading-relaxed text-zinc-500">{description}</p>
@@ -320,18 +320,18 @@ function SmallCard({ areaClass, title, description, pills, visual, accent }: Sma
 
 export function Features() {
   return (
-    <section id="services" className="px-6 py-24 bg-zinc-50/50">
+    <section id="services" className="px-6 py-20 sm:py-24 bg-zinc-50/50">
       <div className="mx-auto max-w-6xl">
         {/* Heading */}
-        <div className="mb-16 text-center gsap-reveal">
+        <div className="mb-12 sm:mb-16 text-center gsap-reveal">
           <span className="mb-3 block text-xs font-semibold uppercase tracking-widest text-violet-600">
             Services
           </span>
-          <h2 className="mx-auto max-w-[700px] text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+          <h2 className="mx-auto max-w-[700px] text-3xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
             Everything You Need
             <br className="hidden sm:block" /> To Run Efficiently
           </h2>
-          <p className="mx-auto mt-5 max-w-[600px] text-lg leading-relaxed text-zinc-500">
+          <p className="mx-auto mt-4 max-w-[600px] text-base sm:mt-5 sm:text-lg leading-relaxed text-zinc-500">
             GenExecutive combines automation, AI, and operational support to help
             founders spend less time managing tasks and more time growing their
             business.
@@ -354,7 +354,7 @@ export function Features() {
               boxShadow: accents["violet-blue"].glow,
               transition: { type: "spring", stiffness: 320, damping: 22 },
             }}
-            className={`bento-work card-pulse relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents["violet-blue"].surface} p-8 shadow-sm lg:flex-row lg:items-center`}
+            className={`bento-work card-pulse relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents["violet-blue"].surface} p-6 shadow-sm sm:p-8 lg:flex-row lg:items-center`}
           >
             <motion.div
               className="pointer-events-none absolute -left-16 -top-16 h-44 w-44 rounded-full bg-violet-300/20 blur-3xl"
@@ -366,7 +366,7 @@ export function Features() {
               <span className="mb-4 w-fit rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-700 shadow-[0_0_12px_rgba(139,92,246,0.18)]">
                 10+ Hours Saved Weekly
               </span>
-              <h3 className="text-[28px] font-semibold leading-tight text-zinc-900">
+              <h3 className="text-2xl sm:text-[28px] font-semibold leading-tight text-zinc-900">
                 Reduce Manual Work
               </h3>
               <p className="mt-2 text-[15px] leading-relaxed text-zinc-500">
@@ -423,7 +423,7 @@ export function Features() {
               boxShadow: accents["blue"].glow,
               transition: { type: "spring", stiffness: 320, damping: 22 },
             }}
-            className={`bento-integ relative flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents["blue"].surface} p-6 shadow-sm`}
+            className={`bento-integ relative flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br ${accents["blue"].surface} p-5 sm:p-6 shadow-sm`}
           >
             <h3 className="text-lg font-semibold text-zinc-900">Seamless Integrations</h3>
             <p className="mt-2 text-[15px] leading-relaxed text-zinc-500">

@@ -108,7 +108,7 @@ export default async function BlogPostPage({ params }: Props) {
     .slice(0, 2);
 
   return (
-    <main className="min-h-screen bg-white pt-32 pb-24 px-6">
+    <main className="min-h-svh bg-white pt-28 sm:pt-32 pb-20 sm:pb-24 px-5 sm:px-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="max-w-2xl mx-auto">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1 text-sm text-zinc-400 hover:text-violet-600 transition-colors mb-10"
+          className="inline-flex min-h-11 items-center gap-1 text-sm text-zinc-400 hover:text-violet-600 transition-colors mb-6 sm:mb-10"
         >
           ← Back to Blog
         </Link>
@@ -140,7 +140,7 @@ export default async function BlogPostPage({ params }: Props) {
             day: "numeric",
           })}
         </time>
-        <h1 className="mt-3 text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight leading-tight mb-10">
+        <h1 className="mt-3 text-[28px] sm:text-4xl font-bold text-zinc-900 tracking-tight leading-tight mb-8 sm:mb-10">
           {post.title}
         </h1>
         <div

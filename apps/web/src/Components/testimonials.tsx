@@ -84,7 +84,7 @@ function TestimonialCard({ author, role, text, image }: Testimonial) {
         y.set(0);
       }}
       style={{ rotateX, rotateY, transformPerspective: 900 }}
-      className="relative flex min-h-[260px] w-80 flex-col rounded-2xl bg-white p-6 shadow-lg border border-zinc-100 overflow-hidden"
+      className="relative flex min-h-[260px] w-full max-w-80 flex-col rounded-2xl bg-white p-5 sm:p-6 shadow-lg border border-zinc-100 overflow-hidden"
     >
       <div className="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-br from-white/60 to-transparent opacity-60" />
       <p className="flex-1 text-sm text-zinc-600 italic leading-relaxed mb-4">
@@ -142,8 +142,8 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative bg-zinc-50 py-32 overflow-hidden"
-      style={{ minHeight: 680 }}
+      // min-height reserves room for the desktop-only ghost cards.
+      className="relative bg-zinc-50 py-20 sm:py-32 overflow-hidden lg:min-h-[680px]"
     >
       {/* Ghost cards — decorative background layer */}
       {ghostPositions.map((pos, i) => {
@@ -151,7 +151,7 @@ export function Testimonials() {
         return (
           <motion.div
             key={`ghost-${i}-${t.author}`}
-            className="absolute pointer-events-none hidden lg:block"
+            className="absolute w-80 pointer-events-none hidden lg:block"
             style={{ ...pos }}
             animate={{ y: [0, -12, 0] }}
             transition={{
@@ -176,10 +176,10 @@ export function Testimonials() {
         <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-4 block gsap-reveal">
           Client Stories
         </span>
-        <h2 className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-3 gsap-reveal">
+        <h2 className="text-3xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-3 gsap-reveal">
           What Our Clients Say
         </h2>
-        <p className="text-zinc-500 text-lg mb-14 gsap-reveal">
+        <p className="text-zinc-500 text-base sm:text-lg mb-10 sm:mb-14 gsap-reveal">
           Real results from real businesses we&apos;ve worked with.
         </p>
 
@@ -191,14 +191,15 @@ export function Testimonials() {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: -28, opacity: 0, scale: 0.97 }}
             transition={{ duration: 0.48, ease: "easeOut" }}
-            className="relative"
+            className="relative flex w-full justify-center"
           >
             <FrozenTestimonialCard {...testimonials[activeIdx]} />
           </motion.div>
         </AnimatePresence>
 
         {/* Indicator dots */}
-        <div className="flex items-center gap-2 mt-8">
+        {/* Dots are 6px tall, so each sits inside a 44px touch target. */}
+        <div className="flex items-center mt-6 sm:mt-8">
           {testimonials.map((_, i) => (
             <button
               key={i}
@@ -211,13 +212,18 @@ export function Testimonials() {
                   return s + (diff === 0 ? n : diff);
                 });
               }}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === activeIdx
-                  ? "w-6 bg-violet-600"
-                  : "w-1.5 bg-zinc-300 hover:bg-zinc-400"
-              }`}
+              className="group flex h-11 w-7 items-center justify-center"
               aria-label={`Show testimonial ${i + 1}`}
-            />
+              aria-current={i === activeIdx}
+            >
+              <span
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === activeIdx
+                    ? "w-6 bg-violet-600"
+                    : "w-1.5 bg-zinc-300 group-hover:bg-zinc-400"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

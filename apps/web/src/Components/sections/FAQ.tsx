@@ -41,9 +41,10 @@ function FAQItem({ q, a }: { q: string; a: string }) {
     <div className="border-b border-zinc-100 last:border-0">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between py-5 text-left gap-4"
+        aria-expanded={open}
+        className="flex w-full min-h-[56px] items-center justify-between py-5 text-left gap-4"
       >
-        <span className="text-base font-semibold text-zinc-900">{q}</span>
+        <span className="text-[15px] sm:text-base font-semibold text-zinc-900">{q}</span>
         <motion.svg
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.24, ease: "easeOut" }}
@@ -76,13 +77,13 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export function FAQ() {
   return (
-    <section className="py-24 bg-white px-6">
+    <section className="py-20 sm:py-24 bg-white px-6">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-14 gsap-reveal">
+        <div className="text-center mb-10 sm:mb-14 gsap-reveal">
           <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-3 block">
             FAQ
           </span>
-          <h2 className="text-4xl font-bold text-zinc-900 tracking-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight mb-3">
             Frequently Asked Questions
           </h2>
           <p className="text-zinc-500 text-base">
@@ -90,7 +91,7 @@ export function FAQ() {
           </p>
         </div>
 
-        <div className="rounded-2xl bg-zinc-50 border border-zinc-100 px-8 py-2 gsap-reveal">
+        <div className="rounded-2xl bg-zinc-50 border border-zinc-100 px-5 sm:px-8 py-2 gsap-reveal">
           {faqs.map((faq) => (
             <FAQItem key={faq.q} q={faq.q} a={faq.a} />
           ))}

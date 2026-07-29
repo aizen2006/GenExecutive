@@ -31,22 +31,23 @@ export function Hero() {
     <section
       ref={scope}
       id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden bg-white"
+      className="relative flex min-h-svh items-center overflow-hidden bg-white"
     >
-      {/* Gradient orbs (parallax on scroll) */}
+      {/* Gradient orbs (parallax on scroll). Smaller on phones — a 640px
+          blur-3xl layer is a real GPU cost on mobile. */}
       <div
         data-parallax="-14"
-        className="pointer-events-none absolute left-[-140px] top-[-100px] h-[640px] w-[640px] animate-blob rounded-full bg-violet-300/35 blur-3xl"
+        className="pointer-events-none absolute left-[-140px] top-[-100px] h-[380px] w-[380px] animate-blob rounded-full bg-violet-300/35 blur-3xl sm:h-[640px] sm:w-[640px]"
         style={{ "--blob-dur": "12s" } as CSSProperties}
       />
       <div
         data-parallax="18"
-        className="blob-delay-2 pointer-events-none absolute bottom-[-120px] right-[-100px] h-[520px] w-[520px] animate-blob rounded-full bg-indigo-300/25 blur-3xl"
+        className="blob-delay-2 pointer-events-none absolute bottom-[-120px] right-[-100px] h-[320px] w-[320px] animate-blob rounded-full bg-indigo-300/25 blur-3xl sm:h-[520px] sm:w-[520px]"
         style={{ "--blob-dur": "15s" } as CSSProperties}
       />
       <div
         data-parallax="10"
-        className="blob-delay-4 pointer-events-none absolute right-[30%] top-1/2 h-[380px] w-[380px] animate-blob rounded-full bg-pink-200/25 blur-3xl"
+        className="blob-delay-4 pointer-events-none absolute right-[30%] top-1/2 hidden h-[380px] w-[380px] animate-blob rounded-full bg-pink-200/25 blur-3xl sm:block"
         style={{ "--blob-dur": "10s" } as CSSProperties}
       />
 
@@ -54,7 +55,7 @@ export function Hero() {
       <HeroTrail />
 
       {/* Centered copy */}
-      <div className="relative z-10 mx-auto max-w-4xl px-6 py-24 text-center">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 py-20 text-center sm:py-24">
         <div className="hero-line mb-7 flex justify-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-1.5 text-sm font-medium text-violet-700">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-violet-500" />
@@ -75,14 +76,14 @@ export function Hero() {
         We combine AI with experienced operators to handle your admin, operations, customer support, content, and more.
         </p>
 
-        <div className="hero-line flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <CalButton>Book a Call</CalButton>
+        <div className="hero-line mx-auto flex w-full max-w-xs flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center sm:gap-4">
+          <CalButton className="w-full sm:w-auto">Book a Call</CalButton>
           <motion.a
             href="#services"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="inline-flex h-12 items-center justify-center rounded-full border border-zinc-200 bg-white px-7 text-sm font-medium text-zinc-700 shadow-sm transition-colors hover:border-zinc-300 hover:bg-zinc-50"
+            className="inline-flex h-12 w-full items-center justify-center rounded-full border border-zinc-200 bg-white px-7 text-sm font-medium text-zinc-700 shadow-sm transition-colors hover:border-zinc-300 hover:bg-zinc-50 sm:w-auto"
           >
             Explore Services →
           </motion.a>
@@ -91,7 +92,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center"
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center sm:bottom-10 [@media(max-height:720px)]:hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.6 }}

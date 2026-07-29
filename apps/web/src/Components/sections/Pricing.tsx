@@ -99,7 +99,7 @@ function PricingCard({ plan }: { plan: Plan }) {
     <motion.div
       variants={cardVariants}
       whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 22 } }}
-      className={`relative flex flex-col rounded-[32px] p-8 ${
+      className={`relative flex flex-col rounded-[28px] p-6 sm:rounded-[32px] sm:p-8 ${
         featured
           ? "border-2 border-violet-300 bg-white shadow-[0_20px_60px_rgba(139,92,246,0.18)] lg:scale-105 z-10"
           : "border border-zinc-200 bg-gradient-to-br from-white to-zinc-50/80 shadow-sm"
@@ -170,17 +170,17 @@ export function Pricing() {
   }, []);
 
   return (
-    <section id="pricing" className="px-6 py-24 bg-white">
+    <section id="pricing" className="px-6 py-20 sm:py-24 bg-white">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <div className="mb-16 text-center gsap-reveal">
+        <div className="mb-12 sm:mb-16 text-center gsap-reveal">
           <span className="mb-3 block text-xs font-semibold uppercase tracking-widest text-violet-600">
             Pricing
           </span>
-          <h2 className="mx-auto max-w-[700px] text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+          <h2 className="mx-auto max-w-[700px] text-3xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
             Flexible Plans For Growing Businesses
           </h2>
-          <p className="mx-auto mt-5 max-w-[600px] text-lg leading-relaxed text-zinc-500">
+          <p className="mx-auto mt-4 max-w-[600px] text-base sm:mt-5 sm:text-lg leading-relaxed text-zinc-500">
             Choose the level of support you need today and scale as your business
             grows.
           </p>

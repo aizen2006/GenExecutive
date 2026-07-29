@@ -40,20 +40,20 @@ export default function BlogPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white pt-32 pb-24 px-6">
+    <main className="min-h-svh bg-white pt-28 sm:pt-32 pb-20 sm:pb-24 px-5 sm:px-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
       />
       <div className="max-w-3xl mx-auto">
-        <div className="mb-14">
+        <div className="mb-10 sm:mb-14">
           <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-3 block">
             Insights
           </span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-4">
+          <h1 className="text-3xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-4">
             The GenExecutive Blog
           </h1>
-          <p className="text-zinc-500 text-lg">
+          <p className="text-zinc-500 text-base sm:text-lg">
             Thoughts on executive support, AI, and building better businesses.
           </p>
         </div>
@@ -66,7 +66,7 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group block rounded-2xl border border-zinc-100 bg-white p-7 shadow-sm hover:border-violet-200 hover:shadow-md transition-all"
+                className="group block rounded-2xl border border-zinc-100 bg-white p-5 sm:p-7 shadow-sm hover:border-violet-200 hover:shadow-md transition-all"
               >
                 <time
                   dateTime={new Date(post.date).toISOString()}

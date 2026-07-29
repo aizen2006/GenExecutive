@@ -14,7 +14,7 @@ export function CTA() {
   }, []);
 
   return (
-    <section id="cta" className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-violet-600 to-indigo-600 py-28 px-6">
+    <section id="cta" className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-violet-600 to-indigo-600 py-20 sm:py-28 px-6">
       {/* Orb overlays */}
       <div
         data-parallax="-16"
@@ -28,15 +28,15 @@ export function CTA() {
       />
 
       <div className="relative z-10 max-w-3xl mx-auto text-center gsap-reveal">
-        <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight mb-5">
+        <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight mb-5">
           Focus on Growth.<br className="hidden sm:block" /> We&apos;ll Handle the Operations.
         </h2>
-        <p className="text-violet-200 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+        <p className="text-violet-200 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto leading-relaxed">
           Build efficient systems, automate repetitive work, and scale your
           business with AI-powered operational support.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mx-auto flex w-full max-w-xs flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center sm:gap-4">
           <motion.button
             data-cal-namespace="30min"
             data-cal-link="abhik-halder/30min"
@@ -44,7 +44,7 @@ export function CTA() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="h-12 cursor-pointer rounded-full bg-white px-8 text-sm font-semibold text-violet-700 shadow-lg hover:bg-violet-50 transition-colors"
+            className="h-12 w-full sm:w-auto cursor-pointer rounded-full bg-white px-8 text-sm font-semibold text-violet-700 shadow-lg hover:bg-violet-50 transition-colors"
           >
             Book a Discovery Call
           </motion.button>
@@ -53,7 +53,7 @@ export function CTA() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="h-12 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm px-8 inline-flex items-center text-sm font-medium text-white hover:bg-white/20 transition-colors"
+            className="h-12 w-full sm:w-auto rounded-full border border-white/30 bg-white/10 backdrop-blur-sm px-8 inline-flex items-center justify-center text-sm font-medium text-white hover:bg-white/20 transition-colors"
           >
             Explore Services →
           </motion.a>

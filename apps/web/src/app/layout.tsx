@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "../Components/navbar";
 import ScrollAnimations from "../Components/ScrollAnimations";
+import MotionProvider from "../Components/MotionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -89,6 +90,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // No maximumScale / user-scalable=no — pinch zoom must stay available.
+  viewportFit: "cover",
+  themeColor: "#ffffff",
+};
+
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -127,8 +136,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
-        <Navbar />
-        {children}
+        <MotionProvider>
+          <Navbar />
+          {children}
+        </MotionProvider>
         <ScrollAnimations />
         <Analytics />
       </body>

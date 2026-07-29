@@ -118,9 +118,11 @@ export default function HeroTrail() {
         },
       );
 
-      // ── Auto-play burst (touch / no-hover devices) ──
+      // ── Auto-play burst (touch tablets / no-hover devices) ──
+      // Phones are excluded: a tile spawning every 0.7s behind the hero copy
+      // is visual noise on a small screen and a constant battery draw.
       mm.add(
-        "(hover: none) and (prefers-reduced-motion: no-preference)",
+        "(hover: none) and (min-width: 768px) and (prefers-reduced-motion: no-preference)",
         () => {
           let t = 0;
           const tick = () => {
