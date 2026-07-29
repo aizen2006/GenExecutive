@@ -2,16 +2,49 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
 import type { Metadata } from "next";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.genexecutive.in";
+const description =
+  "Insights on executive support, AI automation, and business operations — practical thinking on removing bottlenecks and growing faster.";
+
 export const metadata: Metadata = {
-  title: "Blog — GenExecutive",
-  description: "Insights on executive support, AI automation, and business performance.",
+  title: "Blog",
+  description,
+  alternates: { canonical: `${siteUrl}/blog` },
+  openGraph: {
+    type: "website",
+    title: "Blog — GenExecutive",
+    description,
+    url: `${siteUrl}/blog`,
+    siteName: "GenExecutive",
+  },
 };
 
 export default function BlogPage() {
   const posts = getAllPosts();
 
+  const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "The GenExecutive Blog",
+    description,
+    url: `${siteUrl}/blog`,
+    publisher: { "@type": "Organization", name: "GenExecutive", url: siteUrl },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.excerpt,
+      datePublished: new Date(post.date).toISOString(),
+      dateModified: new Date(post.updated).toISOString(),
+      url: `${siteUrl}/blog/${post.slug}`,
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-white pt-32 pb-24 px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
       <div className="max-w-3xl mx-auto">
         <div className="mb-14">
           <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-3 block">
@@ -35,7 +68,10 @@ export default function BlogPage() {
                 href={`/blog/${post.slug}`}
                 className="group block rounded-2xl border border-zinc-100 bg-white p-7 shadow-sm hover:border-violet-200 hover:shadow-md transition-all"
               >
-                <time className="text-xs text-zinc-400 font-medium uppercase tracking-wide">
+                <time
+                  dateTime={new Date(post.date).toISOString()}
+                  className="text-xs text-zinc-400 font-medium uppercase tracking-wide"
+                >
                   {new Date(post.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",

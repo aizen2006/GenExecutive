@@ -6,15 +6,36 @@ import remarkHtml from "remark-html";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
 export interface PostMeta {
   slug: string;
   title: string;
   date: string;
+  /** ISO date of the last meaningful edit. Falls back to `date`. */
+  updated: string;
   excerpt: string;
+  keywords: string[];
 }
 
 export interface Post extends PostMeta {
   content: string;
+  faq: FaqItem[];
+}
+
+function toMeta(slug: string, data: Record<string, unknown>): PostMeta {
+  const date = (data.date as string) ?? "";
+  return {
+    slug,
+    title: (data.title as string) ?? slug,
+    date,
+    updated: (data.updated as string) ?? date,
+    excerpt: (data.excerpt as string) ?? "",
+    keywords: Array.isArray(data.keywords) ? (data.keywords as string[]) : [],
+  };
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -26,12 +47,7 @@ export function getAllPosts(): PostMeta[] {
       const slug = fileName.replace(/\.md$/, "");
       const fullPath = path.join(postsDirectory, fileName);
       const { data } = matter(fs.readFileSync(fullPath, "utf8"));
-      return {
-        slug,
-        title: (data.title as string) ?? slug,
-        date: (data.date as string) ?? "",
-        excerpt: (data.excerpt as string) ?? "",
-      };
+      return toMeta(slug, data);
     });
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
@@ -42,10 +58,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   const { data, content } = matter(fs.readFileSync(fullPath, "utf8"));
   const processed = await remark().use(remarkHtml).process(content);
   return {
-    slug,
-    title: (data.title as string) ?? slug,
-    date: (data.date as string) ?? "",
-    excerpt: (data.excerpt as string) ?? "",
+    ...toMeta(slug, data),
+    faq: Array.isArray(data.faq) ? (data.faq as FaqItem[]) : [],
     content: processed.toString(),
   };
 }
