@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 384" width="720" height="384" role="img" aria-label="How a Claude Code Skill hands a video to the Gemini API and brings the answer back to the terminal">
+  <defs>
+    <style>
+      .t { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .h  { font-size: 17px; font-weight: 700; fill: #18181b; }
+      .cap { font-size: 11px; fill: #a1a1aa; }
+      .lane { font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+      .n  { font-size: 10.5px; font-weight: 700; fill: #7c3aed; }
+      .bt { font-size: 12.5px; font-weight: 700; fill: #18181b; }
+      .bs { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10.5px; fill: #71717a; }
+    </style>
+    <marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+  <rect width="720" height="384" fill="#ffffff"/>
+
+  <text class="t h" x="24" y="32">What happens when you ask about a video</text>
+  <text class="t cap" x="24" y="52">Claude Code never reads the video itself. The Skill hands it to Gemini and brings the answer back.</text>
+
+  <!-- Lanes -->
+  <rect x="16" y="66" width="688" height="116" rx="12" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <text class="t lane" x="32" y="84" fill="#6d28d9">YOUR TERMINAL · CLAUDE CODE</text>
+  <rect x="16" y="206" width="688" height="116" rx="12" fill="#fafafa" stroke="#e4e4e7"/>
+  <text class="t lane" x="32" y="224" fill="#71717a">GOOGLE · GEMINI API</text>
+
+  <!-- Top lane: 1, 2, 3 and 7 -->
+  <rect x="24" y="96" width="150" height="66" rx="10" fill="#ffffff" stroke="#ddd6fe"/>
+  <text class="t n" x="38" y="115">01</text>
+  <text class="t bt" x="38" y="134">You ask</text>
+  <text class="t bs" x="38" y="151">summarize demo.mp4</text>
+
+  <rect x="196" y="96" width="150" height="66" rx="10" fill="#ffffff" stroke="#ddd6fe"/>
+  <text class="t n" x="210" y="115">02</text>
+  <text class="t bt" x="210" y="134">Skill matches</text>
+  <text class="t bs" x="210" y="151">SKILL.md description</text>
+
+  <rect x="368" y="96" width="150" height="66" rx="10" fill="#ffffff" stroke="#ddd6fe"/>
+  <text class="t n" x="382" y="115">03</text>
+  <text class="t bt" x="382" y="134">Runs the script</text>
+  <text class="t bs" x="382" y="151">analyze_video.py</text>
+
+  <rect x="546" y="96" width="150" height="66" rx="10" fill="#7c3aed"/>
+  <text class="t n" x="560" y="115" style="fill:#ddd6fe">07</text>
+  <text class="t bt" x="560" y="134" style="fill:#ffffff">Answer</text>
+  <text class="t bs" x="560" y="151" style="fill:#ede9fe">back in your terminal</text>
+
+  <!-- Bottom lane: 4, 5, 6 -->
+  <rect x="196" y="238" width="150" height="66" rx="10" fill="#ffffff" stroke="#e4e4e7"/>
+  <text class="t n" x="210" y="257">04</text>
+  <text class="t bt" x="210" y="276">Upload</text>
+  <text class="t bs" x="210" y="293">Files API</text>
+
+  <rect x="368" y="238" width="150" height="66" rx="10" fill="#ffffff" stroke="#e4e4e7"/>
+  <text class="t n" x="382" y="257">05</text>
+  <text class="t bt" x="382" y="276">Process</text>
+  <text class="t bs" x="382" y="293">poll until ACTIVE</text>
+
+  <rect x="546" y="238" width="150" height="66" rx="10" fill="#ffffff" stroke="#e4e4e7"/>
+  <text class="t n" x="560" y="257">06</text>
+  <text class="t bt" x="560" y="276">Generate</text>
+  <text class="t bs" x="560" y="293">generate_content</text>
+
+  <!-- Connectors -->
+  <path d="M176 129 L192 129" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#g)"/>
+  <path d="M348 129 L364 129" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#g)"/>
+  <path d="M443 164 L443 194 L271 194 L271 234" fill="none" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#g)"/>
+  <path d="M348 271 L364 271" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#g)"/>
+  <path d="M520 271 L542 271" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#g)"/>
+  <path d="M621 236 L621 166" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#g)"/>
+
+  <text class="t cap" x="24" y="354">The API key stays in your shell environment as GEMINI_API_KEY — never inside the Skill folder.</text>
+</svg>

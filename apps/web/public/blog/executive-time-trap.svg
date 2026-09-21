@@ -31,7 +31,7 @@
   <text class="t rw" x="24" y="228">With executive support</text>
   <rect x="24" y="240" width="245" height="50" rx="8" fill="#ede9fe" stroke="#ddd6fe"/>
   <rect x="273" y="240" width="423" height="50" rx="8" fill="#7c3aed"/>
-  <text class="t sgd" x="40" y="270" fill="#6d28d9">handled for you</text>
+  <text class="t sgd" x="40" y="270" style="fill:#6d28d9">handled for you</text>
   <text class="t sg" x="289" y="270">100% of your attention on strategy, relationships, growth</text>
 
   <!-- The delegable block is what moves -->

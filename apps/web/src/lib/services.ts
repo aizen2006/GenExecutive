@@ -64,13 +64,13 @@ export const services: Service[] = [
       },
       {
         heading: "Built, documented, handed over",
-        body: "Every automation is tested, documented and handed over with training, so your team can manage and extend it without waiting on us. We keep optimising as the business changes.",
+        body: "Every automation is tested, documented and handed over with training, so your team can manage and extend it without waiting on us. We keep optimizing as the business changes.",
       },
     ],
     faq: [
       {
         q: "Can you build a custom AI automation for my business?",
-        a: "Yes. We analyse your existing workflows, identify the high-value automation opportunities, and build custom pipelines using modern AI tools. Every automation is tested, documented, and handed over with training so your team can manage it confidently.",
+        a: "Yes. We analyze your existing workflows, identify the high-value automation opportunities, and build custom pipelines using modern AI tools. Every automation is tested, documented, and handed over with training so your team can manage it confidently.",
       },
       {
         q: "How do your AI agents work?",
@@ -83,7 +83,8 @@ export const services: Service[] = [
     ],
     relatedPosts: [
       "founders-guide-to-ai-agents",
-      "claude-code-3-hacks-seo",
+      "claude-skills-linkedin-outreach",
+      "claude-code-skill-gemini-video-analysis",
     ],
   },
   {
@@ -125,7 +126,7 @@ export const services: Service[] = [
       },
       {
         q: "How does ongoing support work?",
-        a: "Our plans are monthly and continuous — we keep managing your operations, automations, support, and content, optimising as your business grows. There's no fixed end date: scale up, scale down, or pause whenever your needs change.",
+        a: "Our plans are monthly and continuous — we keep managing your operations, automations, support, and content, optimizing as your business grows. There's no fixed end date: scale up, scale down, or pause whenever your needs change.",
       },
       {
         q: "What should a business owner delegate first?",

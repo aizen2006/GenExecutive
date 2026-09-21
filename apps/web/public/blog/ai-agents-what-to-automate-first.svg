@@ -28,17 +28,17 @@
   <text class="t ql" x="120" y="96" fill="#be123c">KEEP HUMAN</text>
   <text class="t qs" x="120" y="114" fill="#9f1239">Nuanced calls, sensitive</text>
   <text class="t qs" x="120" y="130" fill="#9f1239">relationships, high blast radius.</text>
-  <text class="t it" x="120" y="158" fill="#881337">· Pricing and strategy decisions</text>
-  <text class="t it" x="120" y="178" fill="#881337">· Difficult client conversations</text>
-  <text class="t it" x="120" y="198" fill="#881337">· Hiring and performance calls</text>
+  <text class="t it" x="120" y="158" style="fill:#881337">· Pricing and strategy decisions</text>
+  <text class="t it" x="120" y="178" style="fill:#881337">· Difficult client conversations</text>
+  <text class="t it" x="120" y="198" style="fill:#881337">· Hiring and performance calls</text>
 
   <!-- Top-right: process not decision -->
   <text class="t ql" x="416" y="96" fill="#b45309">AUTOMATE THE PROCESS,</text>
   <text class="t ql" x="416" y="112" fill="#b45309">NOT THE DECISION</text>
   <text class="t qs" x="416" y="132" fill="#92400e">Agent drafts and prepares;</text>
   <text class="t qs" x="416" y="148" fill="#92400e">a human still approves.</text>
-  <text class="t it" x="416" y="176" fill="#78350f">· Proposals and quotes</text>
-  <text class="t it" x="416" y="196" fill="#78350f">· Escalated support replies</text>
+  <text class="t it" x="416" y="176" style="fill:#78350f">· Proposals and quotes</text>
+  <text class="t it" x="416" y="196" style="fill:#78350f">· Escalated support replies</text>
 
   <!-- Bottom-left: not worth it -->
   <text class="t ql" x="120" y="262" fill="#71717a">NOT WORTH IT YET</text>
@@ -51,11 +51,11 @@
   <text class="t ql" x="416" y="262" fill="#047857">START HERE</text>
   <text class="t qs" x="416" y="280" fill="#065f46">Repetitive, rule-based, time-heavy —</text>
   <text class="t qs" x="416" y="296" fill="#065f46">and not judgment-heavy.</text>
-  <text class="t it" x="416" y="320" fill="#064e3b">· Inbox and calendar management</text>
-  <text class="t it" x="416" y="338" fill="#064e3b">· Lead follow-up and CRM updates</text>
-  <text class="t it" x="416" y="356" fill="#064e3b">· Client onboarding</text>
-  <text class="t it" x="416" y="374" fill="#064e3b">· Reporting and data pulling</text>
-  <text class="t it" x="416" y="392" fill="#064e3b">· Internal ops coordination</text>
+  <text class="t it" x="416" y="320" style="fill:#064e3b">· Inbox and calendar management</text>
+  <text class="t it" x="416" y="338" style="fill:#064e3b">· Lead follow-up and CRM updates</text>
+  <text class="t it" x="416" y="356" style="fill:#064e3b">· Client onboarding</text>
+  <text class="t it" x="416" y="374" style="fill:#064e3b">· Reporting and data pulling</text>
+  <text class="t it" x="416" y="392" style="fill:#064e3b">· Internal ops coordination</text>
 
   <!-- Axes -->
   <line x1="88" y1="414" x2="88" y2="72" stroke="#d4d4d8" stroke-width="1.5" marker-end="url(#ar)"/>

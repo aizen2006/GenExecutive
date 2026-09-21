@@ -30,11 +30,11 @@
   <!-- New column -->
   <rect x="390" y="72" width="306" height="256" rx="14" fill="#f5f3ff" stroke="#ddd6fe"/>
   <text class="t col" x="414" y="102" fill="#6d28d9">THE AI-ERA FORMULA</text>
-  <text class="t it" x="414" y="132" fill="#3f3f46">Judgment plus tools that carry skill</text>
-  <text class="t it" x="414" y="156" fill="#3f3f46">Build first, raise later or never</text>
-  <text class="t it" x="414" y="180" fill="#3f3f46">Small teams with large output</text>
-  <text class="t it" x="414" y="204" fill="#3f3f46">Networks you can reach directly</text>
-  <text class="t it" x="414" y="228" fill="#3f3f46">Distribution that is free to start</text>
+  <text class="t it" x="414" y="132" style="fill:#3f3f46">Judgment plus tools that carry skill</text>
+  <text class="t it" x="414" y="156" style="fill:#3f3f46">Build first, raise later or never</text>
+  <text class="t it" x="414" y="180" style="fill:#3f3f46">Small teams with large output</text>
+  <text class="t it" x="414" y="204" style="fill:#3f3f46">Networks you can reach directly</text>
+  <text class="t it" x="414" y="228" style="fill:#3f3f46">Distribution that is free to start</text>
   <line x1="414" y1="252" x2="672" y2="252" stroke="#ddd6fe"/>
   <text class="t big" x="414" y="298" fill="#7c3aed">25</text>
   <text class="t un" x="474" y="298" fill="#6d28d9">is no longer an unreasonable age</text>
