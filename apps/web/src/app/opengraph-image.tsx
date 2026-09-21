@@ -10,43 +10,21 @@ export default function Image() {
     (
       <div
         style={{
-          background: "linear-gradient(135deg, #4c1d95 0%, #3730a3 100%)",
+          // Satori has no blur filter, so the glow is baked into the gradients.
+          backgroundColor: "#3730a3",
+          backgroundImage: [
+            "radial-gradient(circle at 12% 8%, rgba(167,139,250,0.45) 0%, rgba(167,139,250,0) 55%)",
+            "radial-gradient(circle at 92% 95%, rgba(129,140,248,0.35) 0%, rgba(129,140,248,0) 50%)",
+            "linear-gradient(135deg, #4c1d95 0%, #3730a3 100%)",
+          ].join(","),
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          position: "relative",
-          overflow: "hidden",
         }}
       >
-        {/* Decorative orbs */}
-        <div
-          style={{
-            position: "absolute",
-            top: -100,
-            left: -100,
-            width: 480,
-            height: 480,
-            borderRadius: "50%",
-            background: "rgba(167,139,250,0.22)",
-            filter: "blur(80px)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: -80,
-            right: -80,
-            width: 360,
-            height: 360,
-            borderRadius: "50%",
-            background: "rgba(129,140,248,0.18)",
-            filter: "blur(60px)",
-          }}
-        />
-
         {/* Content */}
         <div
           style={{
@@ -54,7 +32,6 @@ export default function Image() {
             flexDirection: "column",
             alignItems: "center",
             gap: 20,
-            zIndex: 1,
             padding: "0 80px",
             textAlign: "center",
           }}

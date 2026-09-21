@@ -1,12 +1,13 @@
 ---
 title: "Why Executive Support is the New Competitive Advantage"
+seoTitle: "Why Executive Support Is the New Competitive Advantage"
 date: "2026-05-05"
 excerpt: "In today's fast-paced business environment, executive support isn't a luxury — it's the leverage that separates high-performers from the rest."
 ---
 
-# Why Executive Support is the New Competitive Advantage
-
 In today's fast-paced business environment, executive support isn't a luxury — it's the leverage that separates high-performers from the rest.
+
+![A 40-hour executive week split into a 35 percent delegable share and 65 percent leadership work, then reallocated](/blog/executive-time-trap.svg)
 
 ## The Time Trap
 
@@ -22,7 +23,7 @@ When your calendar, inbox, and operational tasks are handled by someone (or some
 
 ## What We Do Differently
 
-At GenExecutive, we combine human expertise with AI automation to give you support that's always on, always ahead, and always learning.
+At GenExecutive, we combine [executive support](/services/executive-support) with [AI automation](/services/ai-automation) to give you support that's always on, always ahead, and always learning.
 
 - **AI-powered email triage** — important things surface, noise disappears
 - **Intelligent calendar management** — no more scheduling back-and-forth

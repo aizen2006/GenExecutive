@@ -1,7 +1,8 @@
 ---
 title: "The Next Trillionaire Could Be 25: How AI is Changing Wealth Creation"
+seoTitle: "The Next Trillionaire Could Be 25: AI and Wealth"
 date: "2026-07-20"
-excerpt: "Discover how AI, social media, and digital entrepreneurship are rewriting the rules of success. Why the world's next trillionaire may be far younger than anyone expects."
+excerpt: "See how AI, social media, and solo entrepreneurship are rewriting wealth creation — and why the world's next trillionaire could be just 25 years old."
 ---
 
 The first trillionaire turned 55. But the next trillionaire could be 25.
@@ -25,6 +26,8 @@ The real question is:
 **"What's stopping them?"**
 
 ---
+
+![The old formula for building wealth compared against the AI-era formula, and how it compresses the timeline from 55 to 25](/blog/wealth-creation-old-vs-new.svg)
 
 ## The Old Formula for Wealth Creation
 
@@ -130,9 +133,9 @@ The next trillionaire won't wait thirty years to build their empire. They'll bui
 
 The rules of wealth creation have been rewritten. The winners of the next decade won't be the people with the most experience — they'll be the people with the most leverage.
 
-That's exactly what we build at [GenExecutive](https://www.genexecutive.in): AI-powered executive support and autonomous agents that give founders and leaders the leverage to move at the speed this new era demands.
+That's exactly what we build at GenExecutive: [executive support](/services/executive-support) and [autonomous AI agents](/services/ai-automation) that give founders and leaders the leverage to move at the speed this new era demands.
 
-Ready to build with leverage? Let's talk about what's possible for your business.
+Ready to build with leverage? [Book a discovery call](/contact) and we'll map out what's possible for your business.
 
 **Website:** [www.genexecutive.in](https://www.genexecutive.in)
 

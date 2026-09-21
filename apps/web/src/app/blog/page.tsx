@@ -7,7 +7,8 @@ const description =
   "Insights on executive support, AI automation, and business operations — practical thinking on removing bottlenecks and growing faster.";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  // Absolute: this title carries its own brand, so skip the layout template.
+  title: { absolute: "AI Automation & Executive Ops Insights | GenExecutive" },
   description,
   alternates: { canonical: `${siteUrl}/blog` },
   openGraph: {
@@ -16,6 +17,14 @@ export const metadata: Metadata = {
     description,
     url: `${siteUrl}/blog`,
     siteName: "GenExecutive",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "The GenExecutive Blog",
+      },
+    ],
   },
 };
 

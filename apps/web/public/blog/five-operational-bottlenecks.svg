@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 372" width="720" height="372" role="img" aria-label="A funnel showing demand entering a business and five operational bottlenecks narrowing it before it becomes growth">
+  <defs>
+    <style>
+      .t { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .h  { font-size: 17px; font-weight: 700; fill: #18181b; }
+      .cap { font-size: 11px; fill: #a1a1aa; }
+      .end { font-size: 12.5px; font-weight: 700; fill: #18181b; }
+      .gn { font-size: 11.5px; fill: #52525b; }
+      .gnum { font-size: 11px; font-weight: 700; fill: #ffffff; }
+    </style>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0.16"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="372" fill="#ffffff"/>
+
+  <text class="t h" x="24" y="32">Demand is rarely the constraint</text>
+  <text class="t cap" x="24" y="52">Each gate looks minor on its own. Stacked, they set the ceiling — and none of them is a demand problem.</text>
+
+  <!-- Funnel: wide at left, narrow at right -->
+  <path d="M96 96 L580 168 L580 232 L96 292 Z" fill="url(#flow)"/>
+
+  <!-- Inlet / outlet -->
+  <text class="t end" x="24" y="188">Demand</text>
+  <text class="t cap" x="24" y="205">coming in</text>
+  <text class="t end" x="600" y="188">Growth</text>
+  <text class="t cap" x="600" y="205">realised</text>
+
+  <!-- Five gates, each spanning the funnel at its x -->
+  <g>
+    <rect x="140" y="92" width="4" height="208" rx="2" fill="#7c3aed"/>
+    <circle cx="142" cy="76" r="11" fill="#7c3aed"/>
+    <text class="t gnum" x="142" y="80" text-anchor="middle">1</text>
+    <text class="t gn" x="142" y="326" text-anchor="middle">Missed</text>
+    <text class="t gn" x="142" y="342" text-anchor="middle">inquiries</text>
+  </g>
+  <g>
+    <rect x="230" y="105" width="4" height="184" rx="2" fill="#7c3aed"/>
+    <circle cx="232" cy="76" r="11" fill="#7c3aed"/>
+    <text class="t gnum" x="232" y="80" text-anchor="middle">2</text>
+    <text class="t gn" x="232" y="326" text-anchor="middle">Disorganised</text>
+    <text class="t gn" x="232" y="342" text-anchor="middle">schedules</text>
+  </g>
+  <g>
+    <rect x="320" y="119" width="4" height="159" rx="2" fill="#7c3aed"/>
+    <circle cx="322" cy="76" r="11" fill="#7c3aed"/>
+    <text class="t gnum" x="322" y="80" text-anchor="middle">3</text>
+    <text class="t gn" x="322" y="326" text-anchor="middle">Admin</text>
+    <text class="t gn" x="322" y="342" text-anchor="middle">overload</text>
+  </g>
+  <g>
+    <rect x="410" y="132" width="4" height="135" rx="2" fill="#7c3aed"/>
+    <circle cx="412" cy="76" r="11" fill="#7c3aed"/>
+    <text class="t gnum" x="412" y="80" text-anchor="middle">4</text>
+    <text class="t gn" x="412" y="326" text-anchor="middle">Delayed</text>
+    <text class="t gn" x="412" y="342" text-anchor="middle">coordination</text>
+  </g>
+  <g>
+    <rect x="500" y="146" width="4" height="110" rx="2" fill="#7c3aed"/>
+    <circle cx="502" cy="76" r="11" fill="#7c3aed"/>
+    <text class="t gnum" x="502" y="80" text-anchor="middle">5</text>
+    <text class="t gn" x="502" y="326" text-anchor="middle">No strategic</text>
+    <text class="t gn" x="502" y="342" text-anchor="middle">time left</text>
+  </g>
+</svg>

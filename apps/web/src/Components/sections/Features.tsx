@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { motion, type Variants } from "motion/react";
 
 const containerVariants: Variants = {
@@ -293,9 +294,10 @@ interface SmallCardProps {
   pills: string[];
   visual: ReactNode;
   accent: AccentKey;
+  href?: string;
 }
 
-function SmallCard({ areaClass, title, description, pills, visual, accent }: SmallCardProps) {
+function SmallCard({ areaClass, title, description, pills, visual, accent, href }: SmallCardProps) {
   return (
     <motion.div
       variants={cardVariants}
@@ -316,6 +318,14 @@ function SmallCard({ areaClass, title, description, pills, visual, accent }: Sma
           </Pill>
         ))}
       </div>
+      {href && (
+        <Link
+          href={href}
+          className="mt-4 inline-flex min-h-9 w-fit items-center gap-1 text-sm font-semibold text-violet-600 transition-colors hover:text-violet-700"
+        >
+          {title} in detail →
+        </Link>
+      )}
     </motion.div>
   );
 }
@@ -384,6 +394,12 @@ export function Features() {
                   ),
                 )}
               </div>
+              <Link
+                href="/services/ai-automation"
+                className="mt-5 inline-flex min-h-9 w-fit items-center gap-1 text-sm font-semibold text-violet-600 transition-colors hover:text-violet-700"
+              >
+                Explore AI automation →
+              </Link>
             </div>
             {/* Right: time-saved bars */}
             <div className="lg:w-[44%]">
@@ -399,6 +415,7 @@ export function Features() {
             pills={["Calendar Management", "Inbox Support", "Research", "Coordination"]}
             visual={<OrganizeVisual />}
             accent="blue"
+            href="/services/executive-support"
           />
           <SmallCard
             areaClass="bento-ai"
@@ -407,6 +424,7 @@ export function Features() {
             pills={["Customer Support", "AI Assistants", "Lead Qualification", "Knowledge Base"]}
             visual={<AIVisual />}
             accent="violet"
+            href="/services/ai-automation"
           />
           <SmallCard
             areaClass="bento-content"

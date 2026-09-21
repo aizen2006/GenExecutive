@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400" role="img" aria-label="A comparison of the old formula for building wealth against the AI-era formula, and how it compresses the timeline from decades to years">
+  <defs>
+    <style>
+      .t { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .h  { font-size: 17px; font-weight: 700; fill: #18181b; }
+      .cap { font-size: 11px; fill: #a1a1aa; }
+      .col { font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+      .it { font-size: 12.5px; fill: #52525b; }
+      .big { font-size: 40px; font-weight: 800; }
+      .un { font-size: 11.5px; font-weight: 600; }
+    </style>
+  </defs>
+  <rect width="720" height="400" fill="#ffffff"/>
+
+  <text class="t h" x="24" y="32">What changed between the two formulas</text>
+  <text class="t cap" x="24" y="52">Same destination. The inputs that used to gate it are no longer scarce.</text>
+
+  <!-- Old column -->
+  <rect x="24" y="72" width="306" height="256" rx="14" fill="#fafafa" stroke="#e4e4e7"/>
+  <text class="t col" x="48" y="102" fill="#71717a">THE OLD FORMULA</text>
+  <text class="t it" x="48" y="132">Decades of accumulated experience</text>
+  <text class="t it" x="48" y="156">Access to capital before you start</text>
+  <text class="t it" x="48" y="180">A large team to execute anything</text>
+  <text class="t it" x="48" y="204">Networks you had to be let into</text>
+  <text class="t it" x="48" y="228">Distribution you had to rent</text>
+  <line x1="48" y1="252" x2="306" y2="252" stroke="#e4e4e7"/>
+  <text class="t big" x="48" y="298" fill="#a1a1aa">55</text>
+  <text class="t un" x="104" y="298" fill="#71717a">years old at the first trillion</text>
+
+  <!-- New column -->
+  <rect x="390" y="72" width="306" height="256" rx="14" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <text class="t col" x="414" y="102" fill="#6d28d9">THE AI-ERA FORMULA</text>
+  <text class="t it" x="414" y="132" fill="#3f3f46">Judgment plus tools that carry skill</text>
+  <text class="t it" x="414" y="156" fill="#3f3f46">Build first, raise later or never</text>
+  <text class="t it" x="414" y="180" fill="#3f3f46">Small teams with large output</text>
+  <text class="t it" x="414" y="204" fill="#3f3f46">Networks you can reach directly</text>
+  <text class="t it" x="414" y="228" fill="#3f3f46">Distribution that is free to start</text>
+  <line x1="414" y1="252" x2="672" y2="252" stroke="#ddd6fe"/>
+  <text class="t big" x="414" y="298" fill="#7c3aed">25</text>
+  <text class="t un" x="474" y="298" fill="#6d28d9">is no longer an unreasonable age</text>
+
+  <!-- Connector -->
+  <path d="M336 200 L374 200" stroke="#a78bfa" stroke-width="2" marker-end="url(#av)"/>
+  <defs>
+    <marker id="av" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+
+  <text class="t cap" x="360" y="360" text-anchor="middle">Experience stopped being the moat. Speed of judgment replaced it.</text>
+</svg>

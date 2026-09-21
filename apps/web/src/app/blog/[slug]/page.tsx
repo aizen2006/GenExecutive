@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
   const url = `${siteUrl}/blog/${slug}`;
   return {
-    title: post.title,
+    title: { absolute: post.seoTitle },
     description: post.excerpt,
     keywords: post.keywords.length ? post.keywords : undefined,
     alternates: { canonical: url },
@@ -32,20 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: new Date(post.date).toISOString(),
       modifiedTime: new Date(post.updated).toISOString(),
       authors: ["GenExecutive"],
-      images: [
-        {
-          url: `${siteUrl}/opengraph-image`,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [`${siteUrl}/opengraph-image`],
     },
   };
 }
@@ -74,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
         url: `${siteUrl}/genexe-icon.png`,
       },
     },
-    image: [`${siteUrl}/opengraph-image`],
+    image: [`${url}/opengraph-image`],
     inLanguage: "en",
     url,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },

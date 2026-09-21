@@ -1,7 +1,8 @@
 ---
 title: "Why Businesses Stop Growing: 5 Hidden Operational Challenges"
+seoTitle: "Why Businesses Stop Growing: 5 Hidden Ops Problems"
 date: "2026-07-29"
-excerpt: "Most companies don't stall because they run out of customers — they stall because routine operations quietly consume the team. Here are the hidden operational challenges that cap growth, and how to remove them."
+excerpt: "Most companies stall on operations, not demand. Spot the 5 hidden operational challenges that quietly cap growth — and how to remove each one."
 keywords:
   - "why businesses stop growing"
   - "operational challenges"
@@ -31,6 +32,8 @@ The result? Business leaders spend more time managing operations than driving gr
 **The short answer:** most companies stop growing not because demand dries up, but because routine operational work grows faster than the team's capacity to absorb it. Growth stalls quietly — one delayed follow-up, one overloaded calendar, one postponed strategy session at a time.
 
 ---
+
+![Demand entering a business and narrowing through five operational bottlenecks before any of it becomes growth](/blog/five-operational-bottlenecks.svg)
 
 ## The Hidden Challenge Behind Stalled Growth
 
@@ -88,7 +91,7 @@ This is where **Gen Executive Help** provides value. By offering professional ex
 
 ## How Gen Executive Help Supports Business Growth
 
-Gen Executive Help keeps organizations organized through services such as:
+Our [executive support service](/services/executive-support) keeps organizations organized through:
 
 - **Executive assistance** — a reliable second set of hands for the work that can't wait
 - **Calendar and email management** — priorities surface, noise disappears

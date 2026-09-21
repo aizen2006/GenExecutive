@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const services = [
-  "Workflow Automation",
-  "Executive Support",
-  "AI Agents & Chatbots",
-  "Content at Scale",
+  { label: "AI Automation", href: "/services/ai-automation" },
+  { label: "Executive Support", href: "/services/executive-support" },
+  { label: "AI Agents & Chatbots", href: "/services/ai-automation" },
+  { label: "Content at Scale", href: "/#services" },
 ];
 
 const company = [
@@ -12,7 +12,7 @@ const company = [
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Reviews", href: "#testimonials" },
-  { label: "Contact", href: "mailto:info@genexecutive.in" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Footer() {
@@ -65,13 +65,13 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white mb-4">Services</h3>
             <ul className="space-y-0.5 sm:space-y-1">
               {services.map((s) => (
-                <li key={s}>
-                  <a
-                    href="#services"
+                <li key={s.label}>
+                  <Link
+                    href={s.href}
                     className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
                   >
-                    {s}
-                  </a>
+                    {s.label}
+                  </Link>
                 </li>
               ))}
             </ul>

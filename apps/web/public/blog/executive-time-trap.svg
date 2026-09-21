@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 352" width="720" height="352" role="img" aria-label="Two bars comparing how an executive week is spent before and after delegating routine operational work">
+  <defs>
+    <style>
+      .t { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .h  { font-size: 17px; font-weight: 700; fill: #18181b; }
+      .cap { font-size: 11px; fill: #a1a1aa; }
+      .rw { font-size: 12.5px; font-weight: 700; fill: #18181b; }
+      .sg { font-size: 12px; font-weight: 600; fill: #ffffff; }
+      .sgd { font-size: 12px; font-weight: 600; fill: #52525b; }
+      .lg { font-size: 11.5px; fill: #71717a; }
+      .out { font-size: 12.5px; fill: #5b21b6; }
+    </style>
+    <marker id="at" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+  <rect width="720" height="352" fill="#ffffff"/>
+
+  <text class="t h" x="24" y="32">The time trap, drawn to scale</text>
+  <text class="t cap" x="24" y="52">A 40-hour executive week. The delegable share is the whole argument.</text>
+
+  <!-- Row 1 -->
+  <text class="t rw" x="24" y="94">Typical week</text>
+  <text class="t lg" x="140" y="94">Inbox · scheduling · vendor calls · travel coordination</text>
+  <rect x="24" y="106" width="245" height="50" rx="8" fill="#e4e4e7"/>
+  <rect x="273" y="106" width="423" height="50" rx="8" fill="#f4f4f5" stroke="#e4e4e7"/>
+  <text class="t sgd" x="40" y="136">35% delegable</text>
+  <text class="t sgd" x="289" y="136">65% leadership work</text>
+
+  <!-- Row 2 -->
+  <text class="t rw" x="24" y="228">With executive support</text>
+  <rect x="24" y="240" width="245" height="50" rx="8" fill="#ede9fe" stroke="#ddd6fe"/>
+  <rect x="273" y="240" width="423" height="50" rx="8" fill="#7c3aed"/>
+  <text class="t sgd" x="40" y="270" fill="#6d28d9">handled for you</text>
+  <text class="t sg" x="289" y="270">100% of your attention on strategy, relationships, growth</text>
+
+  <!-- The delegable block is what moves -->
+  <path d="M250 160 L250 236" stroke="#a78bfa" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#at)"/>
+
+  <text class="t out" x="24" y="326">Roughly 14 hours a week back — about 600 hours a year, compounding.</text>
+</svg>

@@ -1,7 +1,8 @@
 ---
 title: "The Founder's Guide to AI Agents: What to Automate First in Your Business"
+seoTitle: "Founder's Guide to AI Agents: What to Automate First"
 date: "2026-08-17"
-excerpt: "What AI agents actually do, the five tasks founders should automate first — inbox, lead follow-up, onboarding, reporting, ops — and what to leave to humans."
+excerpt: "Learn what AI agents really do and the five tasks founders should automate first — inbox, lead follow-up, onboarding, reporting, and internal ops."
 keywords:
   - "AI agents for business"
   - "what to automate first"
@@ -23,8 +24,6 @@ faq:
     a: "Check whether it's repetitive (done the same way every time), rule-based (clear if-this-then-that logic), time-heavy but not judgment-heavy, and painful to delegate to a human. If a task checks two or more of those boxes, it's a strong candidate for automation."
 ---
 
-# The Founder's Guide to AI Agents: What to Automate First in Your Business
-
 If you're a founder, you've probably had this thought at 11 PM while replying to your fortieth email of the day: *there has to be a better way to do this.*
 
 There is. It's called an AI agent, and no, it's not just a fancier chatbot.
@@ -34,6 +33,8 @@ Here's the thing — most founders hear "AI agent" and picture some sci-fi assis
 **The short answer:** start with the tasks that are repetitive, rule-based, and time-heavy but not judgment-heavy — inbox management, lead follow-up, client onboarding, reporting, and internal ops. Skip anything that needs nuanced judgment or touches sensitive client relationships until you trust the system.
 
 Let's break down what AI agents really do, and — more importantly — what you should automate first.
+
+![A two-by-two chart: tasks that are repetitive and rule-based but need little judgment are the ones to automate first](/blog/ai-agents-what-to-automate-first.svg)
 
 ## What is an AI agent, actually?
 
@@ -85,13 +86,13 @@ That's the same leverage shift we've written about before: [executive support is
 
 ## Where GenExecutive fits in
 
-This is exactly the gap [GenExecutive](https://www.genexecutive.in) was built to close.
+This is exactly the gap [GenExecutive](/) was built to close.
 
-We're not selling you a generic chatbot or a DIY automation kit you'll never get around to setting up. We build **custom AI-agent systems** tailored to how your business actually runs — plugged into your existing tools, trained on your workflows, and set up to handle the specific tasks that are eating your time right now.
+We're not selling you a generic chatbot or a DIY automation kit you'll never get around to setting up. We build [**custom AI-agent systems**](/services/ai-automation) tailored to how your business actually runs — plugged into your existing tools, trained on your workflows, and set up to handle the specific tasks that are eating your time right now.
 
 Whether it's your inbox, your client pipeline, your onboarding process, or your internal ops, we help you figure out what to automate first (it's rarely what founders expect), and then we build it — properly, not as a half-working experiment.
 
-If you're a founder who's ready to stop being the bottleneck in your own business, that's the conversation worth having.
+If you're a founder who's ready to stop being the bottleneck in your own business, that's the [conversation worth having](/contact).
 
 ---
 

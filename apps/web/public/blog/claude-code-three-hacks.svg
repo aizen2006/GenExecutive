@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 396" width="720" height="396" role="img" aria-label="The three Claude Code hacks stacked into one working loop">
+  <defs>
+    <style>
+      .t { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .h  { font-size: 17px; font-weight: 700; fill: #18181b; }
+      .ct { font-size: 15px; font-weight: 700; fill: #18181b; }
+      .kb { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; fill: #7c3aed; font-weight: 600; }
+      .bd { font-size: 12px; fill: #71717a; }
+      .nm { font-size: 12px; font-weight: 700; fill: #ffffff; }
+      .rail { font-size: 12.5px; fill: #52525b; }
+      .cap { font-size: 11px; fill: #a1a1aa; }
+    </style>
+  </defs>
+  <rect width="720" height="396" fill="#ffffff"/>
+
+  <text class="t h" x="24" y="32">Stacking all three: one Claude Code cycle</text>
+  <text class="t cap" x="24" y="52">Each hack removes a different failure mode. Together they compound.</text>
+
+  <!-- Card 1 -->
+  <rect x="24" y="72" width="212" height="204" rx="14" fill="#fafafa" stroke="#e4e4e7"/>
+  <circle cx="48" cy="98" r="12" fill="#7c3aed"/>
+  <text class="t nm" x="48" y="102" text-anchor="middle">1</text>
+  <text class="t ct" x="70" y="96">Plan mode</text>
+  <text class="t ct" x="70" y="113">+ checkpoints</text>
+  <text class="t kb" x="44" y="140">Shift+Tab · Esc Esc</text>
+  <text class="t bd" x="44" y="166">Claude researches read-only</text>
+  <text class="t bd" x="44" y="184">until you approve, and</text>
+  <text class="t bd" x="44" y="202">snapshots before every</text>
+  <text class="t bd" x="44" y="220">prompt. Roll back files,</text>
+  <text class="t bd" x="44" y="238">the conversation, or both.</text>
+  <text class="t cap" x="44" y="260">Removes: fear of big changes</text>
+
+  <!-- Card 2 -->
+  <rect x="254" y="72" width="212" height="204" rx="14" fill="#fafafa" stroke="#e4e4e7"/>
+  <circle cx="278" cy="98" r="12" fill="#7c3aed"/>
+  <text class="t nm" x="278" y="102" text-anchor="middle">2</text>
+  <text class="t ct" x="300" y="96">Proactive</text>
+  <text class="t ct" x="300" y="113">context</text>
+  <text class="t kb" x="274" y="140">/compact · CLAUDE.md</text>
+  <text class="t bd" x="274" y="166">Compact after finishing a</text>
+  <text class="t bd" x="274" y="184">chunk — not once output</text>
+  <text class="t bd" x="274" y="202">has already degraded.</text>
+  <text class="t bd" x="274" y="220">/clear is safe to use:</text>
+  <text class="t bd" x="274" y="238">/rewind still reaches back.</text>
+  <text class="t cap" x="274" y="260">Removes: silent quality drift</text>
+
+  <!-- Card 3 -->
+  <rect x="484" y="72" width="212" height="204" rx="14" fill="#fafafa" stroke="#e4e4e7"/>
+  <circle cx="508" cy="98" r="12" fill="#7c3aed"/>
+  <text class="t nm" x="508" y="102" text-anchor="middle">3</text>
+  <text class="t ct" x="530" y="96">Think</text>
+  <text class="t ct" x="530" y="113">harder</text>
+  <text class="t kb" x="504" y="140">ultrathink</text>
+  <text class="t bd" x="504" y="166">A real signal to Claude</text>
+  <text class="t bd" x="504" y="184">Code's agentic loop: more</text>
+  <text class="t bd" x="504" y="202">reasoning before it answers.</text>
+  <text class="t bd" x="504" y="220">Spend it on architecture</text>
+  <text class="t bd" x="504" y="238">and stubborn bugs only.</text>
+  <text class="t cap" x="504" y="260">Removes: shallow first tries</text>
+
+  <!-- Arrows between cards -->
+  <path d="M240 174 L250 174" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M470 174 L480 174" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#a)"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#a1a1aa"/>
+    </marker>
+  </defs>
+
+  <!-- Outcome rail -->
+  <rect x="24" y="300" width="672" height="72" rx="14" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <text class="t ct" x="48" y="330">The result</text>
+  <text class="t rail" x="48" y="354">You stop writing tiny cautious prompts and start attempting the ambitious ones.</text>
+</svg>

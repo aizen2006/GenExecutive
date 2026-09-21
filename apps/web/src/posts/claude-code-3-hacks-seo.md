@@ -1,5 +1,6 @@
 ---
 title: "3 Claude Code Hacks That Actually Change How You Ship (2026 Guide)"
+seoTitle: "3 Claude Code Hacks That Change How You Ship (2026)"
 date: "2026-07-31"
 excerpt: "Three Claude Code hacks for 2026 — plan mode with checkpoints, proactive context management, and the 'think harder' prompt for deeper reasoning."
 keywords:
@@ -23,11 +24,11 @@ faq:
     a: "/clear wipes your active context to start fresh, but it isn't a one-way door — /rewind can still pull context from before you cleared. That makes it safe to clear aggressively between unrelated tasks instead of letting old context linger and dilute your results."
 ---
 
-# 3 Claude Code Hacks That Actually Change How You Ship (2026 Guide)
-
 Most people use Claude Code like a vending machine: type a request, wait for output, repeat. It works — sort of. But somewhere between your fifth prompt and your fiftieth, things start to go sideways. Claude forgets a decision from ten minutes ago. A "quick fix" turns into an hour of undoing changes you never wanted. The output gets... off.
 
 **The short answer:** that's not a Claude problem, it's a *workflow* problem. The developers quietly shipping faster with Claude Code aren't smarter prompters — they're combining plan mode, checkpoints, proactive context management, and the "think harder" prompt. Steal all three habits below.
+
+![Plan mode with checkpoints, proactive context management, and the think-harder prompt shown as three stages of one Claude Code cycle](/blog/claude-code-three-hacks.svg)
 
 ## Hack #1: Claude Code Plan Mode + Checkpoints = Fearless Refactoring
 
@@ -49,7 +50,7 @@ The fix is almost boringly simple: compact proactively. Finish a chunk of work? 
 
 One more lever: a sharp `CLAUDE.md` file. Build commands, test commands, project quirks — write them once, and Claude starts every session already knowing your codebase instead of burning context rediscovering it.
 
-This same principle — automate the repetitive parts so your attention goes to judgment calls, not busywork — is exactly what teams like [GenExecutive](https://genexecutive.in/) apply outside the codebase, using AI-driven workflow automation and executive support to clear operational clutter the same way a clean context window clears cognitive clutter for Claude.
+This same principle — automate the repetitive parts so your attention goes to judgment calls, not busywork — is exactly what teams like [GenExecutive](/) apply outside the codebase, using [AI-driven workflow automation](/services/ai-automation) and [executive support](/services/executive-support) to clear operational clutter the same way a clean context window clears cognitive clutter for Claude.
 
 ## Hack #3: The Secret Prompt That Makes Claude Code Think Harder
 
@@ -61,7 +62,7 @@ It's not a placebo — it's a real signal, specific to Claude Code's agentic loo
 
 None of these Claude Code tips are complicated alone. The magic is combining them: plan mode for the big decisions, a "think harder" nudge when it's genuinely hard, checkpoints as your safety net the whole way through, and a context window you keep lean on purpose instead of by accident.
 
-That's the difference between fighting Claude Code and flying with it. And if coding workflows are the first domino, the natural next step for founders and teams is applying the same automate-what-you-can, focus-on-what-matters mindset to the rest of the business — which is the whole premise behind [GenExecutive's AI automation and executive support services](https://genexecutive.in/).
+That's the difference between fighting Claude Code and flying with it. And if coding workflows are the first domino, the natural next step for founders and teams is applying the same automate-what-you-can, focus-on-what-matters mindset to the rest of the business — which is the whole premise behind our [AI automation](/services/ai-automation) and [executive support](/services/executive-support) services.
 
 ## Go Deeper: Official Claude Code Documentation
 
