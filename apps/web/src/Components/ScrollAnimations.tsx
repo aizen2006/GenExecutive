@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { usePathname } from "next/navigation";
 import { gsap, ScrollTrigger, useGSAP } from "../lib/gsap";
 
 /**
@@ -11,10 +12,14 @@ import { gsap, ScrollTrigger, useGSAP } from "../lib/gsap";
  *    `scroll-behavior: smooth` so it can't fight ScrollTrigger scrubbing).
  *  - Honors prefers-reduced-motion: everything shows instantly, no scrub.
  *
- * Mounted once from the root layout. Renders nothing.
+ * Mounted once from the root layout, so it outlives page navigations. It
+ * re-runs on every route change: a client-side navigation (e.g. /blog ->
+ * /#pricing) mounts fresh `.gsap-reveal` elements that CSS keeps hidden, and
+ * without new triggers they would never fade in. Renders nothing.
  */
 export default function ScrollAnimations() {
   const ready = useRef(false);
+  const pathname = usePathname();
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -98,7 +103,7 @@ export default function ScrollAnimations() {
       document.removeEventListener("click", onClick);
       mm.revert();
     };
-  });
+  }, { dependencies: [pathname], revertOnUpdate: true });
 
   return null;
 }

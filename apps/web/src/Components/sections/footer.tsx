@@ -1,5 +1,10 @@
 import Link from "next/link";
 
+const social = {
+  x: "https://x.com/Genexegrowth",
+  linkedin: "https://www.linkedin.com/company/gen-executive/",
+};
+
 const services = [
   { label: "AI Automation", href: "/services/ai-automation" },
   { label: "Executive Support", href: "/services/executive-support" },
@@ -30,7 +35,9 @@ export function Footer() {
             </p>
             <div className="-ml-2.5 flex items-center gap-1">
               <a
-                href="#"
+                href={social.x}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Twitter / X"
                 className="flex h-11 w-11 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-800 hover:text-white"
               >
@@ -39,7 +46,9 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="#"
+                href={social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 className="flex h-11 w-11 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-800 hover:text-white"
               >
@@ -107,12 +116,12 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
+                <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="#" className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
+                <a href={social.x} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
                   Twitter / X
                 </a>
               </li>
