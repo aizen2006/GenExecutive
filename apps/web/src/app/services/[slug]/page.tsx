@@ -123,7 +123,7 @@ export default async function ServicePage({ params }: Props) {
           <nav aria-label="Breadcrumb" className="mb-6 sm:mb-8">
             <ol className="flex items-center gap-2 text-sm text-zinc-400">
               <li>
-                <Link href="/" className="hover:text-violet-600 transition-colors">
+                <Link href="/" className="inline-flex min-h-9 items-center hover:text-violet-600 transition-colors">
                   Home
                 </Link>
               </li>
@@ -131,7 +131,7 @@ export default async function ServicePage({ params }: Props) {
               <li>
                 <Link
                   href="/#services"
-                  className="hover:text-violet-600 transition-colors"
+                  className="inline-flex min-h-9 items-center hover:text-violet-600 transition-colors"
                 >
                   Services
                 </Link>

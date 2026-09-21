@@ -40,7 +40,7 @@ function NavWordmark() {
   return (
     <Link
       href="/"
-      className="font-semibold text-zinc-900 text-[17px] tracking-tight flex items-center"
+      className="font-semibold text-zinc-900 text-[17px] tracking-tight flex shrink-0 items-center"
     >
       {"GenExecutive".split("").map((char, i) => (
         <motion.span
@@ -76,12 +76,42 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
+// The pill never shrinks below its original design width…
+const PILL_MIN_WIDTH = 700;
+const PILL_PAD_X = 22;
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
+  const [pillWidth, setPillWidth] = useState(PILL_MIN_WIDTH);
+  const navRef = useRef<HTMLElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
+  // …but grows to fit its contents. A fixed width here silently squeezed the
+  // wordmark, links and CTA into each other the moment a link was added.
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const measure = () => {
+      const cs = getComputedStyle(nav);
+      const groups = [...nav.children].filter(
+        (el): el is HTMLElement =>
+          el instanceof HTMLElement &&
+          el.offsetWidth > 0 &&
+          getComputedStyle(el).position !== "absolute",
+      );
+      const content =
+        groups.reduce((w, el) => w + el.offsetWidth, 0) +
+        (parseFloat(cs.columnGap) || 0) * (groups.length - 1);
+      setPillWidth(Math.max(PILL_MIN_WIDTH, Math.ceil(content + 2 * PILL_PAD_X)));
+    };
+    measure();
+    document.fonts?.ready.then(measure);
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -99,13 +129,13 @@ export function Navbar() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  // Close the sheet on Escape, and never leave it open past the md breakpoint.
+  // Close the sheet on Escape, and never leave it open past the lg breakpoint.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
     const onWide = () => mq.matches && setOpen(false);
     document.addEventListener("keydown", onKey);
     mq.addEventListener("change", onWide);
@@ -151,14 +181,15 @@ export function Navbar() {
       />
       <div className="fixed top-0 inset-x-0 z-50 flex flex-col items-center pointer-events-none">
       <motion.nav
-        className="pointer-events-auto relative w-full flex items-center justify-between overflow-hidden"
+        ref={navRef}
+        className="pointer-events-auto relative w-full flex items-center justify-between gap-8 overflow-hidden"
         animate={{
-          maxWidth: scrolled ? 700 : 9999,
+          maxWidth: scrolled ? pillWidth : 9999,
           borderRadius: scrolled ? 9999 : 0,
           paddingTop: scrolled ? 10 : 16,
           paddingBottom: scrolled ? 10 : 16,
-          paddingLeft: compact ? (scrolled ? 14 : 18) : scrolled ? 22 : 32,
-          paddingRight: compact ? (scrolled ? 14 : 18) : scrolled ? 22 : 32,
+          paddingLeft: compact ? (scrolled ? 14 : 18) : scrolled ? PILL_PAD_X : 32,
+          paddingRight: compact ? (scrolled ? 14 : 18) : scrolled ? PILL_PAD_X : 32,
           marginTop: scrolled ? 12 : 0,
           backgroundColor: scrolled
             ? "rgba(255, 255, 255, 0.92)"
@@ -188,7 +219,7 @@ export function Navbar() {
                 className="absolute top-0 bottom-0 w-24 bg-gradient-to-r from-transparent via-white/50 to-transparent"
                 style={{ skewX: "-20deg" }}
                 initial={{ x: -120 }}
-                animate={{ x: 820 }}
+                animate={{ x: pillWidth + 120 }}
                 transition={{
                   duration: 2.5,
                   repeat: Infinity,
@@ -202,13 +233,15 @@ export function Navbar() {
 
         <NavWordmark />
 
-        <div className="hidden md:flex items-center gap-7">
+        {/* Links need ~770px alongside the wordmark and CTA, so below lg they
+            live in the menu sheet instead of crowding the bar. */}
+        <div className="hidden lg:flex shrink-0 items-center gap-7">
           {navLinks.map((link) => (
             <NavLink key={link.name} name={link.name} href={link.href} />
           ))}
         </div>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 whitespace-nowrap sm:gap-2">
           <motion.div
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
@@ -223,7 +256,7 @@ export function Navbar() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-zinc-800 transition-colors hover:bg-zinc-100 active:bg-zinc-200 md:hidden"
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-zinc-800 transition-colors hover:bg-zinc-100 active:bg-zinc-200 lg:hidden"
           >
             <MenuIcon open={open} />
           </button>
@@ -240,7 +273,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="pointer-events-auto mt-2 w-[calc(100%-1.5rem)] max-w-[700px] overflow-hidden rounded-2xl border border-zinc-200 bg-white/95 p-2 shadow-[0_12px_40px_rgba(0,0,0,0.10)] backdrop-blur-xl md:hidden"
+            className="pointer-events-auto mt-2 w-[calc(100%-1.5rem)] max-w-[700px] overflow-hidden rounded-2xl border border-zinc-200 bg-white/95 p-2 shadow-[0_12px_40px_rgba(0,0,0,0.10)] backdrop-blur-xl lg:hidden"
           >
             <nav aria-label="Mobile">
               <ul className="flex flex-col">
@@ -274,7 +307,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="pointer-events-auto fixed inset-0 -z-10 cursor-default bg-zinc-900/20 md:hidden"
+            className="pointer-events-auto fixed inset-0 -z-10 cursor-default bg-zinc-900/20 lg:hidden"
           />
         )}
       </AnimatePresence>

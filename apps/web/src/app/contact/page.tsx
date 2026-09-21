@@ -94,7 +94,7 @@ export default function ContactPage() {
           <nav aria-label="Breadcrumb" className="mb-6 sm:mb-8">
             <ol className="flex items-center gap-2 text-sm text-zinc-400">
               <li>
-                <Link href="/" className="hover:text-violet-600 transition-colors">
+                <Link href="/" className="inline-flex min-h-9 items-center hover:text-violet-600 transition-colors">
                   Home
                 </Link>
               </li>

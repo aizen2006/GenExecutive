@@ -94,14 +94,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
-          <div>
+          {/* Connect — full row below lg so the email fits on one line. */}
+          <div className="col-span-2 lg:col-span-1">
             <h3 className="text-sm font-semibold text-white mb-4">Connect</h3>
             <ul className="space-y-0.5 sm:space-y-1">
               <li>
                 <a
                   href="mailto:info@genexecutive.in"
-                  className="inline-flex min-h-9 items-center break-all text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                  className="inline-flex min-h-9 items-center break-words text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
                 >
                   info@genexecutive.in
                 </a>

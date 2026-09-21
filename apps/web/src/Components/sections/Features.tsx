@@ -295,9 +295,10 @@ interface SmallCardProps {
   visual: ReactNode;
   accent: AccentKey;
   href?: string;
+  linkLabel?: string;
 }
 
-function SmallCard({ areaClass, title, description, pills, visual, accent, href }: SmallCardProps) {
+function SmallCard({ areaClass, title, description, pills, visual, accent, href, linkLabel }: SmallCardProps) {
   return (
     <motion.div
       variants={cardVariants}
@@ -321,9 +322,9 @@ function SmallCard({ areaClass, title, description, pills, visual, accent, href 
       {href && (
         <Link
           href={href}
-          className="mt-4 inline-flex min-h-9 w-fit items-center gap-1 text-sm font-semibold text-violet-600 transition-colors hover:text-violet-700"
+          className="mt-4 inline-flex min-h-9 w-fit items-center gap-1 whitespace-nowrap text-sm font-semibold text-violet-600 transition-colors hover:text-violet-700"
         >
-          {title} in detail →
+          {linkLabel ?? title} →
         </Link>
       )}
     </motion.div>
@@ -396,7 +397,7 @@ export function Features() {
               </div>
               <Link
                 href="/services/ai-automation"
-                className="mt-5 inline-flex min-h-9 w-fit items-center gap-1 text-sm font-semibold text-violet-600 transition-colors hover:text-violet-700"
+                className="mt-5 inline-flex min-h-9 w-fit items-center gap-1 whitespace-nowrap text-sm font-semibold text-violet-600 transition-colors hover:text-violet-700"
               >
                 Explore AI automation →
               </Link>
@@ -416,6 +417,7 @@ export function Features() {
             visual={<OrganizeVisual />}
             accent="blue"
             href="/services/executive-support"
+            linkLabel="Executive support"
           />
           <SmallCard
             areaClass="bento-ai"
@@ -425,6 +427,7 @@ export function Features() {
             visual={<AIVisual />}
             accent="violet"
             href="/services/ai-automation"
+            linkLabel="AI agents"
           />
           <SmallCard
             areaClass="bento-content"
