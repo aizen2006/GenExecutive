@@ -187,7 +187,7 @@ Claude Code should recognize the request matches the Skill's description, run `a
 - **`GEMINI_API_KEY is not set` even after exporting it.** Claude Code inherits your shell environment at launch — restart the session after adding the variable.
 - **Script hangs.** Large video files take real time to upload and process on Gemini's side before the `generateContent` call can run; this is expected, not a bug.
 
-Once this is working, the same habits that make Claude Code reliable elsewhere apply here too — see [3 Claude Code hacks that change how you ship](/blog/claude-code-3-hacks-seo) for plan mode, checkpoints and context management.
+Once this is working, the same habits that make Claude Code reliable elsewhere apply here too — see [3 Claude Code hacks that change how you ship](/blog/claude-code-3-hacks-seo) for plan mode, checkpoints and context management. For a bigger example of Skills working together, see [how we run LinkedIn outreach with 11 Claude skills](/blog/claude-skills-linkedin-outreach).
 
 ## Where GenExecutive fits in
 

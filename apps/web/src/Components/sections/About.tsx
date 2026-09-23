@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import Typewriter from "./Typewriter";
 
 const stats = [
-  { value: "200+", label: "Hours saved per client / month" },
+  { value: "10+", label: "Hours saved per client / week" },
   { value: "50+", label: "Businesses supported" },
   { value: "24/7", label: "AI systems running" },
   { value: "4.9★", label: "Average client rating" },

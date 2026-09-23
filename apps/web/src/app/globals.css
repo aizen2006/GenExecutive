@@ -69,8 +69,19 @@ body {
   animation: hero-line-in 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--hero-delay, 0s);
 }
+/* Transform-only variant for the LCP heading: it must be visible (non-zero
+   opacity) at first paint or LCP waits for the animation to finish. */
+@keyframes hero-rise-in {
+  from { transform: translateY(18px); }
+  to   { transform: none; }
+}
+.hero-rise {
+  animation: hero-rise-in 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--hero-delay, 0s);
+}
 @media (prefers-reduced-motion: reduce) {
-  .hero-line { animation: none; }
+  .hero-line,
+  .hero-rise { animation: none; }
 }
 
 /* ─── Blob / Orb animation ─────────────────────────────────── */

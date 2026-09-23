@@ -7,16 +7,16 @@ const social = {
 
 const services = [
   { label: "AI Automation", href: "/services/ai-automation" },
-  { label: "Executive Support", href: "/services/executive-support" },
+  { label: "Virtual Executive Assistant", href: "/services/executive-support" },
   { label: "AI Agents & Chatbots", href: "/services/ai-automation" },
   { label: "Content at Scale", href: "/#services" },
 ];
 
 const company = [
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
-  { label: "Reviews", href: "#testimonials" },
+  { label: "Reviews", href: "/#testimonials" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -31,7 +31,7 @@ export function Footer() {
               GenExecutive
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed mb-5">
-              Executive intelligence and AI automation for ambitious teams.
+              Virtual executive assistants and AI automation for small businesses in the US and UK.
             </p>
             <div className="-ml-2.5 flex items-center gap-1">
               <a
@@ -77,7 +77,7 @@ export function Footer() {
                 <li key={s.label}>
                   <Link
                     href={s.href}
-                    className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                    className="inline-flex min-h-11 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
                   >
                     {s.label}
                   </Link>
@@ -94,7 +94,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                    className="inline-flex min-h-11 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -110,18 +110,18 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:info@genexecutive.in"
-                  className="inline-flex min-h-9 items-center break-words text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                  className="inline-flex min-h-11 items-center break-words text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
                 >
                   info@genexecutive.in
                 </a>
               </li>
               <li>
-                <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
+                <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href={social.x} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
+                <a href={social.x} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
                   Twitter / X
                 </a>
               </li>
@@ -131,7 +131,7 @@ export function Footer() {
                   data-cal-namespace="30min"
                   data-cal-link="abhik-halder/30min"
                   data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-                  className="inline-flex min-h-9 cursor-pointer items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                  className="inline-flex min-h-11 cursor-pointer items-center text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
                 >
                   Book a Call
                 </button>
@@ -146,12 +146,12 @@ export function Footer() {
             © {new Date().getFullYear()} GenExecutive. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="inline-flex min-h-9 items-center text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
+            <Link href="/privacy" className="inline-flex min-h-11 items-center text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="inline-flex min-h-9 items-center text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
+            </Link>
+            <Link href="/terms" className="inline-flex min-h-11 items-center text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

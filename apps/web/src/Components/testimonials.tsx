@@ -26,7 +26,7 @@ const testimonials: Testimonial[] = [
   },
   {
     author: "Shabaz Ahmad",
-    role: "Managing Director at SportsRadar",
+    role: "Managing Director at Sportradar",
     text: "Having GenExecutive in my corner feels like gaining an executive team that never clocks out. Every briefing, every follow-up, every decision brief — handled before I even ask. My focus is finally on the work that matters.",
     image: "/shabaz-ahmad.jpeg",
   },
@@ -44,7 +44,7 @@ const testimonials: Testimonial[] = [
   },
   {
     author: "Rashmi Sharma",
-    role: "CMO at Cocacola",
+    role: "CMO at Coca-Cola",
     text: "GenExecutive handles everything from campaign design to creative production. Briefs, assets, performance research — it all comes back polished and on-brand. It's the executive creative support I didn't know I needed until I had it.",
     image: "/rashmi-sharma.jpeg",
   },

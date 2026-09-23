@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
 const faqs = [
   {
@@ -34,7 +34,7 @@ const faqs = [
   },
 ];
 
-function FAQItem({ q, a }: { q: string; a: string }) {
+function FAQItem({ q, a, id }: { q: string; a: string; id: string }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -42,6 +42,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
+        aria-controls={id}
         className="flex w-full min-h-[56px] items-center justify-between py-5 text-left gap-4"
       >
         <span className="text-[15px] sm:text-base font-semibold text-zinc-900">{q}</span>
@@ -57,20 +58,20 @@ function FAQItem({ q, a }: { q: string; a: string }) {
           <path d="M6 9l6 6 6-6" />
         </motion.svg>
       </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="answer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="overflow-hidden"
-          >
-            <p className="pb-5 text-sm text-zinc-500 leading-relaxed">{a}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* The answer is always in the server HTML (crawlers and AI answer
+          engines read it, and it carries the only text pricing); closed
+          answers are collapsed with a grid-rows transition and made inert. */}
+      <div
+        id={id}
+        inert={!open}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="pb-5 text-sm text-zinc-500 leading-relaxed">{a}</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -92,8 +93,8 @@ export function FAQ() {
         </div>
 
         <div className="rounded-2xl bg-zinc-50 border border-zinc-100 px-5 sm:px-8 py-2 gsap-reveal">
-          {faqs.map((faq) => (
-            <FAQItem key={faq.q} q={faq.q} a={faq.a} />
+          {faqs.map((faq, i) => (
+            <FAQItem key={faq.q} q={faq.q} a={faq.a} id={`faq-answer-${i}`} />
           ))}
         </div>
       </div>

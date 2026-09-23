@@ -87,11 +87,11 @@ Delegating routine administrative tasks, improving communication, and streamlini
 
 This is the compounding effect we've written about before: [executive support isn't a cost, it's leverage](/blog/why-executive-support-is-the-new-competitive-advantage). Every hour returned to the leader is an hour spent on the work that actually moves the business forward.
 
-This is where **Gen Executive Help** provides value. By offering professional executive and administrative support, businesses reduce operational bottlenecks and operate more efficiently.
+This is where **GenExecutive** provides value. By offering professional executive and administrative support, businesses reduce operational bottlenecks and operate more efficiently.
 
-## How Gen Executive Help Supports Business Growth
+## How GenExecutive Supports Business Growth
 
-Our [executive support service](/services/executive-support) keeps organizations organized through:
+Our [virtual executive assistant service](/services/executive-support) keeps organizations organized through the list below, while our [AI automation service](/services/ai-automation) removes the repetitive steps around that work:
 
 - **Executive assistance** — a reliable second set of hands for the work that can't wait
 - **Calendar and email management** — priorities surface, noise disappears

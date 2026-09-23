@@ -134,20 +134,20 @@ function TimeSavedVisual() {
 
 /* ── Integrations card: tool logo row ──────────────────────── */
 const integrationLogos = [
-  "make",
-  "zapier",
-  "chatgpt",
-  "claude",
-  "gemini",
-  "notion-ai",
-  "clickup",
-  "framer",
+  { id: "make", name: "Make" },
+  { id: "zapier", name: "Zapier" },
+  { id: "chatgpt", name: "ChatGPT" },
+  { id: "claude", name: "Claude" },
+  { id: "gemini", name: "Gemini" },
+  { id: "notion-ai", name: "Notion AI" },
+  { id: "clickup", name: "ClickUp" },
+  { id: "framer", name: "Framer" },
 ];
 
 function IntegrationsVisual() {
   return (
     <div className="mt-5 flex flex-wrap gap-3">
-      {integrationLogos.map((id, i) => (
+      {integrationLogos.map(({ id, name }, i) => (
         <motion.div
           key={id}
           className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-white shadow-[0_4px_16px_rgba(24,24,27,0.05)]"
@@ -162,7 +162,7 @@ function IntegrationsVisual() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`/logos/${id}.svg`}
-            alt={id}
+            alt={`${name} logo`}
             width={26}
             height={26}
             loading="lazy"
@@ -450,7 +450,7 @@ export function Features() {
           >
             <h3 className="text-lg font-semibold text-zinc-900">Seamless Integrations</h3>
             <p className="mt-2 text-[15px] leading-relaxed text-zinc-500">
-              Plugs into the AI tools and apps you already use.
+              Works with the AI tools and apps you already use.
             </p>
             <IntegrationsVisual />
           </motion.div>

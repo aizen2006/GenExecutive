@@ -2,16 +2,16 @@
 title: "Why Executive Support is the New Competitive Advantage"
 seoTitle: "Why Executive Support Is the New Competitive Advantage"
 date: "2026-05-05"
-excerpt: "In today's fast-paced business environment, executive support isn't a luxury — it's the leverage that separates high-performers from the rest."
+excerpt: "Executive support isn't a luxury. It's the leverage that lets founders spend their week on decisions instead of logistics, and it's why high performers delegate early."
 ---
 
-In today's fast-paced business environment, executive support isn't a luxury — it's the leverage that separates high-performers from the rest.
+Executive support isn't a luxury. It's the leverage that separates founders who spend their week on decisions from founders who spend it on logistics.
 
 ![A 40-hour executive week split into a 35 percent delegable share and 65 percent leadership work, then reallocated](/blog/executive-time-trap.svg)
 
 ## The Time Trap
 
-Most executives spend 30–40% of their time on tasks that could be delegated: inbox management, scheduling, vendor calls, travel coordination. That's hours every week pulled away from strategy, relationships, and growth.
+In our experience, most executives spend 30–40% of their time on tasks that could be delegated: inbox management, scheduling, vendor calls, travel coordination. That's hours every week pulled away from strategy, relationships, and growth.
 
 The irony? The higher you rise, the more in-demand your attention becomes — and the more you need systems that protect it.
 
@@ -38,4 +38,4 @@ The real power of executive support isn't any single task taken off your plate. 
 
 ---
 
-Ready to reclaim your time? Book a call and let's talk about what's possible for your business.
+Ready to reclaim your time? See how our [virtual executive assistant service](/services/executive-support) works, or [book a call](/contact) and let's talk about what's possible for your business.

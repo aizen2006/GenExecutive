@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { services, getService } from "@/lib/services";
+import { services, getService, planSummary } from "@/lib/services";
 import { getAllPosts } from "@/lib/posts";
 import CalButton from "@/Components/caldotcom";
 import Footer from "@/Components/sections/footer";
@@ -70,11 +70,28 @@ export default async function ServicePage({ params }: Props) {
     url,
     provider: {
       "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
       name: "GenExecutive",
       url: siteUrl,
       email: "info@genexecutive.in",
     },
     areaServed: ["US", "GB"],
+    offers: [
+      { name: "Starter", price: "400" },
+      { name: "Pro", price: "800" },
+    ].map((plan) => ({
+      "@type": "Offer",
+      name: `${plan.name} plan`,
+      price: plan.price,
+      priceCurrency: "USD",
+      url: `${siteUrl}/#pricing`,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: plan.price,
+        priceCurrency: "USD",
+        unitCode: "MON",
+      },
+    })),
   };
 
   const breadcrumbJsonLd = {
@@ -169,6 +186,26 @@ export default async function ServicePage({ params }: Props) {
             </Link>
           </div>
 
+          {/* Who it's for */}
+          <section className="mt-14 sm:mt-16">
+            <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 tracking-tight mb-5">
+              Who it&apos;s for
+            </h2>
+            <ul className="flex flex-col gap-2.5">
+              {service.whoFor.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2.5 text-[15px] text-zinc-600"
+                >
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-100 text-[11px] font-bold text-violet-600">
+                    ✓
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
           {/* Sections */}
           {service.sections.map((section) => (
             <section key={section.heading} className="mt-14 sm:mt-16">
@@ -194,6 +231,99 @@ export default async function ServicePage({ params }: Props) {
             </section>
           ))}
 
+          {/* How it works */}
+          <section className="mt-14 sm:mt-16">
+            <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 tracking-tight mb-5">
+              How it works
+            </h2>
+            <ol className="flex flex-col gap-4">
+              {service.steps.map((step, i) => (
+                <li key={step.title} className="flex items-start gap-4">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-600 text-sm font-semibold text-white">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-zinc-900">{step.title}</h3>
+                    <p className="mt-1 text-[15px] text-zinc-500 leading-relaxed">
+                      {step.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {/* Comparison */}
+          <section className="mt-14 sm:mt-16">
+            <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 tracking-tight mb-3">
+              {service.comparison.heading}
+            </h2>
+            <p className="text-zinc-500 leading-relaxed mb-5">
+              {service.comparison.intro}
+            </p>
+            {/* Scrolls inside itself on phones instead of widening the page. */}
+            <div className="overflow-x-auto rounded-xl border border-zinc-100">
+              <table className="w-full min-w-[560px] text-left text-sm">
+                <thead className="bg-zinc-50 text-zinc-900">
+                  <tr>
+                    <th scope="col" className="p-3 font-semibold">
+                      <span className="sr-only">Criteria</span>
+                    </th>
+                    {service.comparison.columns.map((col, i) => (
+                      <th
+                        key={col}
+                        scope="col"
+                        className={`p-3 font-semibold ${i === 0 ? "text-violet-700" : ""}`}
+                      >
+                        {col}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-zinc-100">
+                  {service.comparison.rows.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row" className="p-3 font-medium text-zinc-900">
+                        {row.label}
+                      </th>
+                      {row.values.map((value, i) => (
+                        <td
+                          key={i}
+                          className={`p-3 ${i === 0 ? "bg-violet-50/50 font-medium text-zinc-900" : "text-zinc-500"}`}
+                        >
+                          {value}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* Pricing snapshot */}
+          <section className="mt-14 sm:mt-16">
+            <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 tracking-tight mb-5">
+              Pricing
+            </h2>
+            <ul className="grid gap-4 sm:grid-cols-3">
+              {planSummary.map((plan) => (
+                <li key={plan.name} className="rounded-xl border border-zinc-100 p-5">
+                  <h3 className="font-semibold text-zinc-900">{plan.name}</h3>
+                  <p className="mt-1 text-lg font-bold text-violet-700">{plan.price}</p>
+                  <p className="mt-2 text-sm text-zinc-500 leading-relaxed">{plan.summary}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm text-zinc-500">
+              Monthly plans with no fixed end date.{" "}
+              <Link href="/#pricing" className="font-medium text-violet-600 hover:underline">
+                Compare plans in full
+              </Link>
+              .
+            </p>
+          </section>
+
           {/* FAQ */}
           <section className="mt-14 sm:mt-16">
             <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 tracking-tight mb-5">
@@ -211,6 +341,18 @@ export default async function ServicePage({ params }: Props) {
                 </div>
               ))}
             </dl>
+          </section>
+
+          {/* Closing CTA */}
+          <section className="mt-14 sm:mt-16 rounded-2xl border border-violet-100 bg-violet-50/60 p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 tracking-tight mb-2">
+              See what you could hand off first
+            </h2>
+            <p className="text-zinc-500 leading-relaxed mb-5">
+              A free 30-minute call, no sales pressure: we&apos;ll map where your
+              week goes and which parts of it we can take off your plate.
+            </p>
+            <CalButton>Book a Discovery Call</CalButton>
           </section>
 
           {/* Related reading */}

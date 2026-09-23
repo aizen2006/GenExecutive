@@ -12,7 +12,7 @@ const navLinks = [
   { name: "Services", href: "/#services" },
   { name: "Contact", href: "/contact" },
   { name: "Pricing", href: "/#pricing" },
-  { name: "About", href: "/#about" },
+  { name: "About", href: "/about" },
   { name: "Reviews", href: "/#testimonials" },
   { name: "Blog", href: "/blog" },
 ];
@@ -40,7 +40,7 @@ function NavWordmark() {
   return (
     <Link
       href="/"
-      className="font-semibold text-zinc-900 text-[17px] tracking-tight flex shrink-0 items-center"
+      className="font-semibold text-zinc-900 text-[17px] tracking-tight flex min-h-11 shrink-0 items-center"
     >
       {"GenExecutive".split("").map((char, i) => (
         <motion.span

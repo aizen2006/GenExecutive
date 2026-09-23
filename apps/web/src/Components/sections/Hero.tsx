@@ -41,30 +41,36 @@ export function Hero() {
         <div className="hero-line mb-7 flex justify-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-1.5 text-sm font-medium text-violet-700">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-violet-500" />
-            AI-Powered Back Office
+            The AI-Powered Back Office
           </span>
         </div>
 
+        {/* `hero-rise`, not `hero-line`: the H1 is the LCP element, and an
+            element that starts at opacity 0 doesn't count as painted until
+            the fade finishes. It slides in but is visible from first paint. */}
         <h1 className="mb-5 text-4xl font-bold leading-[1.08] tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl">
           <span
-            className="hero-line block"
+            className="hero-rise block"
             style={{ "--hero-delay": "0.05s" } as CSSProperties}
           >
-            Behind Every Growing Business Is a
-          </span>
+            Virtual Executive Assistants
+          </span>{" "}
           <span
-            className="hero-line mt-2 block bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent"
+            className="hero-rise mt-2 block bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent"
             style={{ "--hero-delay": "0.1s" } as CSSProperties}
           >
-            Great Back Office
+            + AI Automation
           </span>
         </h1>
 
         <p
-          className="hero-line mx-auto mb-9 max-w-xl text-base leading-relaxed text-zinc-500 sm:text-lg"
+          className="hero-line mx-auto mb-9 max-w-2xl text-pretty text-base leading-relaxed text-zinc-500 sm:text-lg"
           style={{ "--hero-delay": "0.15s" } as CSSProperties}
         >
-        We combine AI with experienced operators to handle your admin, operations, customer support, content, and more.
+          Behind every growing business is a great back office. We pair
+          experienced executive assistants with AI automation to handle admin,
+          operations, customer support and content for small businesses,
+          coaches and consultants in the US and UK.
         </p>
 
         <div

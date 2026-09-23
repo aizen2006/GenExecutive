@@ -39,3 +39,6 @@ yarn-error.log*
 .claude
 .agents
 skills-lock.json
+
+# SEO audit reports (claude-seo)
+genexecutive.in-audit/

@@ -64,6 +64,8 @@ None of these Claude Code tips are complicated alone. The magic is combining the
 
 That's the difference between fighting Claude Code and flying with it. And if coding workflows are the first domino, the natural next step for founders and teams is applying the same automate-what-you-can, focus-on-what-matters mindset to the rest of the business — which is the whole premise behind our [AI automation](/services/ai-automation) and [executive support](/services/executive-support) services.
 
+Want to see these habits in a real build? We used them to [build a Claude Code Skill that analyzes video with Gemini](/blog/claude-code-skill-gemini-video-analysis) and to run [a LinkedIn outreach pipeline made of 11 Claude skills](/blog/claude-skills-linkedin-outreach).
+
 ## Go Deeper: Official Claude Code Documentation
 
 Want the official word on any of this? Anthropic's docs cover each feature in more detail:

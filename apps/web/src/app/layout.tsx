@@ -5,16 +5,16 @@ import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "../Components/navbar";
 import ScrollAnimations from "../Components/ScrollAnimations";
 import MotionProvider from "../Components/MotionProvider";
+import { company, siteUrl, team } from "@/lib/company";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.genexecutive.in";
-const title = "GenExecutive — Executive Intelligence & AI Automation";
+const title = "Virtual Executive Assistants + AI Automation | GenExecutive";
 const description =
-  "Executive support, AI automation, and custom agents — all working together to elevate your business performance.";
+  "Virtual executive assistants and AI automation for small businesses, coaches and consultants in the US and UK. Plans from $400/month. Book a free call.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "GenExecutive — Executive Intelligence & AI Automation",
+        alt: "GenExecutive — virtual executive assistants and AI automation",
       },
     ],
   },
@@ -81,18 +81,45 @@ export const viewport: Viewport = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "GenExecutive",
+  "@id": `${siteUrl}/#organization`,
+  name: company.name,
   url: siteUrl,
+  logo: {
+    "@type": "ImageObject",
+    url: company.logo,
+    width: 256,
+    height: 256,
+  },
   description,
+  email: company.email,
+  areaServed: company.areaServed,
   contactPoint: {
     "@type": "ContactPoint",
-    email: "info@genexecutive.in",
+    email: company.email,
     contactType: "customer service",
+    availableLanguage: "English",
   },
-  sameAs: [
-    "https://x.com/Genexegrowth",
-    "https://www.linkedin.com/company/gen-executive/",
-  ],
+  ...(team.length
+    ? {
+        founder: team.map((m) => ({
+          "@type": "Person",
+          name: m.name,
+          jobTitle: m.role,
+          ...(m.linkedin ? { sameAs: [m.linkedin] } : {}),
+        })),
+      }
+    : {}),
+  sameAs: company.sameAs,
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  name: company.name,
+  url: siteUrl,
+  inLanguage: "en",
+  publisher: { "@id": `${siteUrl}/#organization` },
 };
 
 export default function RootLayout({
@@ -115,6 +142,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <MotionProvider>
           <Navbar />

@@ -21,6 +21,8 @@ export interface PostMeta {
   updated: string;
   excerpt: string;
   keywords: string[];
+  /** Team member id from lib/company.ts; absent means the company is the author. */
+  author?: string;
 }
 
 export interface Post extends PostMeta {
@@ -45,6 +47,37 @@ function remarkNoBodyH1() {
     const walk = (node: HeadingNode) => {
       if (node.type === "heading" && node.depth === 1) node.depth = 2;
       node.children?.forEach(walk);
+    };
+    walk(tree);
+  };
+}
+
+/**
+ * Sets width/height on local SVG diagrams from their viewBox, so the browser
+ * reserves the right space before the image loads (no layout shift).
+ */
+function remarkImageSize() {
+  const publicDir = path.join(process.cwd(), "public");
+  return (tree: HeadingNode & { url?: string }) => {
+    const walk = (node: HeadingNode & { url?: string }) => {
+      if (node.type === "image" && node.url?.startsWith("/") && node.url.endsWith(".svg")) {
+        const file = path.join(publicDir, node.url);
+        if (fs.existsSync(file)) {
+          const svg = fs.readFileSync(file, "utf8").slice(0, 2000);
+          const box = svg.match(/viewBox="[\d.-]+[ ,]+[\d.-]+[ ,]+([\d.]+)[ ,]+([\d.]+)"/);
+          if (box) {
+            node.data = {
+              ...node.data,
+              hProperties: {
+                ...node.data?.hProperties,
+                width: String(Math.round(Number(box[1]))),
+                height: String(Math.round(Number(box[2]))),
+              },
+            };
+          }
+        }
+      }
+      (node.children as (HeadingNode & { url?: string })[] | undefined)?.forEach(walk);
     };
     walk(tree);
   };
@@ -108,6 +141,7 @@ function toMeta(slug: string, data: Record<string, unknown>): PostMeta {
     updated: (data.updated as string) ?? date,
     excerpt: (data.excerpt as string) ?? "",
     keywords: Array.isArray(data.keywords) ? (data.keywords as string[]) : [],
+    ...(typeof data.author === "string" ? { author: data.author } : {}),
   };
 }
 
@@ -132,6 +166,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   const processed = await remark()
     .use(remarkNoBodyH1)
     .use(remarkHeadingIds)
+    .use(remarkImageSize)
     .use(remarkHtml)
     .process(content);
   return {

@@ -28,6 +28,21 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      // Files in public/ aren't content-hashed, so they can't be immutable,
+      // but a week of caching beats the default max-age=0 revalidation.
+      ...[
+        "/logos/:path*",
+        "/blog/:file(.*\\.svg)",
+        "/:file(.*\\.(?:png|jpe?g|webp|ico))",
+      ].map((source) => ({
+        source,
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=86400",
+          },
+        ],
+      })),
     ];
   },
 

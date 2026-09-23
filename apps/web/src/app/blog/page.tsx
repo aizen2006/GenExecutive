@@ -37,7 +37,7 @@ export default function BlogPage() {
     name: "The GenExecutive Blog",
     description,
     url: `${siteUrl}/blog`,
-    publisher: { "@type": "Organization", name: "GenExecutive", url: siteUrl },
+    publisher: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "GenExecutive", url: siteUrl },
     blogPost: posts.map((post) => ({
       "@type": "BlogPosting",
       headline: post.title,
@@ -60,10 +60,20 @@ export default function BlogPage() {
             Insights
           </span>
           <h1 className="text-3xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-4">
-            The GenExecutive Blog
+            AI Automation &amp; Executive Support Insights
           </h1>
-          <p className="text-zinc-500 text-base sm:text-lg">
-            Thoughts on executive support, AI, and building better businesses.
+          <p className="text-zinc-500 text-base sm:text-lg leading-relaxed">
+            Practical guides for founders, coaches and small business owners on
+            what to automate, what to delegate, and how to build a back office
+            that runs without you. Written by the team behind GenExecutive&apos;s{" "}
+            <Link href="/services/ai-automation" className="font-medium text-violet-600 hover:underline">
+              AI automation
+            </Link>{" "}
+            and{" "}
+            <Link href="/services/executive-support" className="font-medium text-violet-600 hover:underline">
+              virtual executive assistant
+            </Link>{" "}
+            services.
           </p>
         </div>
 
