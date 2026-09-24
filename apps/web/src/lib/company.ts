@@ -26,9 +26,9 @@ export const company = {
  */
 export const legal = {
   /** Proprietor's full legal name. */
-  proprietorName: "",
+  proprietorName: "Abhik Halder",
   /** Postal address, or at least city, state, India. */
-  address: "",
+  address: "Naraina Village , New Delhi , India",
   /** Grievance officer contact (IT Rules, 2011). */
   grievanceEmail: "info@genexecutive.in",
   /** Date the legal pages were last revised, ISO format. */
@@ -48,7 +48,15 @@ export interface TeamMember {
  * Founders and team. Empty until real names are added; the About page's team
  * section and per-person blog bylines only render when this has entries.
  */
-export const team: TeamMember[] = [];
+export const team: TeamMember[] = [
+  {
+    id:"01",
+    name:"Abhik Halder",
+    role:"founder",
+    bio:"Helping startup founders scale faster with AI",
+    linkedin:"https://www.linkedin.com/in/abhik0halder/"
+  }
+];
 
 export function getTeamMember(id: string | undefined): TeamMember | undefined {
   return id ? team.find((m) => m.id === id) : undefined;
