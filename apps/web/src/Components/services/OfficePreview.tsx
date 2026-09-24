@@ -1,40 +1,192 @@
-/* A slice of a handled day: shows the job instead of naming it. */
-const log = [
-  { time: "08:12", task: "Inbox triaged, 3 need you", done: false },
-  { time: "10:30", task: "Invoice #218 chased and paid", done: true },
-  { time: "11:45", task: "Supplier quotes compared", done: true },
-  { time: "14:05", task: "Leeds trip booked", done: true },
-  { time: "16:40", task: "Client report ready to sign", done: false },
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
+
+type Status = "pending" | "in-progress" | "completed";
+
+/* A day's back office, worked through in order. */
+const tasks = [
+  { title: "Triage inbox", detail: "41 → 3" },
+  { title: "Chase invoice #218", detail: "$1,240 paid" },
+  { title: "Compare supplier quotes", detail: "3 quotes" },
+  { title: "Book Leeds client visit", detail: "Tue, 2 nights" },
+  { title: "Draft weekly client report", detail: "sent for sign-off" },
 ];
 
-export default function OfficePreview() {
+const EASE_OUT = [0.16, 1, 0.3, 1] as const;
+const SPRING = { type: "spring", stiffness: 420, damping: 30 } as const;
+const STEP_MS = 520;
+
+function StatusIcon({ status }: { status: Status }) {
   return (
-    <figure className="rounded-2xl bg-white ring-1 ring-zinc-200">
-      <figcaption className="flex items-center justify-between border-b border-zinc-100 px-4 py-2.5 text-[12px]">
-        <span className="font-semibold text-zinc-900">Today, handled</span>
-        <span className="text-zinc-400">A typical day</span>
-      </figcaption>
-      <ol className="px-4 py-1">
-        {log.map((entry) => (
-          <li key={entry.time} className="flex items-center gap-3 py-2 text-[13px]">
-            <time className="w-10 shrink-0 tabular-nums text-zinc-400">{entry.time}</time>
-            <span className="min-w-0 flex-1 truncate text-zinc-700">{entry.task}</span>
-            <span
-              className={`h-2 w-2 shrink-0 rounded-full ${entry.done ? "bg-emerald-500" : "bg-amber-400"}`}
-              aria-label={entry.done ? "Done" : "Needs you"}
-              role="img"
-            />
-          </li>
-        ))}
+    <svg
+      aria-hidden
+      viewBox="0 0 24 24"
+      className={`size-5 shrink-0 overflow-visible ${
+        status === "completed" ? "text-emerald-500" : status === "in-progress" ? "text-violet-600" : "text-zinc-300"
+      }`}
+    >
+      {/* Pending: dashed ring. */}
+      <motion.circle
+        cx="12"
+        cy="12"
+        r="9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeDasharray="2 3"
+        initial={false}
+        animate={{ opacity: status === "pending" ? 1 : 0 }}
+        transition={{ duration: 0.15 }}
+      />
+      {/* In progress: a spinning arc. */}
+      <motion.circle
+        cx="12"
+        cy="12"
+        r="9"
+        pathLength="1"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        initial={false}
+        animate={{
+          pathLength: status === "in-progress" ? 0.68 : 0,
+          opacity: status === "in-progress" ? 1 : 0,
+          rotate: status === "in-progress" ? 360 : -90,
+        }}
+        transition={
+          status === "in-progress"
+            ? { rotate: { duration: 1.1, repeat: Infinity, ease: "linear" }, default: SPRING }
+            : SPRING
+        }
+        style={{ transformOrigin: "12px 12px" }}
+      />
+      {/* Completed: filled disc with a drawn tick. */}
+      <motion.circle
+        cx="12"
+        cy="12"
+        r="9"
+        fill="currentColor"
+        initial={false}
+        animate={{ scale: status === "completed" ? 1 : 0 }}
+        transition={SPRING}
+        style={{ transformOrigin: "12px 12px" }}
+      />
+      <motion.path
+        d="M7.5 12.25 10.5 15.25 16.75 8.75"
+        fill="none"
+        stroke="white"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={false}
+        animate={{ pathLength: status === "completed" ? 1 : 0 }}
+        transition={{ duration: 0.24, ease: EASE_OUT, delay: 0.08 }}
+      />
+    </svg>
+  );
+}
+
+/** Rolls the digit up when the completed count changes. */
+function RollNumber({ value }: { value: number }) {
+  return (
+    <span className="relative inline-flex h-4 overflow-hidden">
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={value}
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "-100%" }}
+          transition={SPRING}
+        >
+          {value}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
+/**
+ * The day's back office as an agent-style to-do list: each task goes from
+ * pending to in progress to done, in order, once it scrolls into view.
+ */
+export default function OfficePreview() {
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const reduce = useReducedMotion();
+  // Timeline tick: task i is in progress at 2i+1 and done from 2i+2.
+  const [tick, setTick] = useState(0);
+  const last = tasks.length * 2;
+
+  useEffect(() => {
+    if (!inView || tick >= last) return;
+    const id = setTimeout(() => setTick((t) => (reduce ? last : t + 1)), reduce ? 0 : tick === 0 ? 250 : STEP_MS);
+    return () => clearTimeout(id);
+  }, [inView, tick, last, reduce]);
+
+  const statusOf = (i: number): Status => (tick >= 2 * i + 2 ? "completed" : tick === 2 * i + 1 ? "in-progress" : "pending");
+  const completed = tasks.filter((_, i) => statusOf(i) === "completed").length;
+  const allDone = completed === tasks.length;
+
+  return (
+    <section ref={ref} aria-label="Back-office task list" className="rounded-2xl bg-white ring-1 ring-zinc-200">
+      <div className="flex h-11 items-center gap-2.5 border-b border-zinc-100 px-3.5">
+        <span
+          aria-hidden
+          className={`grid size-6 place-items-center rounded-full transition-colors ${
+            allDone ? "bg-emerald-500 text-white" : "bg-zinc-100 text-zinc-500"
+          }`}
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+            {allDone ? <path d="M6 12.5l4 4 8-9" /> : <path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" />}
+          </svg>
+        </span>
+        <h4 className="min-w-0 flex-1 truncate text-[13px] font-semibold text-zinc-900">Today&apos;s back office</h4>
+        <span className={`inline-flex text-xs font-medium tabular-nums ${allDone ? "text-emerald-600" : "text-zinc-500"}`}>
+          <span className="sr-only">
+            {completed} of {tasks.length} tasks completed
+          </span>
+          <span aria-hidden className="inline-flex">
+            <RollNumber value={completed} />/{tasks.length}
+          </span>
+        </span>
+      </div>
+
+      <ol className="p-2">
+        {tasks.map((task, i) => {
+          const status = statusOf(i);
+          return (
+            <li key={task.title} className="flex min-h-9 items-center gap-2.5 rounded-xl px-1.5 py-1">
+              <StatusIcon status={status} />
+              <span
+                className={`min-w-0 flex-1 truncate text-[13px] transition-colors ${
+                  status === "pending" ? "text-zinc-400" : status === "in-progress" ? "text-zinc-900" : "text-zinc-400"
+                }`}
+              >
+                <span className="relative inline-block max-w-full">
+                  {task.title}
+                  <motion.span
+                    aria-hidden
+                    initial={false}
+                    animate={{ scaleX: status === "completed" ? 1 : 0 }}
+                    transition={{ duration: 0.28, ease: EASE_OUT, delay: 0.06 }}
+                    className="absolute inset-x-0 top-1/2 h-px origin-left bg-current"
+                  />
+                </span>
+              </span>
+              <motion.span
+                initial={false}
+                animate={{ opacity: status === "completed" ? 1 : 0 }}
+                className="shrink-0 text-[12px] tabular-nums text-zinc-500"
+              >
+                {task.detail}
+              </motion.span>
+            </li>
+          );
+        })}
       </ol>
-      <p className="flex gap-4 border-t border-zinc-100 px-4 py-2.5 text-[11px] text-zinc-500">
-        <span className="inline-flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden /> Done
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber-400" aria-hidden /> Needs you
-        </span>
-      </p>
-    </figure>
+    </section>
   );
 }
