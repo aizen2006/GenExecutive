@@ -68,7 +68,7 @@ export function Services() {
           <BentoCard
             className="md:col-span-2 lg:col-span-4"
             title="AI agents & automations"
-            description="Agents that move work between the tools you already use, and ask before anything important goes out."
+            description="Agents that do the legwork across the tools you already use, then stop and wait for you before anything goes out."
             visual={<FlowPreview />}
             price={fromPrice("ai-automation")}
             href="/services/ai-automation"

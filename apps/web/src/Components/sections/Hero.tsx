@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { motion } from "motion/react";
 import CalButton from "../caldotcom";
 import HeroTrail from "./HeroTrail";
+import HeroRotator from "./HeroRotator";
 
 /**
  * The hero entrance is CSS (`.hero-line` in globals.css), not GSAP — it has to
@@ -42,10 +43,11 @@ export function Hero() {
             element that starts at opacity 0 doesn't count as painted until
             the fade finishes. It slides in but is visible from first paint. */}
         <h1
-          className="hero-rise mx-auto mb-6 max-w-[14ch] text-balance text-[44px] font-bold leading-[0.98] tracking-[-0.035em] text-zinc-900 sm:text-7xl lg:text-[88px]"
+          className="hero-rise mx-auto mb-6 text-[44px] font-bold leading-[0.98] tracking-[-0.035em] text-zinc-900 sm:text-7xl lg:text-[88px]"
           style={{ "--hero-delay": "0.05s" } as CSSProperties}
         >
-          Stop being your own back office.
+          <span className="block text-balance">Stop being your own</span>{" "}
+          <HeroRotator />
         </h1>
 
         <p
