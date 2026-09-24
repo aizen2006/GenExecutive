@@ -1,4 +1,5 @@
 ---
+author: "01"
 title: "How to Add a Claude Code Skill for Gemini-Powered Video Analysis"
 seoTitle: "Claude Code Skill for Gemini Video Analysis: Setup Guide"
 date: "2026-09-15"

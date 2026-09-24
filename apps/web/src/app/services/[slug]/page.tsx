@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { services, getService, planSummary } from "@/lib/services";
+import { services, getService, getRate } from "@/lib/services";
 import { getAllPosts } from "@/lib/posts";
 import CalButton from "@/Components/caldotcom";
 import Footer from "@/Components/sections/footer";
@@ -60,6 +60,7 @@ export default async function ServicePage({ params }: Props) {
     .map((s) => posts.find((p) => p.slug === s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
   const others = services.filter((s) => s.slug !== slug);
+  const rate = getRate(slug);
 
   const serviceJsonLd = {
     "@context": "https://schema.org",
@@ -76,22 +77,21 @@ export default async function ServicePage({ params }: Props) {
       email: "info@genexecutive.in",
     },
     areaServed: ["US", "GB"],
-    offers: [
-      { name: "Starter", price: "400" },
-      { name: "Pro", price: "800" },
-    ].map((plan) => ({
-      "@type": "Offer",
-      name: `${plan.name} plan`,
-      price: plan.price,
-      priceCurrency: "USD",
-      url: `${siteUrl}/#pricing`,
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: plan.price,
-        priceCurrency: "USD",
-        unitCode: "MON",
-      },
-    })),
+    ...(rate
+      ? {
+          offers: {
+            "@type": "Offer",
+            name: `${rate.name}, ${rate.model.toLowerCase()}`,
+            url: `${siteUrl}/#pricing`,
+            priceSpecification: {
+              "@type": rate.billing ? "UnitPriceSpecification" : "PriceSpecification",
+              minPrice: rate.amount,
+              priceCurrency: "USD",
+              ...(rate.billing ? { unitCode: rate.billing } : {}),
+            },
+          },
+        }
+      : {}),
   };
 
   const breadcrumbJsonLd = {
@@ -301,28 +301,39 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </section>
 
-          {/* Pricing snapshot */}
-          <section className="mt-14 sm:mt-16">
-            <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 tracking-tight mb-5">
-              Pricing
-            </h2>
-            <ul className="grid gap-4 sm:grid-cols-3">
-              {planSummary.map((plan) => (
-                <li key={plan.name} className="rounded-xl border border-zinc-100 p-5">
-                  <h3 className="font-semibold text-zinc-900">{plan.name}</h3>
-                  <p className="mt-1 text-lg font-bold text-violet-700">{plan.price}</p>
-                  <p className="mt-2 text-sm text-zinc-500 leading-relaxed">{plan.summary}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-sm text-zinc-500">
-              Monthly plans with no fixed end date.{" "}
-              <Link href="/#pricing" className="font-medium text-violet-600 hover:underline">
-                Compare plans in full
-              </Link>
-              .
-            </p>
-          </section>
+          {/* Pricing */}
+          {rate && (
+            <section className="mt-14 sm:mt-16">
+              <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 tracking-tight mb-5">
+                Pricing
+              </h2>
+              <div className="rounded-xl border border-zinc-200 p-5 sm:p-6">
+                <p className="text-sm text-zinc-500">{rate.model}</p>
+                <p className="mt-1 tabular-nums">
+                  <span className="text-sm text-zinc-400">from </span>
+                  <span className="text-3xl font-bold tracking-tight text-zinc-900">{rate.price}</span>
+                  <span className="text-zinc-500">
+                    {rate.unit.startsWith("/") ? rate.unit : ` ${rate.unit}`}
+                  </span>
+                </p>
+                <ul className="mt-5 grid gap-2 text-[15px] text-zinc-700 sm:grid-cols-2 sm:gap-x-8">
+                  {rate.includes.map((item) => (
+                    <li key={item} className="border-l-2 border-violet-200 pl-3">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                {rate.addOn && <p className="mt-5 text-sm text-zinc-500">{rate.addOn}</p>}
+              </div>
+              <p className="mt-4 text-sm text-zinc-500">
+                You get a fixed quote after a free call.{" "}
+                <Link href="/#pricing" className="font-medium text-violet-600 hover:underline">
+                  See all pricing
+                </Link>
+                .
+              </p>
+            </section>
+          )}
 
           {/* FAQ */}
           <section className="mt-14 sm:mt-16">

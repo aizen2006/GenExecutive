@@ -188,8 +188,8 @@ export default function ContactPage() {
                     Pricing
                   </span>
                   <span className="mt-1 block text-sm text-zinc-500 leading-relaxed">
-                    Starter, Pro and a custom Enterprise tier — scale up or down
-                    as your needs change.
+                    Monthly back-office support, fixed-price custom tools and AI
+                    automation setups, each with a starting price.
                   </span>
                 </Link>
               </li>

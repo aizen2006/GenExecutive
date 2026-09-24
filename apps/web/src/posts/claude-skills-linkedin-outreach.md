@@ -1,4 +1,5 @@
 ---
+author: "01"
 title: "How 11 Claude AI Skills Can Automate LinkedIn Outreach & Find High-Value Prospects"
 seoTitle: "11 Claude AI Skills for LinkedIn Outreach & Prospecting"
 date: "2026-09-15"

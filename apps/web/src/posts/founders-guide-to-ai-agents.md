@@ -1,4 +1,5 @@
 ---
+author: "01"
 title: "The Founder's Guide to AI Agents: What to Automate First in Your Business"
 seoTitle: "Founder's Guide to AI Agents: What to Automate First"
 date: "2026-08-17"

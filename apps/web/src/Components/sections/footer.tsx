@@ -6,10 +6,9 @@ const social = {
 };
 
 const services = [
-  { label: "AI Automation", href: "/services/ai-automation" },
-  { label: "Virtual Executive Assistant", href: "/services/executive-support" },
-  { label: "AI Agents & Chatbots", href: "/services/ai-automation" },
-  { label: "Content at Scale", href: "/#services" },
+  { label: "Custom Tools & Apps", href: "/services/custom-tools-apps" },
+  { label: "Back-Office Support", href: "/services/back-office-support" },
+  { label: "AI Agents & Automations", href: "/services/ai-automation" },
 ];
 
 const company = [
@@ -31,7 +30,7 @@ export function Footer() {
               GenExecutive
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed mb-5">
-              Virtual executive assistants and AI automation for small businesses in the US and UK.
+              Back-office support, custom tools and AI agents for small businesses in the US and UK.
             </p>
             <div className="-ml-2.5 flex items-center gap-1">
               <a

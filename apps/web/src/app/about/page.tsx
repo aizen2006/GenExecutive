@@ -5,9 +5,9 @@ import { company, siteUrl, team } from "@/lib/company";
 import CalButton from "@/Components/caldotcom";
 import Footer from "@/Components/sections/footer";
 
-const title = "About GenExecutive — Virtual Executive Assistants + AI Automation";
+const title = "About GenExecutive — Back-Office Support, Custom Tools & AI";
 const description =
-  "GenExecutive pairs experienced executive assistants with AI automation to run the back office for small businesses, coaches and consultants in the US and UK.";
+  "GenExecutive runs the back office, builds custom AI tools and sets up AI agents for small businesses, coaches and consultants in the US and UK.";
 
 export const metadata: Metadata = {
   // Absolute: this title already carries the brand.
@@ -46,11 +46,11 @@ const principles = [
   },
   {
     heading: "You own what we build",
-    body: "Automations are built on mainstream tools you can see and control, then tested, documented and handed over with training, so your team is never dependent on us to understand them.",
+    body: "Code, data and automations live in accounts you control, and are documented and handed over with training, so your team is never dependent on us to understand them.",
   },
   {
-    heading: "Monthly, not locked in",
-    body: "Plans are monthly with no fixed end date. Scale up, scale down or pause whenever your needs change.",
+    heading: "Clear prices, no lock-in",
+    body: "Back-office support is monthly and can be paused anytime; tools and automations are fixed-price projects, quoted before we start.",
   },
 ];
 
@@ -106,11 +106,11 @@ export default function AboutPage() {
           </h1>
           <p className="text-zinc-500 text-base sm:text-lg leading-relaxed">
             GenExecutive was founded on one belief: the best founders and
-            executives shouldn&apos;t be buried in logistics. We pair
-            experienced executive assistants with AI automation and custom AI
-            agents, so the admin, operations, customer support and content that
-            fill a week get handled, and the person meant to be growing the
-            business gets to do that instead.
+            executives shouldn&apos;t be buried in logistics. We take over the
+            admin that fills a week, build the custom tools a business has
+            outgrown its spreadsheets for, and put AI agents on the repetitive
+            work, so the person meant to be growing the business gets to do
+            that instead.
           </p>
           <p className="mt-4 text-zinc-500 text-base sm:text-lg leading-relaxed">
             We work with small businesses, coaches, consultants and scaling
@@ -131,19 +131,24 @@ export default function AboutPage() {
               What we do
             </h2>
             <p className="text-zinc-500 leading-relaxed">
-              We run two services that work best together. Our{" "}
-              <Link href="/services/executive-support" className="font-medium text-violet-600 hover:underline">
-                virtual executive assistant service
+              We build{" "}
+              <Link href="/services/custom-tools-apps" className="font-medium text-violet-600 hover:underline">
+                custom tools and apps
+              </Link>
+              : dashboards, custom CRMs, client portals, RAG chatbots and a
+              company brain your team can ask anything, built with AI in the
+              loop so they ship far faster than a traditional agency would.
+              Our{" "}
+              <Link href="/services/back-office-support" className="font-medium text-violet-600 hover:underline">
+                back-office support
               </Link>{" "}
-              takes over calendar, inbox, travel, meeting preparation, documents
-              and vendor coordination. Our{" "}
+              takes over inbox, calendar, invoicing, suppliers and research.
+              And our{" "}
               <Link href="/services/ai-automation" className="font-medium text-violet-600 hover:underline">
-                AI automation service
+                AI agents and automations
               </Link>{" "}
-              builds the workflows and AI agents that remove repetitive steps
-              around that work: lead routing, CRM updates, email triage,
-              onboarding and reporting. Every plan includes both, plus content
-              support such as AI avatar videos and social media assistance.
+              remove the repetitive steps in between: lead routing, CRM
+              updates, email triage, onboarding and reporting.
             </p>
           </section>
 

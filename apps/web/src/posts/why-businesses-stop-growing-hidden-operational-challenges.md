@@ -1,4 +1,5 @@
 ---
+author: "01"
 title: "Why Businesses Stop Growing: 5 Hidden Operational Challenges"
 seoTitle: "Why Businesses Stop Growing: 5 Hidden Ops Problems"
 date: "2026-07-29"
@@ -91,7 +92,7 @@ This is where **GenExecutive** provides value. By offering professional executiv
 
 ## How GenExecutive Supports Business Growth
 
-Our [virtual executive assistant service](/services/executive-support) keeps organizations organized through the list below, while our [AI automation service](/services/ai-automation) removes the repetitive steps around that work:
+Our [back-office support service](/services/back-office-support) keeps organizations organized through the list below, while our [AI automation service](/services/ai-automation) removes the repetitive steps around that work:
 
 - **Executive assistance** — a reliable second set of hands for the work that can't wait
 - **Calendar and email management** — priorities surface, noise disappears

@@ -52,6 +52,12 @@ const nextConfig: NextConfig = {
   // the edge redirect fires first and this never runs.
   async redirects() {
     return [
+      // Service renamed from "executive support" to "back-office support".
+      {
+        source: "/services/executive-support",
+        destination: "/services/back-office-support",
+        permanent: true,
+      },
       {
         source: "/:path*",
         has: [{ type: "host", value: altHost }],

@@ -1,4 +1,5 @@
 ---
+author: "01"
 title: "The Next Trillionaire Could Be 25: How AI is Changing Wealth Creation"
 seoTitle: "The Next Trillionaire Could Be 25: AI and Wealth"
 date: "2026-07-20"
@@ -133,7 +134,7 @@ The next trillionaire won't wait thirty years to build their empire. They'll bui
 
 The rules of wealth creation have been rewritten. The winners of the next decade won't be the people with the most experience — they'll be the people with the most leverage.
 
-That's exactly what we build at GenExecutive: [executive support](/services/executive-support) and [autonomous AI agents](/services/ai-automation) that give founders and leaders the leverage to move at the speed this new era demands.
+That's exactly what we build at GenExecutive: [back-office support](/services/back-office-support) and [autonomous AI agents](/services/ai-automation) that give founders and leaders the leverage to move at the speed this new era demands.
 
 Ready to build with leverage? [Book a discovery call](/contact) and we'll map out what's possible for your business.
 

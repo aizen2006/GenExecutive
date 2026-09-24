@@ -60,18 +60,22 @@ export default function BlogPage() {
             Insights
           </span>
           <h1 className="text-3xl sm:text-5xl font-bold text-zinc-900 tracking-tight mb-4">
-            AI Automation &amp; Executive Support Insights
+            Guides to Running a Leaner Business With AI
           </h1>
           <p className="text-zinc-500 text-base sm:text-lg leading-relaxed">
             Practical guides for founders, coaches and small business owners on
             what to automate, what to delegate, and how to build a back office
             that runs without you. Written by the team behind GenExecutive&apos;s{" "}
-            <Link href="/services/ai-automation" className="font-medium text-violet-600 hover:underline">
-              AI automation
+            <Link href="/services/custom-tools-apps" className="font-medium text-violet-600 hover:underline">
+              custom tools
+            </Link>
+            ,{" "}
+            <Link href="/services/back-office-support" className="font-medium text-violet-600 hover:underline">
+              back-office support
             </Link>{" "}
             and{" "}
-            <Link href="/services/executive-support" className="font-medium text-violet-600 hover:underline">
-              virtual executive assistant
+            <Link href="/services/ai-automation" className="font-medium text-violet-600 hover:underline">
+              AI automation
             </Link>{" "}
             services.
           </p>

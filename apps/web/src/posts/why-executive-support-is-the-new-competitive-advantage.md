@@ -1,4 +1,5 @@
 ---
+author: "01"
 title: "Why Executive Support is the New Competitive Advantage"
 seoTitle: "Why Executive Support Is the New Competitive Advantage"
 date: "2026-05-05"
@@ -23,7 +24,7 @@ When your calendar, inbox, and operational tasks are handled by someone (or some
 
 ## What We Do Differently
 
-At GenExecutive, we combine [executive support](/services/executive-support) with [AI automation](/services/ai-automation) to give you support that's always on, always ahead, and always learning.
+At GenExecutive, we combine [back-office support](/services/back-office-support) with [AI automation](/services/ai-automation) to give you support that's always on, always ahead, and always learning.
 
 - **AI-powered email triage** — important things surface, noise disappears
 - **Intelligent calendar management** — no more scheduling back-and-forth
@@ -38,4 +39,4 @@ The real power of executive support isn't any single task taken off your plate. 
 
 ---
 
-Ready to reclaim your time? See how our [virtual executive assistant service](/services/executive-support) works, or [book a call](/contact) and let's talk about what's possible for your business.
+Ready to reclaim your time? See how our [back-office support service](/services/back-office-support) works, or [book a call](/contact) and let's talk about what's possible for your business.

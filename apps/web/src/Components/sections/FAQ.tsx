@@ -5,8 +5,8 @@ import { motion } from "motion/react";
 
 const faqs = [
   {
-    q: "What does Executive Support include?",
-    a: "Our Executive Support covers calendar and schedule management, email triage and drafting, travel planning, meeting preparation, document creation, vendor coordination, and general administrative tasks. Think of us as your always-on chief of staff.",
+    q: "What does back-office support include?",
+    a: "Inbox triage and drafting, calendar and schedule management, meeting preparation, invoicing and payment follow-up, supplier and vendor coordination, travel, research and documents. It covers what an executive assistant and an operations coordinator would do, without hiring either.",
   },
   {
     q: "How do your AI agents work?",
@@ -17,16 +17,16 @@ const faqs = [
     a: "Absolutely. We analyze your existing workflows, identify high-value automation opportunities, and build custom pipelines using modern AI tools. Every automation is tested, documented, and handed over with training so your team can manage it confidently.",
   },
   {
-    q: "Do you create content for our brand?",
-    a: "Yes. Our Content at Scale service produces AI avatar videos, social media content, short-form clips, and repurposed assets — so you stay consistent across every channel without adding to your team's workload.",
+    q: "What kind of custom tools do you build?",
+    a: "Full-stack web apps with AI built in where it helps: internal dashboards, custom CRMs, client portals, quoting and booking tools, RAG chatbots that answer from your own documents, and a company brain your team can ask anything. Because we build with AI in the loop, we deliver much faster than a traditional development agency, and you own the code.",
   },
   {
     q: "How does pricing work?",
-    a: "We offer three monthly plans — Starter ($400/mo), Pro ($800/mo), and a custom Enterprise tier — each bundling automation, executive support, AI, and content. You can scale up as your needs grow, or book a call for a setup tailored to your business.",
+    a: "Each service is priced the way the work is shaped: back-office support is a monthly retainer from $400/month, custom tools are fixed-price projects from $2,500, and AI agents and automations start from $1,000 for setup. Every engagement starts with a free call and a fixed quote.",
   },
   {
     q: "How does ongoing support work?",
-    a: "Our plans are monthly and continuous — we keep managing your operations, automations, support, and content, optimizing as your business grows. There's no fixed end date: scale up, scale down, or pause whenever your needs change.",
+    a: "Back-office support is monthly with no fixed end date: scale up, scale down or pause whenever your needs change. Custom tools and automations come with optional care and monitoring plans, so someone keeps them running after launch.",
   },
   {
     q: "How do I get started?",

@@ -52,7 +52,7 @@ export const team: TeamMember[] = [
   {
     id:"01",
     name:"Abhik Halder",
-    role:"founder",
+    role:"Founder",
     bio:"Helping startup founders scale faster with AI",
     linkedin:"https://www.linkedin.com/in/abhik0halder/"
   }

@@ -1,4 +1,5 @@
 ---
+author: "01"
 title: "3 Claude Code Hacks That Actually Change How You Ship (2026 Guide)"
 seoTitle: "3 Claude Code Hacks That Change How You Ship (2026)"
 date: "2026-07-31"
@@ -50,7 +51,7 @@ The fix is almost boringly simple: compact proactively. Finish a chunk of work? 
 
 One more lever: a sharp `CLAUDE.md` file. Build commands, test commands, project quirks — write them once, and Claude starts every session already knowing your codebase instead of burning context rediscovering it.
 
-This same principle — automate the repetitive parts so your attention goes to judgment calls, not busywork — is exactly what teams like [GenExecutive](/) apply outside the codebase, using [AI-driven workflow automation](/services/ai-automation) and [executive support](/services/executive-support) to clear operational clutter the same way a clean context window clears cognitive clutter for Claude.
+This same principle — automate the repetitive parts so your attention goes to judgment calls, not busywork — is exactly what teams like [GenExecutive](/) apply outside the codebase, using [AI-driven workflow automation](/services/ai-automation) and [back-office support](/services/back-office-support) to clear operational clutter the same way a clean context window clears cognitive clutter for Claude.
 
 ## Hack #3: The Secret Prompt That Makes Claude Code Think Harder
 
@@ -62,7 +63,7 @@ It's not a placebo — it's a real signal, specific to Claude Code's agentic loo
 
 None of these Claude Code tips are complicated alone. The magic is combining them: plan mode for the big decisions, a "think harder" nudge when it's genuinely hard, checkpoints as your safety net the whole way through, and a context window you keep lean on purpose instead of by accident.
 
-That's the difference between fighting Claude Code and flying with it. And if coding workflows are the first domino, the natural next step for founders and teams is applying the same automate-what-you-can, focus-on-what-matters mindset to the rest of the business — which is the whole premise behind our [AI automation](/services/ai-automation) and [executive support](/services/executive-support) services.
+That's the difference between fighting Claude Code and flying with it. And if coding workflows are the first domino, the natural next step for founders and teams is applying the same automate-what-you-can, focus-on-what-matters mindset to the rest of the business — which is the whole premise behind our [AI automation](/services/ai-automation) and [back-office support](/services/back-office-support) services.
 
 Want to see these habits in a real build? We used them to [build a Claude Code Skill that analyzes video with Gemini](/blog/claude-code-skill-gemini-video-analysis) and to run [a LinkedIn outreach pipeline made of 11 Claude skills](/blog/claude-skills-linkedin-outreach).
 

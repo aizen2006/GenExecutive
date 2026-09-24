@@ -9,10 +9,10 @@ import { legal, siteUrl } from "@/lib/company";
  * build time instead would tell crawlers every page changed on every deploy.
  */
 const staticUpdated = {
-  home: "2026-09-23",
+  home: "2026-09-24",
   blog: "2026-09-23",
-  services: "2026-09-23",
-  about: "2026-09-23",
+  services: "2026-09-24",
+  about: "2026-09-24",
   contact: "2026-09-21",
 };
 

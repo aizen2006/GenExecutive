@@ -1,209 +1,102 @@
-"use client";
+import Link from "next/link";
+import { rates, services } from "@/lib/services";
+import CalButton from "../caldotcom";
 
-import { motion, type Variants } from "motion/react";
-import { useCalEmbed } from "../../lib/useCalEmbed";
-
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
-  },
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: "easeOut" },
-  },
-};
-
-interface Plan {
-  name: string;
-  price: string;
-  period?: string;
-  description: string;
-  featuresLead?: string;
-  features: string[];
-  cta: string;
-  featured?: boolean;
-}
-
-const plans: Plan[] = [
-  {
-    name: "Starter",
-    price: "$400",
-    period: "/month",
-    description: "Perfect for founders and small businesses.",
-    features: [
-      "Workflow automation",
-      "Executive support",
-      "Calendar management",
-      "Inbox support",
-      "AI chatbot setup",
-      "Social media assistance",
-      "4 AI avatar videos/month",
-      "Monthly optimization",
-    ],
-    cta: "Get Started",
-  },
-  {
-    name: "Pro",
-    price: "$800",
-    period: "/month",
-    description: "Built for growing businesses that need systems and scale.",
-    featuresLead: "Everything in Starter, plus:",
-    features: [
-      "Advanced workflow automation",
-      "Lead management",
-      "Dedicated executive support",
-      "Multi-platform social media management",
-      "10 business videos/month",
-      "Priority support",
-      "Process documentation",
-    ],
-    cta: "Book a Call",
-    featured: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "Pricing",
-    description: "For businesses requiring tailored AI operations.",
-    features: [
-      "Custom AI agents",
-      "Internal knowledge bases",
-      "Human-in-the-loop review",
-      "Dedicated account manager",
-      "Custom integrations",
-      "Ongoing optimization",
-      "Strategy consulting",
-    ],
-    cta: "Contact Sales",
-  },
-];
-
-function Check() {
-  return (
-    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-100 text-[11px] font-bold text-violet-600">
-      ✓
-    </span>
-  );
-}
-
-function PricingCard({ plan }: { plan: Plan }) {
-  const featured = plan.featured;
-  return (
-    <motion.div
-      variants={cardVariants}
-      whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 22 } }}
-      className={`relative flex flex-col rounded-[28px] p-6 sm:rounded-[32px] sm:p-8 ${
-        featured
-          ? "border-2 border-violet-300 bg-white shadow-[0_20px_60px_rgba(139,92,246,0.18)] lg:scale-105 z-10"
-          : "border border-zinc-200 bg-gradient-to-br from-white to-zinc-50/80 shadow-sm"
-      }`}
-    >
-      {/* Top accent bar + badge for featured */}
-      {featured && (
-        <>
-          <div className="absolute inset-x-10 top-0 h-1 rounded-b-full bg-gradient-to-r from-violet-500 to-indigo-500" />
-          <motion.span
-            className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-violet-600 to-indigo-500 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white shadow-[0_0_16px_rgba(139,92,246,0.45)]"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-          >
-            Most Popular
-          </motion.span>
-        </>
-      )}
-
-      <h3 className="text-lg font-semibold text-zinc-900">{plan.name}</h3>
-      <div className="mt-3 flex items-baseline gap-1">
-        <span className="text-4xl font-bold tracking-tight text-zinc-900">{plan.price}</span>
-        {plan.period && <span className="text-sm font-medium text-zinc-400">{plan.period}</span>}
-      </div>
-      <p className="mt-3 text-sm leading-relaxed text-zinc-500">{plan.description}</p>
-
-      <div className="mt-7 flex flex-1 flex-col">
-        {plan.featuresLead && (
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-violet-600">
-            {plan.featuresLead}
-          </p>
-        )}
-        <ul className="space-y-3">
-          {plan.features.map((f) => (
-            <li key={f} className="flex items-start gap-2.5 text-sm text-zinc-600">
-              <Check />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <motion.button
-        data-cal-namespace="30min"
-        data-cal-link="abhik-halder/30min"
-        data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
-        transition={{ type: "spring", stiffness: 400, damping: 20 }}
-        className={`mt-8 inline-flex h-12 cursor-pointer items-center justify-center rounded-full px-7 text-sm font-semibold transition-colors ${
-          featured
-            ? "bg-violet-600 text-white shadow-md hover:bg-violet-700"
-            : "border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50"
-        }`}
-      >
-        {plan.cta}
-      </motion.button>
-    </motion.div>
-  );
-}
-
+/**
+ * Rate card rather than feature tiers: each service is billed the way the
+ * work is shaped (retainer, fixed project, setup), with a "from" price so a
+ * small business can tell whether it's in budget before booking a call.
+ * Prices live in lib/services.ts `rates`.
+ */
 export function Pricing() {
-  useCalEmbed();
+  // Same order as the services section.
+  const ordered = services
+    .map((s) => rates.find((r) => r.service === s.slug))
+    .filter((r): r is NonNullable<typeof r> => Boolean(r));
 
   return (
-    <section id="pricing" className="px-6 py-20 sm:py-24 bg-white">
+    <section id="pricing" className="scroll-mt-20 bg-white px-5 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="mb-12 sm:mb-16 text-center gsap-reveal">
-          <span className="mb-3 block text-xs font-semibold uppercase tracking-widest text-violet-600">
-            Pricing
-          </span>
-          <h2 className="mx-auto max-w-[700px] text-3xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
-            Flexible Plans For Growing Businesses
+        <div className="mb-10 grid gap-4 sm:mb-14 lg:grid-cols-2 lg:items-end lg:gap-14">
+          <h2 className="text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-zinc-900 sm:text-6xl">
+            How we charge
           </h2>
-          <p className="mx-auto mt-4 max-w-[600px] text-base sm:mt-5 sm:text-lg leading-relaxed text-zinc-500">
-            Choose the level of support you need today and scale as your business
-            grows.
+          <p className="max-w-lg text-[17px] leading-relaxed text-zinc-500">
+            Each service is priced the way the work is shaped. Every engagement
+            starts with a free 30-minute call, and you get a fixed quote before
+            anything starts.
           </p>
         </div>
 
-        {/* Cards */}
-        <motion.div
-          className="grid items-start gap-6 lg:grid-cols-3 lg:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-        >
-          {plans.map((plan) => (
-            <PricingCard key={plan.name} plan={plan} />
-          ))}
-        </motion.div>
+        <ul className="border-t border-zinc-900">
+          {ordered.map((rate, i) => (
+            <li key={rate.service} className="border-b border-zinc-200">
+              <details className="group" open={i === 0}>
+                <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 py-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600 sm:grid-cols-[1.2fr_1fr_15rem_2.25rem] sm:py-8 [&::-webkit-details-marker]:hidden">
+                  <span className="text-xl font-semibold tracking-[-0.01em] text-zinc-900 sm:text-2xl">
+                    {rate.name}
+                  </span>
+                  <span className="order-3 col-span-2 flex items-center justify-between text-[15px] text-zinc-500 sm:order-none sm:col-span-1">
+                    {rate.model}
+                    {/* Phones: the expand cue lives on this line; the round
+                        button in the last column is desktop only. */}
+                    <span
+                      aria-hidden
+                      className="text-xl leading-none text-zinc-400 transition-transform group-open:rotate-45 sm:hidden"
+                    >
+                      +
+                    </span>
+                  </span>
+                  <span className="text-right tabular-nums">
+                    <span className="text-[13px] text-zinc-400">from </span>
+                    <span className="text-2xl font-bold tracking-[-0.02em] text-zinc-900 sm:text-3xl">
+                      {rate.price}
+                    </span>
+                    <span className="text-[15px] text-zinc-500">
+                      {rate.unit.startsWith("/") ? rate.unit : ` ${rate.unit}`}
+                    </span>
+                  </span>
+                  <span
+                    aria-hidden
+                    className="hidden h-9 w-9 items-center justify-center rounded-full border border-zinc-200 text-lg leading-none text-zinc-500 transition-transform group-open:rotate-45 sm:flex"
+                  >
+                    +
+                  </span>
+                </summary>
 
-        {/* Footnote */}
-        <motion.p
-          className="mx-auto mt-12 max-w-xl text-center text-sm leading-relaxed text-zinc-500"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          Need something custom? We&apos;ll design a solution tailored to your
-          workflow and business goals.
-        </motion.p>
+                <div className="grid gap-6 pb-8 sm:grid-cols-[1.2fr_1fr_15rem_2.25rem] sm:gap-x-6">
+                  <ul className="grid gap-2 text-[15px] text-zinc-700 sm:col-span-2 sm:grid-cols-2 sm:gap-x-8">
+                    {rate.includes.map((item) => (
+                      <li key={item} className="border-l-2 border-violet-200 pl-3">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-col gap-3 sm:col-span-2 sm:items-end sm:text-right">
+                    {rate.addOn && (
+                      <p className="max-w-xs text-[14px] leading-relaxed text-zinc-500">{rate.addOn}</p>
+                    )}
+                    <Link
+                      href={`/services/${rate.service}`}
+                      className="text-[14px] font-medium text-violet-700 underline decoration-violet-300 underline-offset-4 hover:decoration-violet-700"
+                    >
+                      Details for {rate.name.toLowerCase()}
+                    </Link>
+                  </div>
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-lg text-[15px] leading-relaxed text-zinc-600">
+            Most clients combine two, for example back-office support plus a
+            custom tool that removes the work at its source. We&apos;ll price
+            the combination on the call.
+          </p>
+          <CalButton className="w-full shrink-0 sm:w-auto">Get a quote on a call</CalButton>
+        </div>
       </div>
     </section>
   );

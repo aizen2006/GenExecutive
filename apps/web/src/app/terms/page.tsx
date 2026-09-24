@@ -4,7 +4,7 @@ import LegalPage, { OperatorDetails } from "@/Components/LegalPage";
 import { company, siteUrl } from "@/lib/company";
 
 const description =
-  "The terms that apply when you use the GenExecutive website or subscribe to our virtual executive assistant and AI automation services.";
+  "The terms that apply when you use the GenExecutive website or subscribe to our back-office support, custom tools and AI automation services.";
 
 export const metadata: Metadata = {
   title: { absolute: "Terms of Service | GenExecutive" },
@@ -24,17 +24,24 @@ export default function TermsPage() {
 
       <h2>Our services</h2>
       <p>
-        We provide virtual executive support, AI automation, custom AI agents
-        and content support on monthly plans. The scope of each plan is
-        described on our{" "}
-        <Link href="/#pricing">pricing section</Link> and in any proposal we
-        agree with you.
+        We provide back-office support on monthly plans, and build custom
+        software tools, AI agents and automations as fixed-price projects.
+        Starting prices are shown in our{" "}
+        <Link href="/#pricing">pricing section</Link>; the scope and price of
+        each engagement are set out in the proposal or quote we agree with
+        you.
       </p>
 
       <h2>Plans, fees and payment</h2>
       <ul>
-        <li>Plans are billed monthly in advance, in US dollars unless agreed otherwise.</li>
-        <li>Enterprise pricing is agreed in writing before work starts.</li>
+        <li>
+          Monthly plans are billed monthly in advance, in US dollars unless
+          agreed otherwise.
+        </li>
+        <li>
+          Projects are billed as set out in the quote, typically part upfront
+          and the balance on delivery.
+        </li>
         <li>
           Fees are exclusive of applicable taxes, which are added where the law
           requires.
@@ -47,8 +54,8 @@ export default function TermsPage() {
 
       <h2>Changing, pausing or cancelling</h2>
       <p>
-        Plans have no fixed end date. You can upgrade, downgrade, pause or
-        cancel by emailing <a href={`mailto:${company.email}`}>{company.email}</a>.
+        Monthly plans, including care and monitoring plans, have no fixed end
+        date. You can upgrade, downgrade, pause or cancel them by emailing <a href={`mailto:${company.email}`}>{company.email}</a>.
         Changes take effect from the next billing month. Fees already paid for
         the current month are not refunded, except where the law requires.
       </p>

@@ -12,9 +12,9 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const title = "Virtual Executive Assistants + AI Automation | GenExecutive";
+const title = "Back-Office Support, Custom Tools & AI Agents | GenExecutive";
 const description =
-  "Virtual executive assistants and AI automation for small businesses, coaches and consultants in the US and UK. Plans from $400/month. Book a free call.";
+  "Back-office support, custom AI tools and apps, and AI agents for small businesses in the US and UK. Stop being your own back office. Book a free call.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     apple: "/genexe-icon.png",
   },
   keywords: [
-    "executive support",
-    "AI automation",
+    "back-office support",
+    "custom business software",
+    "custom CRM",
+    "RAG chatbot",
     "AI agents",
+    "AI automation",
     "virtual executive assistant",
-    "MVP development",
-    "landing pages",
-    "business operations",
     "workflow automation",
   ],
   authors: [{ name: "GenExecutive", url: siteUrl }],
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "GenExecutive — virtual executive assistants and AI automation",
+        alt: "GenExecutive — back-office support, custom tools and AI agents",
       },
     ],
   },
