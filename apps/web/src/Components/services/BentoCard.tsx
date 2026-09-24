@@ -33,7 +33,7 @@ export default function BentoCard({
       <h3 className="text-xl font-semibold tracking-tight text-zinc-900 sm:text-2xl">{title}</h3>
       <p className="mt-2 text-[15px] leading-relaxed text-zinc-500">{description}</p>
 
-      <div className="mt-5 flex-1">{visual}</div>
+      <div className="mt-5 flex flex-1 flex-col">{visual}</div>
 
       <div className="mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         {price && <span className="text-sm text-zinc-500">{price}</span>}
